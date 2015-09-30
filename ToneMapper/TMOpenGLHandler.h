@@ -7,9 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TMImageProgram.h"
+
 
 @import GLKit;
 
 @interface TMOpenGLHandler : NSObject
+
+@property (readonly, strong, nonatomic) EAGLContext *context;
+@property (readonly, strong, nonatomic) TMImageProgram *imageProgram;
+
+- (void)initializeOpenGL;
+- (void)drawInRect:(CGRect)rect;
 
 @end

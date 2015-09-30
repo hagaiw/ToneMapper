@@ -50,25 +50,28 @@ const GLubyte Indices[] = {
 
 - (void)viewDidLoad {
   
+  
+  
   self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
   if (!self.context) {
     NSLog(@"Failed to create ES context");
   }
+  // Initialize context.
+  [EAGLContext setCurrentContext:self.context];
+  [self setupGL];
+  glUseProgram(self.program);
   
   GLKView *view = [[GLKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   view.context = self.context;
   view.delegate = self;
   self.view = view;
   
-  [self setupGL];
   
-  glUseProgram(self.program);
 }
 
 - (void)setupGL {
   
-  // Initialize context.
-  [EAGLContext setCurrentContext:self.context];
+  
   
   [self initVBOs];
   
@@ -85,7 +88,8 @@ const GLubyte Indices[] = {
   
   glEnableVertexAttribArray(_positionSlot);
   glEnableVertexAttribArray(_textureSlot);
-
+  glVertexAttribPointer(_positionSlot, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+  glVertexAttribPointer(_textureSlot, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*) (sizeof(float) * 3));
   
 }
 
@@ -100,26 +104,18 @@ const GLubyte Indices[] = {
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
-  
-  glClearColor(0.1, 0.0, 0.1, 1.0);
+
+  // BG Color
+  glClearColor(0.5, 0.0, 0.5, 1.0);
   glClear(GL_COLOR_BUFFER_BIT);
 
-  
-  float h = 4.0f * self.view.frame.size.height / self.view.frame.size.width;
+  // Projection matrix:
+  float h = 4.0f * rect.size.height / rect.size.width;
   GLKMatrix4 projectionMatrix = GLKMatrix4MakeFrustum(-2, 2, h/2, -h/2, 1, 1);
   glUniformMatrix4fv(_projectionUniform, 1, 0, projectionMatrix.m);
-  
-  glVertexAttribPointer(_positionSlot, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
-  glVertexAttribPointer(_textureSlot, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*) (sizeof(float) * 3));
-  
-  glActiveTexture(GL_TEXTURE0);
-  glUniform1i(_textureUniform, 0);
-  
-  
-  // 3
+
+  // Draw
   glDrawElements(GL_TRIANGLES, sizeof(Indices)/sizeof(Indices[0]), GL_UNSIGNED_BYTE, 0);
-  
-  
 }
 
 @end

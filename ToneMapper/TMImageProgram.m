@@ -62,12 +62,17 @@
 }
 
 - (void)initTexture {
+  
+  glActiveTexture(GL_TEXTURE0);
+  
   GLKTextureInfo *spriteTexture;
   NSError *theError;
   NSString *filePath = [[NSBundle mainBundle] pathForResource:@"lightricks" ofType:@"png"]; // 1
   spriteTexture = [GLKTextureLoader textureWithContentsOfFile:filePath options:nil error:&theError]; // 2
   glBindTexture(spriteTexture.target, spriteTexture.name); // 3
   glEnable(spriteTexture.target); // 4
+  
+  glUniform1i(_textureUniform, 0);
 }
 
 @end
