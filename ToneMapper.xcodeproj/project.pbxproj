@@ -9,11 +9,15 @@
 /* Begin PBXBuildFile section */
 		FAA8773F1BAF0BAD00934C21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8773E1BAF0BAD00934C21 /* main.m */; };
 		FAA877421BAF0BAD00934C21 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA877411BAF0BAD00934C21 /* AppDelegate.m */; };
-		FAA877451BAF0BAD00934C21 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA877441BAF0BAD00934C21 /* ViewController.m */; };
 		FAA877481BAF0BAD00934C21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA877461BAF0BAD00934C21 /* Main.storyboard */; };
 		FAA8774A1BAF0BAD00934C21 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA877491BAF0BAD00934C21 /* Images.xcassets */; };
 		FAA8774D1BAF0BAD00934C21 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA8774B1BAF0BAD00934C21 /* LaunchScreen.xib */; };
 		FAA877591BAF0BAD00934C21 /* ToneMapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA877581BAF0BAD00934C21 /* ToneMapperTests.m */; };
+		FAF9453D1BBBC9320093DE0F /* TMImageProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF945391BBBC9320093DE0F /* TMImageProgram.m */; };
+		FAF9453E1BBBC9320093DE0F /* TMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF9453C1BBBC9320093DE0F /* TMViewController.m */; };
+		FAF945411BBBCE1A0093DE0F /* vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FAF945401BBBCE1A0093DE0F /* vertex.glsl */; };
+		FAF945431BBBCE350093DE0F /* fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FAF945421BBBCE350093DE0F /* fragment.glsl */; };
+		FAF945451BBBD76A0093DE0F /* lightricks.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF945441BBBD76A0093DE0F /* lightricks.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +36,20 @@
 		FAA8773E1BAF0BAD00934C21 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FAA877401BAF0BAD00934C21 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FAA877411BAF0BAD00934C21 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		FAA877431BAF0BAD00934C21 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		FAA877441BAF0BAD00934C21 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		FAA877471BAF0BAD00934C21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FAA877491BAF0BAD00934C21 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FAA8774C1BAF0BAD00934C21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		FAA877521BAF0BAD00934C21 /* ToneMapperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToneMapperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA877571BAF0BAD00934C21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAA877581BAF0BAD00934C21 /* ToneMapperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToneMapperTests.m; sourceTree = "<group>"; };
+		FAF945381BBBC9320093DE0F /* TMImageProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMImageProgram.h; sourceTree = "<group>"; };
+		FAF945391BBBC9320093DE0F /* TMImageProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMImageProgram.m; sourceTree = "<group>"; };
+		FAF9453A1BBBC9320093DE0F /* TMProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMProgram.h; sourceTree = "<group>"; };
+		FAF9453B1BBBC9320093DE0F /* TMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMViewController.h; sourceTree = "<group>"; };
+		FAF9453C1BBBC9320093DE0F /* TMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMViewController.m; sourceTree = "<group>"; };
+		FAF945401BBBCE1A0093DE0F /* vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vertex.glsl; sourceTree = "<group>"; };
+		FAF945421BBBCE350093DE0F /* fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragment.glsl; sourceTree = "<group>"; };
+		FAF945441BBBD76A0093DE0F /* lightricks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightricks.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,13 +91,13 @@
 		FAA8773B1BAF0BAD00934C21 /* ToneMapper */ = {
 			isa = PBXGroup;
 			children = (
-				FAA877401BAF0BAD00934C21 /* AppDelegate.h */,
-				FAA877411BAF0BAD00934C21 /* AppDelegate.m */,
-				FAA877431BAF0BAD00934C21 /* ViewController.h */,
-				FAA877441BAF0BAD00934C21 /* ViewController.m */,
+				FAF945441BBBD76A0093DE0F /* lightricks.png */,
 				FAA877461BAF0BAD00934C21 /* Main.storyboard */,
+				FAF9453B1BBBC9320093DE0F /* TMViewController.h */,
+				FAF9453C1BBBC9320093DE0F /* TMViewController.m */,
 				FAA877491BAF0BAD00934C21 /* Images.xcassets */,
 				FAA8774B1BAF0BAD00934C21 /* LaunchScreen.xib */,
+				FAF9453F1BBBCAA60093DE0F /* openGL */,
 				FAA8773C1BAF0BAD00934C21 /* Supporting Files */,
 			);
 			path = ToneMapper;
@@ -96,6 +106,8 @@
 		FAA8773C1BAF0BAD00934C21 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FAA877401BAF0BAD00934C21 /* AppDelegate.h */,
+				FAA877411BAF0BAD00934C21 /* AppDelegate.m */,
 				FAA8773D1BAF0BAD00934C21 /* Info.plist */,
 				FAA8773E1BAF0BAD00934C21 /* main.m */,
 			);
@@ -117,6 +129,18 @@
 				FAA877571BAF0BAD00934C21 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FAF9453F1BBBCAA60093DE0F /* openGL */ = {
+			isa = PBXGroup;
+			children = (
+				FAF945401BBBCE1A0093DE0F /* vertex.glsl */,
+				FAF945421BBBCE350093DE0F /* fragment.glsl */,
+				FAF945381BBBC9320093DE0F /* TMImageProgram.h */,
+				FAF945391BBBC9320093DE0F /* TMImageProgram.m */,
+				FAF9453A1BBBC9320093DE0F /* TMProgram.h */,
+			);
+			name = openGL;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,9 +223,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAF945431BBBCE350093DE0F /* fragment.glsl in Resources */,
 				FAA877481BAF0BAD00934C21 /* Main.storyboard in Resources */,
+				FAF945411BBBCE1A0093DE0F /* vertex.glsl in Resources */,
 				FAA8774D1BAF0BAD00934C21 /* LaunchScreen.xib in Resources */,
 				FAA8774A1BAF0BAD00934C21 /* Images.xcassets in Resources */,
+				FAF945451BBBD76A0093DE0F /* lightricks.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +246,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAA877451BAF0BAD00934C21 /* ViewController.m in Sources */,
+				FAF9453D1BBBC9320093DE0F /* TMImageProgram.m in Sources */,
+				FAF9453E1BBBC9320093DE0F /* TMViewController.m in Sources */,
 				FAA877421BAF0BAD00934C21 /* AppDelegate.m in Sources */,
 				FAA8773F1BAF0BAD00934C21 /* main.m in Sources */,
 			);
@@ -418,6 +446,7 @@
 				FAA8775E1BAF0BAD00934C21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FAA8775F1BAF0BAD00934C21 /* Build configuration list for PBXNativeTarget "ToneMapperTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +455,7 @@
 				FAA877611BAF0BAD00934C21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

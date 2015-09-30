@@ -7,7 +7,21 @@
 //
 
 #import "TMImageProgram.h"
+#import <GLKit/GLKit.h>
+
+@interface TMImageProgram ()
+
+@property (nonatomic) GLuint program;
+
+@end
 
 @implementation TMImageProgram
+
+- (instancetype)init{
+  if (self = [super init]) {
+    
+  }
+  return self;
+}
 
 @end

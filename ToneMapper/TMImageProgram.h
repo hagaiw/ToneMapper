@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TMImageProgram : NSObject
+#import "TMProgram.h"
+
+@interface TMImageProgram : NSObject <TMProgram>
 
 @end

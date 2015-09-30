@@ -6,8 +6,10 @@
 //  Copyright (c) 2015 Lightricks Ltd. All rights reserved.
 //
 
+#import <GLKit/GLKit.h>
+
 #import <UIKit/UIKit.h>
 
-@interface TMViewController : UIViewController
+@interface TMViewController : UIViewController <GLKViewDelegate>
 
 @end
