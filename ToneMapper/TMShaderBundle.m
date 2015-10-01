@@ -18,12 +18,13 @@
 
 @implementation TMShaderBundle
 
-- (instancetype)initWithVertexShader:(NSString *)vertexShaderPath
-                      fragmentShader:(NSString *)fragmentShaderPath {
+- (instancetype)initWithVertexShader:(NSString *)vertexShader
+                      fragmentShader:(NSString *) fragmentShader attributes:(NSArray *)attributes
+                            uniforms:(NSArray *)uniforms {
   
   if (self = [super init]) {
-    self.vertexShaderHandle = [self compileShader:vertexShaderPath withType:GL_VERTEX_SHADER];
-    self.fragmentShaderHandle = [self compileShader:fragmentShaderPath withType:GL_FRAGMENT_SHADER];
+    self.vertexShaderHandle = [self compileShader:vertexShader withType:GL_VERTEX_SHADER];
+    self.fragmentShaderHandle = [self compileShader:fragmentShader withType:GL_FRAGMENT_SHADER];
   }
   
   return self;

@@ -13,7 +13,7 @@
 @interface TMShaderBundle : NSObject
 
 - (instancetype)initWithVertexShader:(NSString *)vertexShader
-                      fragmentShader:(NSString *)fragmentShader;
+                      fragmentShader:(NSString *)fragmentShader attributes:(NSArray *)attributes uniforms:(NSArray *)uniforms;
 
 @property (readonly, nonatomic) GLuint vertexShaderHandle;
 @property (readonly, nonatomic) GLuint fragmentShaderHandle;

@@ -1,15 +1,64 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cAG-KK-2oG">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="geM-FS-qie">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <viewController id="BYZ-38-t0r" customClass="TMViewController" sceneMemberID="viewController"/>
+                <viewController id="cAG-KK-2oG" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="W70-Rf-HTH"/>
+                        <viewControllerLayoutGuide type="bottom" id="fdQ-cS-44y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="d42-6J-Z3F">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kVJ-ej-L5i" userLabel="glview">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="527"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cab-VP-ywi">
+                                <rect key="frame" x="16" y="562" width="47" height="30"/>
+                                <state key="normal" title="Switch">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="switchImage:" destination="cAG-KK-2oG" eventType="touchUpInside" id="s5X-ac-c57"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbc-Rj-TqD">
+                                <rect key="frame" x="550" y="562" width="34" height="30"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveImage:" destination="cAG-KK-2oG" eventType="touchUpInside" id="uqV-9b-UpN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.43529412150382996" blue="0.81176471710205078" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="cab-VP-ywi" firstAttribute="leading" secondItem="d42-6J-Z3F" secondAttribute="leadingMargin" id="F2O-Hm-G8f"/>
+                            <constraint firstAttribute="trailing" secondItem="kVJ-ej-L5i" secondAttribute="trailing" id="Hnw-dQ-teF"/>
+                            <constraint firstItem="kbc-Rj-TqD" firstAttribute="baseline" secondItem="cab-VP-ywi" secondAttribute="baseline" id="VoH-6W-yA3"/>
+                            <constraint firstItem="kbc-Rj-TqD" firstAttribute="trailing" secondItem="d42-6J-Z3F" secondAttribute="trailingMargin" id="VzY-ng-nLW"/>
+                            <constraint firstItem="fdQ-cS-44y" firstAttribute="top" secondItem="cab-VP-ywi" secondAttribute="bottom" constant="8" symbolic="YES" id="kH3-Y2-2cE"/>
+                            <constraint firstItem="cab-VP-ywi" firstAttribute="top" secondItem="kVJ-ej-L5i" secondAttribute="bottom" constant="35" id="nsF-2U-ljF"/>
+                            <constraint firstItem="kVJ-ej-L5i" firstAttribute="top" secondItem="d42-6J-Z3F" secondAttribute="top" id="ojE-Ty-kkw"/>
+                            <constraint firstItem="kVJ-ej-L5i" firstAttribute="leading" secondItem="d42-6J-Z3F" secondAttribute="leading" id="vBu-Jc-wMV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="glview" destination="kVJ-ej-L5i" id="h3F-ly-PcA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sd9-dY-IK1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-277" y="377"/>
         </scene>
     </scenes>
 </document>

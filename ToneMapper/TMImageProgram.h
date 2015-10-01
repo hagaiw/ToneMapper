@@ -16,7 +16,7 @@
 
 @interface TMImageProgram : NSObject <TMProgram>
 
-- (instancetype)initWithShaderBundle:(TMShaderBundle *)shaderBundle attributeNames:(NSArray *)attributeNames;
+- (instancetype)initWithShaderBundle:(TMShaderBundle *)shaderBundle image:(NSString *)imagePath;
 @property (nonatomic) GLuint program;
 @property (readonly, nonatomic) GLuint positionSlot;
 @property (readonly, nonatomic) GLuint textureSlot;

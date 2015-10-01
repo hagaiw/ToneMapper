@@ -22,7 +22,7 @@
 
 
 
-- (instancetype)initWithShaderBundle:(TMShaderBundle *)shaderBundle attributeNames:(NSArray *)attributeNames {
+- (instancetype)initWithShaderBundle:(TMShaderBundle *)shaderBundle image:(NSString *)imagePath{
   if (self = [super init]) {
     self.program = [self createProgramWithVertexShader:shaderBundle.vertexShaderHandle
                                         fragmentShader:shaderBundle.fragmentShaderHandle];
@@ -44,7 +44,7 @@
       exit(1);
     }
   }
-  [self initTexture];
+  [self initTextureImage:imagePath];
   
   return self;
 }
@@ -61,17 +61,15 @@
 
 }
 
-- (void)initTexture {
-  
+- (void)initTextureImage:(NSString *)imagePath {
   glActiveTexture(GL_TEXTURE0);
-  
   GLKTextureInfo *spriteTexture;
   NSError *theError;
-  NSString *filePath = [[NSBundle mainBundle] pathForResource:@"lightricks" ofType:@"png"]; // 1
-  spriteTexture = [GLKTextureLoader textureWithContentsOfFile:filePath options:nil error:&theError]; // 2
-  glBindTexture(spriteTexture.target, spriteTexture.name); // 3
-  glEnable(spriteTexture.target); // 4
-  
+  NSString *filePath = [[NSBundle mainBundle] pathForResource:imagePath ofType:@"png"];
+  NSLog(@"GL Error = %u", glGetError()); // Fixes an issue where GLKTextureLoader returns nil
+  spriteTexture = [GLKTextureLoader textureWithContentsOfFile:filePath options:nil error:&theError];
+  glBindTexture(spriteTexture.target, spriteTexture.name);
+  glEnable(spriteTexture.target);
   glUniform1i(_textureUniform, 0);
 }
 

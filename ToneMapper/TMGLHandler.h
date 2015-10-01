@@ -12,12 +12,14 @@
 
 @import GLKit;
 
-@interface TMOpenGLHandler : NSObject
+@interface TMGLHandler : NSObject
 
 @property (readonly, strong, nonatomic) EAGLContext *context;
 @property (readonly, strong, nonatomic) TMImageProgram *imageProgram;
 
-- (void)initializeOpenGL;
 - (void)drawInRect:(CGRect)rect;
+- (void)setProgram:(TMImageProgram *)imageProgram;
+- (void)setViewFrame:(CGRect)viewFrame;
+- (void)saveImage;
 
 @end

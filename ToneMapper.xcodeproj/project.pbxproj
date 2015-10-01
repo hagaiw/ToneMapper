@@ -20,7 +20,9 @@
 		FAF945451BBBD76A0093DE0F /* lightricks.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF945441BBBD76A0093DE0F /* lightricks.png */; };
 		FAF945481BBBE0050093DE0F /* TMShaderBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF945471BBBE0050093DE0F /* TMShaderBundle.m */; };
 		FAF9454B1BBBF1830093DE0F /* TMShaderAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF9454A1BBBF1830093DE0F /* TMShaderAttributes.m */; };
-		FAF9454E1BBC0E420093DE0F /* TMOpenGLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF9454D1BBC0E420093DE0F /* TMOpenGLHandler.m */; };
+		FAF9454E1BBC0E420093DE0F /* TMGLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF9454D1BBC0E420093DE0F /* TMGLHandler.m */; };
+		FAF945521BBC30E00093DE0F /* facetune.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF945501BBC30E00093DE0F /* facetune.png */; };
+		FAF945571BBC33AD0093DE0F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF945561BBC33AD0093DE0F /* ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,8 +59,11 @@
 		FAF945471BBBE0050093DE0F /* TMShaderBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMShaderBundle.m; sourceTree = "<group>"; };
 		FAF945491BBBF1830093DE0F /* TMShaderAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMShaderAttributes.h; sourceTree = "<group>"; };
 		FAF9454A1BBBF1830093DE0F /* TMShaderAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMShaderAttributes.m; sourceTree = "<group>"; };
-		FAF9454C1BBC0E420093DE0F /* TMOpenGLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMOpenGLHandler.h; sourceTree = "<group>"; };
-		FAF9454D1BBC0E420093DE0F /* TMOpenGLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMOpenGLHandler.m; sourceTree = "<group>"; };
+		FAF9454C1BBC0E420093DE0F /* TMGLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMGLHandler.h; sourceTree = "<group>"; };
+		FAF9454D1BBC0E420093DE0F /* TMGLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMGLHandler.m; sourceTree = "<group>"; };
+		FAF945501BBC30E00093DE0F /* facetune.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facetune.png; sourceTree = "<group>"; };
+		FAF945551BBC33AD0093DE0F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		FAF945561BBC33AD0093DE0F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +105,9 @@
 		FAA8773B1BAF0BAD00934C21 /* ToneMapper */ = {
 			isa = PBXGroup;
 			children = (
-				FAF945441BBBD76A0093DE0F /* lightricks.png */,
 				FAA877461BAF0BAD00934C21 /* Main.storyboard */,
+				FAF945551BBC33AD0093DE0F /* ViewController.h */,
+				FAF945561BBC33AD0093DE0F /* ViewController.m */,
 				FAF9453B1BBBC9320093DE0F /* TMViewController.h */,
 				FAF9453C1BBBC9320093DE0F /* TMViewController.m */,
 				FAA877491BAF0BAD00934C21 /* Images.xcassets */,
@@ -119,6 +125,8 @@
 				FAA877411BAF0BAD00934C21 /* AppDelegate.m */,
 				FAA8773D1BAF0BAD00934C21 /* Info.plist */,
 				FAA8773E1BAF0BAD00934C21 /* main.m */,
+				FAF945501BBC30E00093DE0F /* facetune.png */,
+				FAF945441BBBD76A0093DE0F /* lightricks.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -143,8 +151,8 @@
 		FAF9453F1BBBCAA60093DE0F /* openGL */ = {
 			isa = PBXGroup;
 			children = (
-				FAF9454C1BBC0E420093DE0F /* TMOpenGLHandler.h */,
-				FAF9454D1BBC0E420093DE0F /* TMOpenGLHandler.m */,
+				FAF9454C1BBC0E420093DE0F /* TMGLHandler.h */,
+				FAF9454D1BBC0E420093DE0F /* TMGLHandler.m */,
 				FAF945461BBBE0050093DE0F /* TMShaderBundle.h */,
 				FAF945471BBBE0050093DE0F /* TMShaderBundle.m */,
 				FAF945401BBBCE1A0093DE0F /* vertex.glsl */,
@@ -240,6 +248,7 @@
 			files = (
 				FAF945431BBBCE350093DE0F /* fragment.glsl in Resources */,
 				FAA877481BAF0BAD00934C21 /* Main.storyboard in Resources */,
+				FAF945521BBC30E00093DE0F /* facetune.png in Resources */,
 				FAF945411BBBCE1A0093DE0F /* vertex.glsl in Resources */,
 				FAA8774D1BAF0BAD00934C21 /* LaunchScreen.xib in Resources */,
 				FAA8774A1BAF0BAD00934C21 /* Images.xcassets in Resources */,
@@ -263,11 +272,12 @@
 			files = (
 				FAF9453D1BBBC9320093DE0F /* TMImageProgram.m in Sources */,
 				FAF945481BBBE0050093DE0F /* TMShaderBundle.m in Sources */,
+				FAF945571BBC33AD0093DE0F /* ViewController.m in Sources */,
 				FAF9453E1BBBC9320093DE0F /* TMViewController.m in Sources */,
 				FAF9454B1BBBF1830093DE0F /* TMShaderAttributes.m in Sources */,
 				FAA877421BAF0BAD00934C21 /* AppDelegate.m in Sources */,
 				FAA8773F1BAF0BAD00934C21 /* main.m in Sources */,
-				FAF9454E1BBC0E420093DE0F /* TMOpenGLHandler.m in Sources */,
+				FAF9454E1BBC0E420093DE0F /* TMGLHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

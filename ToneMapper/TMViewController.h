@@ -12,4 +12,7 @@
 
 @interface TMViewController : UIViewController <GLKViewDelegate>
 
+- (void)switchImage;
+- (void)saveImage;
+
 @end
