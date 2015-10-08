@@ -10,17 +10,19 @@
 
 #import "TMProgram.h"
 
+#import "HandleDictionary.h"
+
 #import "TMShaderBundle.h"
-#import "TMShaderAttributes.h"
 #import <GLKit/GLKit.h>
 
 @interface TMImageProgram : NSObject <TMProgram>
 
-- (instancetype)initWithShaderBundle:(TMShaderBundle *)shaderBundle image:(NSString *)imagePath;
+- (instancetype)initWithProgramHandle:(GLuint)programHandle
+                 handlesForAttributes:(HandleDictionary *)handlesForAttributes
+                   handlesForUniforms:(HandleDictionary *)handlesForUniforms;
+
 @property (nonatomic) GLuint program;
-@property (readonly, nonatomic) GLuint positionSlot;
-@property (readonly, nonatomic) GLuint textureSlot;
-@property (readonly, nonatomic) GLuint projectionUniform;
-@property (readonly, nonatomic) GLuint textureUniform;
+@property (readonly, strong, nonatomic) HandleDictionary *handlesForAttributes;
+@property (readonly, strong, nonatomic) HandleDictionary *handlesForUniforms;
 
 @end

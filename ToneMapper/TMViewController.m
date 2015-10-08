@@ -8,6 +8,10 @@
 
 #import "TMViewController.h"
 #import "TMGLHandler.h"
+
+#import "TMProgramData.h"
+
+
 #import "TMImageProgram.h"
 
 @interface TMViewController ()
@@ -18,37 +22,59 @@
 
 @implementation TMViewController
 
-
 - (void)viewDidLoad {
-  if (!self.openGLHandler) {
-    self.openGLHandler = [[TMGLHandler alloc] init];
-    NSString *imagePath = @"lightricks";
-    [self.openGLHandler setProgram:[self initialProgramWithImage:imagePath]];
-  }
+  // Load Context
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-  GLKView *view = [[GLKView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-  view.context = self.openGLHandler.context;
-  view.delegate = self;
-  self.view = view;
-  [self.openGLHandler setViewFrame:self.view.frame];
+  
+  // Init programs
+  // Init geometry
+  // Init
+  
+  
+  if (!self.openGLHandler) {
+    
+    GLKView *glkView = [[GLKView alloc] initWithFrame:[self.view bounds]];
+    glkView.delegate = self;
+    self.view = glkView;
+    
+    // workspace
+    NSArray *workspaceAttributes = @[@"Position", @"TexCoordIn"];
+    NSArray *workspaceUniforms = @[@"Texture", @"Projection"];
+    TMProgramData *workspaceProgramData = [[TMProgramData alloc]
+                                           initWithAttributes:workspaceAttributes
+                                                     uniforms:workspaceUniforms
+                                             vertexShaderName:@"workspaceVertexShader"
+                                           fragmentShaderName:@"workspaceFragmentShader"];
+    
+    // texture
+    NSArray *textureAttributes = @[@"Position", @"TexCoordIn"];
+    NSArray *textureUniforms = @[@"Texture", @"Projection"];
+    TMProgramData *textureProgramData = [[TMProgramData alloc]
+                                           initWithAttributes:textureAttributes
+                                           uniforms:textureUniforms
+                                           vertexShaderName:@"textureVertexShader"
+                                           fragmentShaderName:@"textureFragmentShader"];
+    
+    self.openGLHandler = [[TMGLHandler alloc] initWithGLKView:glkView
+                                         workspaceProgramData:workspaceProgramData
+                                           textureProgramData:textureProgramData];
+    NSString *imagePath = @"lightricks";
+    NSString *imageType = @".png";
+    [self.openGLHandler setImageWithName:imagePath type:imageType];
+  }
 }
 
-- (TMImageProgram *)initialProgramWithImage:(NSString *)imagePath {
-  NSArray *attributes = @[@"Position", @"TexCoordIn"];
-  NSArray *uniforms = @[@"Texture", @"Projection"];
-  TMShaderBundle *shaderBundle = [[TMShaderBundle alloc] initWithVertexShader:@"vertex" fragmentShader:@"fragment" attributes:attributes uniforms:uniforms];
-  return [[TMImageProgram alloc] initWithShaderBundle:shaderBundle image:imagePath];
-}
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
   [self.openGLHandler drawInRect:self.view.frame];
 }
 
 - (void)switchImage {
-  NSString *imagePath = @"enlight";
-  [self.openGLHandler setProgram:[self initialProgramWithImage:imagePath]];
+  NSString *imagePath = @"xp";
+  NSString *imageType = @".jpg";
+  [self.openGLHandler setImageWithName:imagePath type:imageType];
   GLKView *view = (GLKView *)self.view;
   [view display];
 }

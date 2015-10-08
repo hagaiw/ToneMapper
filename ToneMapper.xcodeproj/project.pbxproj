@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA4DA5CC1BC40517005869C8 /* textureFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FA4DA5CA1BC40517005869C8 /* textureFragmentShader.glsl */; };
+		FA4DA5CD1BC40517005869C8 /* textureVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FA4DA5CB1BC40517005869C8 /* textureVertexShader.glsl */; };
+		FA4DA5D51BC67B18005869C8 /* HandleDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DA5D41BC67B18005869C8 /* HandleDictionary.m */; };
+		FA4DA5D81BC6879B005869C8 /* TMProgramData.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DA5D71BC6879B005869C8 /* TMProgramData.m */; };
+		FA4DA5DA1BC6917F005869C8 /* xp.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA4DA5D91BC6917F005869C8 /* xp.jpg */; };
 		FAA8773F1BAF0BAD00934C21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8773E1BAF0BAD00934C21 /* main.m */; };
 		FAA877421BAF0BAD00934C21 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA877411BAF0BAD00934C21 /* AppDelegate.m */; };
 		FAA877481BAF0BAD00934C21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA877461BAF0BAD00934C21 /* Main.storyboard */; };
@@ -15,11 +20,10 @@
 		FAA877591BAF0BAD00934C21 /* ToneMapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA877581BAF0BAD00934C21 /* ToneMapperTests.m */; };
 		FAF9453D1BBBC9320093DE0F /* TMImageProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF945391BBBC9320093DE0F /* TMImageProgram.m */; };
 		FAF9453E1BBBC9320093DE0F /* TMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF9453C1BBBC9320093DE0F /* TMViewController.m */; };
-		FAF945411BBBCE1A0093DE0F /* vertex.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FAF945401BBBCE1A0093DE0F /* vertex.glsl */; };
-		FAF945431BBBCE350093DE0F /* fragment.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FAF945421BBBCE350093DE0F /* fragment.glsl */; };
+		FAF945411BBBCE1A0093DE0F /* workspaceVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FAF945401BBBCE1A0093DE0F /* workspaceVertexShader.glsl */; };
+		FAF945431BBBCE350093DE0F /* workspaceFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FAF945421BBBCE350093DE0F /* workspaceFragmentShader.glsl */; };
 		FAF945451BBBD76A0093DE0F /* lightricks.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF945441BBBD76A0093DE0F /* lightricks.png */; };
 		FAF945481BBBE0050093DE0F /* TMShaderBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF945471BBBE0050093DE0F /* TMShaderBundle.m */; };
-		FAF9454B1BBBF1830093DE0F /* TMShaderAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF9454A1BBBF1830093DE0F /* TMShaderAttributes.m */; };
 		FAF9454E1BBC0E420093DE0F /* TMGLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF9454D1BBC0E420093DE0F /* TMGLHandler.m */; };
 		FAF945521BBC30E00093DE0F /* facetune.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF945501BBC30E00093DE0F /* facetune.png */; };
 		FAF945571BBC33AD0093DE0F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF945561BBC33AD0093DE0F /* ViewController.m */; };
@@ -36,6 +40,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA4DA5CA1BC40517005869C8 /* textureFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = textureFragmentShader.glsl; sourceTree = "<group>"; };
+		FA4DA5CB1BC40517005869C8 /* textureVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = textureVertexShader.glsl; sourceTree = "<group>"; };
+		FA4DA5D31BC67B18005869C8 /* HandleDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandleDictionary.h; sourceTree = "<group>"; };
+		FA4DA5D41BC67B18005869C8 /* HandleDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandleDictionary.m; sourceTree = "<group>"; };
+		FA4DA5D61BC6879B005869C8 /* TMProgramData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMProgramData.h; sourceTree = "<group>"; };
+		FA4DA5D71BC6879B005869C8 /* TMProgramData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMProgramData.m; sourceTree = "<group>"; };
+		FA4DA5D91BC6917F005869C8 /* xp.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = xp.jpg; sourceTree = "<group>"; };
 		FAA877391BAF0BAD00934C21 /* ToneMapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToneMapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA8773D1BAF0BAD00934C21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAA8773E1BAF0BAD00934C21 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -52,13 +63,11 @@
 		FAF9453A1BBBC9320093DE0F /* TMProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMProgram.h; sourceTree = "<group>"; };
 		FAF9453B1BBBC9320093DE0F /* TMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMViewController.h; sourceTree = "<group>"; };
 		FAF9453C1BBBC9320093DE0F /* TMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMViewController.m; sourceTree = "<group>"; };
-		FAF945401BBBCE1A0093DE0F /* vertex.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = vertex.glsl; sourceTree = "<group>"; };
-		FAF945421BBBCE350093DE0F /* fragment.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fragment.glsl; sourceTree = "<group>"; };
+		FAF945401BBBCE1A0093DE0F /* workspaceVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = workspaceVertexShader.glsl; sourceTree = "<group>"; };
+		FAF945421BBBCE350093DE0F /* workspaceFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = workspaceFragmentShader.glsl; sourceTree = "<group>"; };
 		FAF945441BBBD76A0093DE0F /* lightricks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightricks.png; sourceTree = "<group>"; };
 		FAF945461BBBE0050093DE0F /* TMShaderBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMShaderBundle.h; sourceTree = "<group>"; };
 		FAF945471BBBE0050093DE0F /* TMShaderBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMShaderBundle.m; sourceTree = "<group>"; };
-		FAF945491BBBF1830093DE0F /* TMShaderAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMShaderAttributes.h; sourceTree = "<group>"; };
-		FAF9454A1BBBF1830093DE0F /* TMShaderAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMShaderAttributes.m; sourceTree = "<group>"; };
 		FAF9454C1BBC0E420093DE0F /* TMGLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMGLHandler.h; sourceTree = "<group>"; };
 		FAF9454D1BBC0E420093DE0F /* TMGLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMGLHandler.m; sourceTree = "<group>"; };
 		FAF945501BBC30E00093DE0F /* facetune.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facetune.png; sourceTree = "<group>"; };
@@ -84,6 +93,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA4DA5D11BC5299A005869C8 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				FA4DA5CA1BC40517005869C8 /* textureFragmentShader.glsl */,
+				FA4DA5CB1BC40517005869C8 /* textureVertexShader.glsl */,
+				FAF945401BBBCE1A0093DE0F /* workspaceVertexShader.glsl */,
+				FAF945421BBBCE350093DE0F /* workspaceFragmentShader.glsl */,
+			);
+			name = shaders;
+			sourceTree = "<group>";
+		};
+		FA4DA5D21BC529AD005869C8 /* bundles */ = {
+			isa = PBXGroup;
+			children = (
+				FAF945461BBBE0050093DE0F /* TMShaderBundle.h */,
+				FAF945471BBBE0050093DE0F /* TMShaderBundle.m */,
+			);
+			name = bundles;
+			sourceTree = "<group>";
+		};
 		FAA877301BAF0BAD00934C21 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +150,7 @@
 		FAA8773C1BAF0BAD00934C21 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FA4DA5D91BC6917F005869C8 /* xp.jpg */,
 				FAA877401BAF0BAD00934C21 /* AppDelegate.h */,
 				FAA877411BAF0BAD00934C21 /* AppDelegate.m */,
 				FAA8773D1BAF0BAD00934C21 /* Info.plist */,
@@ -151,17 +181,17 @@
 		FAF9453F1BBBCAA60093DE0F /* openGL */ = {
 			isa = PBXGroup;
 			children = (
+				FA4DA5D11BC5299A005869C8 /* shaders */,
+				FA4DA5D21BC529AD005869C8 /* bundles */,
 				FAF9454C1BBC0E420093DE0F /* TMGLHandler.h */,
 				FAF9454D1BBC0E420093DE0F /* TMGLHandler.m */,
-				FAF945461BBBE0050093DE0F /* TMShaderBundle.h */,
-				FAF945471BBBE0050093DE0F /* TMShaderBundle.m */,
-				FAF945401BBBCE1A0093DE0F /* vertex.glsl */,
-				FAF945421BBBCE350093DE0F /* fragment.glsl */,
+				FAF9453A1BBBC9320093DE0F /* TMProgram.h */,
 				FAF945381BBBC9320093DE0F /* TMImageProgram.h */,
 				FAF945391BBBC9320093DE0F /* TMImageProgram.m */,
-				FAF945491BBBF1830093DE0F /* TMShaderAttributes.h */,
-				FAF9454A1BBBF1830093DE0F /* TMShaderAttributes.m */,
-				FAF9453A1BBBC9320093DE0F /* TMProgram.h */,
+				FA4DA5D31BC67B18005869C8 /* HandleDictionary.h */,
+				FA4DA5D41BC67B18005869C8 /* HandleDictionary.m */,
+				FA4DA5D61BC6879B005869C8 /* TMProgramData.h */,
+				FA4DA5D71BC6879B005869C8 /* TMProgramData.m */,
 			);
 			name = openGL;
 			sourceTree = "<group>";
@@ -246,12 +276,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAF945431BBBCE350093DE0F /* fragment.glsl in Resources */,
+				FAF945431BBBCE350093DE0F /* workspaceFragmentShader.glsl in Resources */,
 				FAA877481BAF0BAD00934C21 /* Main.storyboard in Resources */,
 				FAF945521BBC30E00093DE0F /* facetune.png in Resources */,
-				FAF945411BBBCE1A0093DE0F /* vertex.glsl in Resources */,
+				FA4DA5CD1BC40517005869C8 /* textureVertexShader.glsl in Resources */,
+				FAF945411BBBCE1A0093DE0F /* workspaceVertexShader.glsl in Resources */,
+				FA4DA5DA1BC6917F005869C8 /* xp.jpg in Resources */,
 				FAA8774D1BAF0BAD00934C21 /* LaunchScreen.xib in Resources */,
 				FAA8774A1BAF0BAD00934C21 /* Images.xcassets in Resources */,
+				FA4DA5CC1BC40517005869C8 /* textureFragmentShader.glsl in Resources */,
 				FAF945451BBBD76A0093DE0F /* lightricks.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,14 +303,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA4DA5D81BC6879B005869C8 /* TMProgramData.m in Sources */,
 				FAF9453D1BBBC9320093DE0F /* TMImageProgram.m in Sources */,
 				FAF945481BBBE0050093DE0F /* TMShaderBundle.m in Sources */,
 				FAF945571BBC33AD0093DE0F /* ViewController.m in Sources */,
 				FAF9453E1BBBC9320093DE0F /* TMViewController.m in Sources */,
-				FAF9454B1BBBF1830093DE0F /* TMShaderAttributes.m in Sources */,
 				FAA877421BAF0BAD00934C21 /* AppDelegate.m in Sources */,
 				FAA8773F1BAF0BAD00934C21 /* main.m in Sources */,
 				FAF9454E1BBC0E420093DE0F /* TMGLHandler.m in Sources */,
+				FA4DA5D51BC67B18005869C8 /* HandleDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +440,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ToneMapper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -416,6 +451,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ToneMapper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
