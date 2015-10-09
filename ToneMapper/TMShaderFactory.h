@@ -1,5 +1,5 @@
 //
-//  TMProgram.h
+//  TMShaderFactory.h
 //  ToneMapper
 //
 //  Created by Hagai Weinfeld on 10/8/15.
@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TMProgram : NSObject
+@interface TMShaderFactory : NSObject
 
 @end
