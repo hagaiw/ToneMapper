@@ -8,6 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+#import "TMVertices.h"
+
+@import GLKit;
+
+
 @interface TMGeometry : NSObject
+
+- (instancetype)initGeometryWithVertices:(id<TMVertices>)vertices;
+- (void)bindGeometry;
+- (void)linkGeometryToAttribute:(GLuint)attributeHandle size:(GLint)size
+                   startPointer:(GLvoid *)startPointer
+                         stride:(GLsizei)stride sizeOfVertex:(GLsizei)sizeOfVertex;
 
 @end

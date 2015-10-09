@@ -12,6 +12,13 @@
 		FA4DA5D51BC67B18005869C8 /* HandleDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DA5D41BC67B18005869C8 /* HandleDictionary.m */; };
 		FA4DA5D81BC6879B005869C8 /* TMProgramData.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DA5D71BC6879B005869C8 /* TMProgramData.m */; };
 		FA4DA5DA1BC6917F005869C8 /* xp.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA4DA5D91BC6917F005869C8 /* xp.jpg */; };
+		FAA2C2861BC6CA89005689DC /* TMShaderFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2C2851BC6CA89005689DC /* TMShaderFactory.m */; };
+		FAA2C28C1BC6D00B005689DC /* TMProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2C28B1BC6D00B005689DC /* TMProgram.m */; };
+		FAA2C28F1BC7F7BB005689DC /* TMGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2C28E1BC7F7BB005689DC /* TMGeometry.m */; };
+		FAA2C2931BC7FEA0005689DC /* TMQuadVertices.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2C2921BC7FEA0005689DC /* TMQuadVertices.m */; };
+		FAA2C2961BC80318005689DC /* TMTextureFrameBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2C2951BC80318005689DC /* TMTextureFrameBuffer.m */; };
+		FAA2C2991BC80400005689DC /* TMTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2C2981BC80400005689DC /* TMTexture.m */; };
+		FAA2C29C1BC814E8005689DC /* TMDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2C29B1BC814E8005689DC /* TMDrawer.m */; };
 		FAA8773F1BAF0BAD00934C21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8773E1BAF0BAD00934C21 /* main.m */; };
 		FAA877421BAF0BAD00934C21 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA877411BAF0BAD00934C21 /* AppDelegate.m */; };
 		FAA877481BAF0BAD00934C21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA877461BAF0BAD00934C21 /* Main.storyboard */; };
@@ -47,6 +54,21 @@
 		FA4DA5D61BC6879B005869C8 /* TMProgramData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMProgramData.h; sourceTree = "<group>"; };
 		FA4DA5D71BC6879B005869C8 /* TMProgramData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMProgramData.m; sourceTree = "<group>"; };
 		FA4DA5D91BC6917F005869C8 /* xp.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = xp.jpg; sourceTree = "<group>"; };
+		FAA2C2841BC6CA89005689DC /* TMShaderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMShaderFactory.h; sourceTree = "<group>"; };
+		FAA2C2851BC6CA89005689DC /* TMShaderFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMShaderFactory.m; sourceTree = "<group>"; };
+		FAA2C28A1BC6D00B005689DC /* TMProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMProgram.h; sourceTree = "<group>"; };
+		FAA2C28B1BC6D00B005689DC /* TMProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMProgram.m; sourceTree = "<group>"; };
+		FAA2C28D1BC7F7BB005689DC /* TMGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMGeometry.h; sourceTree = "<group>"; };
+		FAA2C28E1BC7F7BB005689DC /* TMGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMGeometry.m; sourceTree = "<group>"; };
+		FAA2C2901BC7FBB3005689DC /* TMVertices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMVertices.h; sourceTree = "<group>"; };
+		FAA2C2911BC7FEA0005689DC /* TMQuadVertices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMQuadVertices.h; sourceTree = "<group>"; };
+		FAA2C2921BC7FEA0005689DC /* TMQuadVertices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMQuadVertices.m; sourceTree = "<group>"; };
+		FAA2C2941BC80318005689DC /* TMTextureFrameBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTextureFrameBuffer.h; sourceTree = "<group>"; };
+		FAA2C2951BC80318005689DC /* TMTextureFrameBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTextureFrameBuffer.m; sourceTree = "<group>"; };
+		FAA2C2971BC80400005689DC /* TMTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTexture.h; sourceTree = "<group>"; };
+		FAA2C2981BC80400005689DC /* TMTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTexture.m; sourceTree = "<group>"; };
+		FAA2C29A1BC814E8005689DC /* TMDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDrawer.h; sourceTree = "<group>"; };
+		FAA2C29B1BC814E8005689DC /* TMDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDrawer.m; sourceTree = "<group>"; };
 		FAA877391BAF0BAD00934C21 /* ToneMapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToneMapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA8773D1BAF0BAD00934C21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAA8773E1BAF0BAD00934C21 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -60,7 +82,6 @@
 		FAA877581BAF0BAD00934C21 /* ToneMapperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToneMapperTests.m; sourceTree = "<group>"; };
 		FAF945381BBBC9320093DE0F /* TMImageProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMImageProgram.h; sourceTree = "<group>"; };
 		FAF945391BBBC9320093DE0F /* TMImageProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMImageProgram.m; sourceTree = "<group>"; };
-		FAF9453A1BBBC9320093DE0F /* TMProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMProgram.h; sourceTree = "<group>"; };
 		FAF9453B1BBBC9320093DE0F /* TMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMViewController.h; sourceTree = "<group>"; };
 		FAF9453C1BBBC9320093DE0F /* TMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMViewController.m; sourceTree = "<group>"; };
 		FAF945401BBBCE1A0093DE0F /* workspaceVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = workspaceVertexShader.glsl; sourceTree = "<group>"; };
@@ -181,17 +202,31 @@
 		FAF9453F1BBBCAA60093DE0F /* openGL */ = {
 			isa = PBXGroup;
 			children = (
+				FAA2C29A1BC814E8005689DC /* TMDrawer.h */,
+				FAA2C29B1BC814E8005689DC /* TMDrawer.m */,
+				FAA2C2971BC80400005689DC /* TMTexture.h */,
+				FAA2C2981BC80400005689DC /* TMTexture.m */,
+				FAA2C2941BC80318005689DC /* TMTextureFrameBuffer.h */,
+				FAA2C2951BC80318005689DC /* TMTextureFrameBuffer.m */,
+				FAA2C28D1BC7F7BB005689DC /* TMGeometry.h */,
+				FAA2C28E1BC7F7BB005689DC /* TMGeometry.m */,
+				FAA2C2901BC7FBB3005689DC /* TMVertices.h */,
+				FAA2C2911BC7FEA0005689DC /* TMQuadVertices.h */,
+				FAA2C2921BC7FEA0005689DC /* TMQuadVertices.m */,
+				FAA2C28A1BC6D00B005689DC /* TMProgram.h */,
+				FAA2C28B1BC6D00B005689DC /* TMProgram.m */,
 				FA4DA5D11BC5299A005869C8 /* shaders */,
 				FA4DA5D21BC529AD005869C8 /* bundles */,
 				FAF9454C1BBC0E420093DE0F /* TMGLHandler.h */,
 				FAF9454D1BBC0E420093DE0F /* TMGLHandler.m */,
-				FAF9453A1BBBC9320093DE0F /* TMProgram.h */,
 				FAF945381BBBC9320093DE0F /* TMImageProgram.h */,
 				FAF945391BBBC9320093DE0F /* TMImageProgram.m */,
 				FA4DA5D31BC67B18005869C8 /* HandleDictionary.h */,
 				FA4DA5D41BC67B18005869C8 /* HandleDictionary.m */,
 				FA4DA5D61BC6879B005869C8 /* TMProgramData.h */,
 				FA4DA5D71BC6879B005869C8 /* TMProgramData.m */,
+				FAA2C2841BC6CA89005689DC /* TMShaderFactory.h */,
+				FAA2C2851BC6CA89005689DC /* TMShaderFactory.m */,
 			);
 			name = openGL;
 			sourceTree = "<group>";
@@ -305,10 +340,17 @@
 			files = (
 				FA4DA5D81BC6879B005869C8 /* TMProgramData.m in Sources */,
 				FAF9453D1BBBC9320093DE0F /* TMImageProgram.m in Sources */,
+				FAA2C2861BC6CA89005689DC /* TMShaderFactory.m in Sources */,
 				FAF945481BBBE0050093DE0F /* TMShaderBundle.m in Sources */,
+				FAA2C2991BC80400005689DC /* TMTexture.m in Sources */,
+				FAA2C2961BC80318005689DC /* TMTextureFrameBuffer.m in Sources */,
 				FAF945571BBC33AD0093DE0F /* ViewController.m in Sources */,
 				FAF9453E1BBBC9320093DE0F /* TMViewController.m in Sources */,
+				FAA2C28C1BC6D00B005689DC /* TMProgram.m in Sources */,
 				FAA877421BAF0BAD00934C21 /* AppDelegate.m in Sources */,
+				FAA2C2931BC7FEA0005689DC /* TMQuadVertices.m in Sources */,
+				FAA2C29C1BC814E8005689DC /* TMDrawer.m in Sources */,
+				FAA2C28F1BC7F7BB005689DC /* TMGeometry.m in Sources */,
 				FAA8773F1BAF0BAD00934C21 /* main.m in Sources */,
 				FAF9454E1BBC0E420093DE0F /* TMGLHandler.m in Sources */,
 				FA4DA5D51BC67B18005869C8 /* HandleDictionary.m in Sources */,

@@ -54,8 +54,8 @@ static const GLubyte Indices[] = {
            workspaceProgramData:(TMProgramData *)workspaceProgramData
              textureProgramData:(TMProgramData *)textureProgramData {
   if (self = [super init]) {
-    [self initContext];
-    glkView.context = self.context;
+//    [self initContext];
+//    glkView.context = self.context;
     self.glkView = glkView;
     self.workspaceProgram = [self programWithProgramData:workspaceProgramData];
     self.textureProgram = [self programWithProgramData:textureProgramData];
@@ -70,11 +70,7 @@ static const GLubyte Indices[] = {
 }
 
 - (void)initContext {
-  self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-  if (!self.context) {
-    NSLog(@"Failed to create ES context");
-  }
-  [EAGLContext setCurrentContext:self.context];
+  
 }
 
 - (void)setupGL {
@@ -84,10 +80,11 @@ static const GLubyte Indices[] = {
 }
 
 - (void)setAttributesForPorgram:(TMImageProgram *)program {
-  glEnableVertexAttribArray([program.handlesForAttributes handleForKey:@"Position"]);
-  glEnableVertexAttribArray([program.handlesForAttributes handleForKey:@"TexCoordIn"]);
-  glVertexAttribPointer([program.handlesForAttributes handleForKey:@"TexCoordIn"], 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
-  glVertexAttribPointer([program.handlesForAttributes handleForKey:@"TexCoordIn"], 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*) (sizeof(float) * 3));
+//  glEnableVertexAttribArray([program.handlesForAttributes handleForKey:@"Position"]);
+//  glEnableVertexAttribArray([program.handlesForAttributes handleForKey:@"TexCoordIn"]);
+//  glVertexAttribPointer([program.handlesForAttributes handleForKey:@"TexCoordIn"], 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+//  glVertexAttribPointer([program.handlesForAttributes handleForKey:@"TexCoordIn"], 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*) (sizeof(float) * 3));
+//  NSLog(@"%lul", sizeof(Vertex));
 }
 
 - (void)initVBOs {
@@ -96,38 +93,42 @@ static const GLubyte Indices[] = {
   GLuint indexBuffer;
   
   glGenBuffers(1, &vertexBuffer);
-  glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-  glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
-  
   glGenBuffers(1, &indexBuffer);
+  
+  glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
+  
+  glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indices), Indices, GL_STATIC_DRAW);
   
-  glVertexAttribPointer([self.textureProgram.handlesForAttributes handleForKey:@"Position"], 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
-  glVertexAttribPointer([self.textureProgram.handlesForAttributes handleForKey:@"TexCoordIn"], 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*) (sizeof(float) * 3));
+  NSLog(@"%lu", sizeof(Vertices));
+  NSLog(@"%lu", sizeof(Indices));
+  
+//  glVertexAttribPointer([self.textureProgram.handlesForAttributes handleForKey:@"Position"], 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+//  glVertexAttribPointer([self.textureProgram.handlesForAttributes handleForKey:@"TexCoordIn"], 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*) (sizeof(float) * 3));
 }
 
 - (void)drawInRect:(CGRect)rect {
   // Draw to Texture
-  glUseProgram(self.textureProgram.program);
-  glBindFramebuffer(GL_FRAMEBUFFER, self.textureFrameBufferID);
-  glBindTexture(GL_TEXTURE_2D, self.spriteTexture.name);
+//  glUseProgram(self.textureProgram.program);
+//  glBindFramebuffer(GL_FRAMEBUFFER, self.textureFrameBufferID);
+//  //glBindTexture(GL_TEXTURE_2D, self.spriteTexture.name);
   glUniform1i(_textureUniform, 0);
   glUniformMatrix4fv(_projectionUniform, 1, 0, GLKMatrix4Identity.m);
-  glViewport(0, 0, self.spriteTexture.width, self.spriteTexture.height);
-  glDrawElements(GL_TRIANGLES, sizeof(Indices)/sizeof(Indices[0]), GL_UNSIGNED_BYTE, 0);
+//  glViewport(0, 0, self.spriteTexture.width, self.spriteTexture.height);
+//  glDrawElements(GL_TRIANGLES, sizeof(Indices)/sizeof(Indices[0]), GL_UNSIGNED_BYTE, 0);
 
   //Draw to Workspace
-  glUseProgram(self.workspaceProgram.program);
-  [self.glkView bindDrawable];
-  glBindTexture(GL_TEXTURE_2D, self.textureFrameBufferTextureHandle);
-  glUniform1i(_textureUniform, 0);
-  glUniformMatrix4fv(_projectionUniform, 1, 0, [self ratioFixMatrixForTextureInfo:self.spriteTexture
-                                                                      displaySize:rect.size].m);
-  glClearColor(self.counter, 0.5, 0.0, 1.0);
-  glClear(GL_COLOR_BUFFER_BIT);
-  glViewport(0, 0, rect.size.width*2, rect.size.height*2);
-  glDrawElements(GL_TRIANGLES, sizeof(Indices)/sizeof(Indices[0]), GL_UNSIGNED_BYTE, 0);
+//  glUseProgram(self.workspaceProgram.program);
+//  [self.glkView bindDrawable];
+//  glBindTexture(GL_TEXTURE_2D, self.textureFrameBufferTextureHandle);
+//  glUniform1i(_textureUniform, 0);
+//  glUniformMatrix4fv(_projectionUniform, 1, 0, [self ratioFixMatrixForTextureInfo:self.spriteTexture
+//                                                                      displaySize:rect.size].m);
+//  glClearColor(self.counter, 0.5, 0.0, 1.0);
+//  glClear(GL_COLOR_BUFFER_BIT);
+//  glViewport(0, 0, rect.size.width*2, rect.size.height*2);
+//  glDrawElements(GL_TRIANGLES, sizeof(Indices)/sizeof(Indices[0]), GL_UNSIGNED_BYTE, 0);
 }
 
 - (GLKMatrix4)ratioFixMatrixForTextureInfo:(GLKTextureInfo *)textureInfo

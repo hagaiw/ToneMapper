@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TMVertices.h"
 
-@interface TMQuadVertices : NSObject
+@interface TMQuadVertices : NSObject <TMVertices>
 
 @end

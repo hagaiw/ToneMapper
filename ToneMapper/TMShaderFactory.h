@@ -6,8 +6,15 @@
 //  Copyright (c) 2015 Lightricks Ltd. All rights reserved.
 //
 
+@import GLKit;
+
 #import <Foundation/Foundation.h>
 
 @interface TMShaderFactory : NSObject
+
+
+- (GLuint)shaderForShaderName:(NSString *)shaderName shaderType:(GLenum)shaderType;
+
+
 
 @end

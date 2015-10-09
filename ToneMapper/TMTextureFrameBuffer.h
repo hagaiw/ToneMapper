@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+#import "TMTexture.h"
+@import GLKit;
+
 @interface TMTextureFrameBuffer : NSObject
 
+@property (readonly, strong, nonatomic) TMTexture *texture;
+- (instancetype)initWithSourceTexture:(TMTexture *)sourceTexture;
+- (void)bind;
+- (void)destroy;
 @end

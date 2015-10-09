@@ -8,14 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-#import "TMProgram.h"
-
 #import "HandleDictionary.h"
 
 #import "TMShaderBundle.h"
 #import <GLKit/GLKit.h>
 
-@interface TMImageProgram : NSObject <TMProgram>
+@interface TMImageProgram : NSObject
 
 - (instancetype)initWithProgramHandle:(GLuint)programHandle
                  handlesForAttributes:(HandleDictionary *)handlesForAttributes

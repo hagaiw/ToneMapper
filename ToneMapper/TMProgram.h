@@ -8,6 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+@import GLKit;
+
+#import "TMShaderFactory.h"
+#import "HandleDictionary.h"
+
 @interface TMProgram : NSObject
+
+@property (readonly, strong, nonatomic) HandleDictionary *handlesForAttributes;
+@property (readonly, strong, nonatomic) HandleDictionary *handlesForUniforms;
+
+- (instancetype)initWithAttributes:(NSArray *)attributes uniforms:(NSArray *)uniforms
+                  vertexShaderName:(NSString *)vertexShaderName
+                fragmentShaderName:(NSString *)fragmentShaderName;
+
+- (void)useProgram;
 
 @end
