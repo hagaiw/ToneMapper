@@ -14,8 +14,15 @@
 
 @property (readonly, nonatomic) void *vertices;
 @property (readonly, nonatomic) GLubyte *indices;
-@property (readonly, nonatomic) NSUInteger size;
-@property (readonly, nonatomic) GLsizei sizeOfVertice;
-@property (readonly, nonatomic) GLsizei sizeOfIndex;
+@property (readonly, nonatomic) GLsizei numOfVertices;
+@property (readonly, nonatomic) GLsizei numOfPositionCoordinates;
+@property (readonly, nonatomic) GLsizei numOfTextureCoordinates;
+@property (readonly, nonatomic) GLenum positionType;
+@property (readonly, nonatomic) GLenum textureType;
+@property (readonly, nonatomic) GLuint indexSize;
+@property (readonly, nonatomic) GLuint verticesArraySize;
+@property (readonly, nonatomic) GLuint indicesArraySize;
+@property (readonly, nonatomic) GLvoid *positionPointer;
+@property (readonly, nonatomic) GLvoid *texturePointer;
 
 @end

@@ -17,8 +17,6 @@
 
 - (instancetype)initGeometryWithVertices:(id<TMVertices>)vertices;
 - (void)bindGeometry;
-- (void)linkGeometryToAttribute:(GLuint)attributeHandle size:(GLint)size
-                   startPointer:(GLvoid *)startPointer
-                         stride:(GLsizei)stride sizeOfVertex:(GLsizei)sizeOfVertex;
-
+- (void)linkPositionArrayToAttribute:(GLuint)positionHandle ;
+- (void)linkTextureArrayToAttribute:(GLuint)textureHandle;
 @end

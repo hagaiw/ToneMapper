@@ -29,7 +29,6 @@
 
 @property (strong, nonatomic) TMTexture *imageTexture;
 
-@property (strong, nonatomic) TMQuadVertices *quadVertices;
 @property (strong, nonatomic) TMGeometry *quadGeometry;
 
 
@@ -40,6 +39,9 @@
 
 @implementation TMViewController
 
+
+
+
 - (void)viewDidLoad {
   self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
   if (!self.context) {
@@ -49,31 +51,24 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-  
-  // init glkView
-  GLKView *glkView = [[GLKView alloc] initWithFrame:[self.view bounds]];
-  glkView.delegate = self;
-  glkView.context = self.context;
-  glkView.frame = self.view.frame;
-  self.view = glkView;
+  [self initGLKView];
   
   
-  // init programs:
+  // Workspace Program:
   NSArray *workspaceAttributes = @[@"Position", @"TexCoordIn"];
   NSArray *workspaceUniforms = @[@"Texture", @"Projection"];
   NSString *workspaceVertexShaderName = @"workspaceVertexShader";
   NSString *workspaceFragmentShaderName = @"workspaceFragmentShader";
-  
   self.workspaceProgram = [[TMProgram alloc] initWithAttributes:workspaceAttributes
                                                      uniforms:workspaceUniforms
                                              vertexShaderName:workspaceVertexShaderName
                                            fragmentShaderName:workspaceFragmentShaderName];
   
+  // Texture Program:
   NSArray *textureAttributes = @[@"Position", @"TexCoordIn"];
   NSArray *textureUniforms = @[@"Texture", @"Projection"];
   NSString *textureVertexShaderName = @"textureVertexShader";
   NSString *textureFragmentShaderName = @"textureFragmentShader";
-  
   self.textureProgram = [[TMProgram alloc] initWithAttributes:textureAttributes
                                                      uniforms:textureUniforms
                                              vertexShaderName:textureVertexShaderName
@@ -81,68 +76,33 @@
   
   
   // init geometry
-  self.quadVertices = [[TMQuadVertices alloc] init];
-  self.quadGeometry = [[TMGeometry alloc] initGeometryWithVertices:self.quadVertices];
+  self.quadGeometry = [[TMGeometry alloc] initGeometryWithVertices:[TMQuadVertices new]];
+  [self.quadGeometry bindGeometry];
   
   // init framebuffer
   NSString *imageName = @"xp";
   NSString *imageType = @".jpg";
   NSString *imagePath = [[NSBundle mainBundle] pathForResource:imageName ofType:imageType];
   self.imageTexture = [[TMTexture alloc] initWithImagePath:imagePath];
-  
   self.textureFrameBuffer = [[TMTextureFrameBuffer alloc] initWithSourceTexture:self.imageTexture];
+
   
-  
-  
-  
-  [self.quadGeometry bindGeometry];
-  glVertexAttribPointer([self.workspaceProgram.handlesForUniforms handleForKey:@"Position"], 3, GL_FLOAT, GL_FALSE, self.quadVertices.sizeOfVertice, 0);
-   glVertexAttribPointer([self.workspaceProgram.handlesForUniforms handleForKey:@"TexCoordIn"], 2, GL_FLOAT, GL_FALSE, self.quadVertices.sizeOfVertice, (GLvoid*) (sizeof(float) * 3));
-   
-  
-  
-  
+  // texture
   [self.imageTexture bind];
   glUniform1i([self.workspaceProgram.handlesForUniforms handleForKey:@"Texture"], 0);
   glUniformMatrix4fv([self.workspaceProgram.handlesForUniforms handleForKey:@"Projection"], 1, 0, GLKMatrix4Identity.m);
   
   
   [self.textureProgram useProgram];
-  [glkView bindDrawable];
+  [(GLKView *)self.view bindDrawable];
   
   glClearColor(0.0, 0.8, 0.0, 1.0);
   glClear(GL_COLOR_BUFFER_BIT);
   
   //glViewport(0, 0, self.view.frame.size.width*2, self.view.frame.size.height*2);
-  glDrawElements(GL_TRIANGLES, 4, GL_UNSIGNED_BYTE, 0);
-  [glkView display];
+//  glDrawElements(GL_TRIANGLES, 4, GL_UNSIGNED_BYTE, 0);
+  [(GLKView *)self.view display];
   
-  
-//  if (!self.openGLHandler) {
-//
-//    // workspace
-//    
-//    TMProgramData *workspaceProgramData = [[TMProgramData alloc]
-//                                           initWithAttributes:workspaceAttributes
-//                                                     uniforms:workspaceUniforms
-//                                             vertexShaderName:@"workspaceVertexShader"
-//                                           fragmentShaderName:@"workspaceFragmentShader"];
-//    
-//    // texture
-//    
-//    TMProgramData *textureProgramData = [[TMProgramData alloc]
-//                                           initWithAttributes:textureAttributes
-//                                           uniforms:textureUniforms
-//                                           vertexShaderName:@"textureVertexShader"
-//                                           fragmentShaderName:@"textureFragmentShader"];
-//    
-//    self.openGLHandler = [[TMGLHandler alloc] initWithGLKView:self.view
-//                                         workspaceProgramData:workspaceProgramData
-//                                           textureProgramData:textureProgramData];
-//    NSString *imagePath = @"lightricks";
-//    NSString *imageType = @".png";
-//    [self.openGLHandler setImageWithName:imagePath type:imageType];
-//  }
 }
 
 
@@ -150,14 +110,8 @@
   
   // Set Geometry
   [self.quadGeometry bindGeometry];
-
-  glEnableVertexAttribArray([self.workspaceProgram.handlesForAttributes handleForKey:@"Position"]);
-  glEnableVertexAttribArray([self.workspaceProgram.handlesForAttributes handleForKey:@"TexCoordIn"]);
-  
-  glVertexAttribPointer([self.workspaceProgram.handlesForAttributes handleForKey:@"Position"], 3, GL_FLOAT, GL_FALSE, self.quadVertices.sizeOfVertice, 0);
-  glVertexAttribPointer([self.workspaceProgram.handlesForAttributes handleForKey:@"TexCoordIn"], 2, GL_FLOAT, GL_FALSE, self.quadVertices.sizeOfVertice, (GLvoid*) (sizeof(float) * 3));
-  /////////
-  
+  [self.quadGeometry linkPositionArrayToAttribute:[self.workspaceProgram.handlesForAttributes handleForKey:@"Position"]];
+  [self.quadGeometry linkTextureArrayToAttribute:[self.workspaceProgram.handlesForAttributes handleForKey:@"TexCoordIn"]];
   
   [self.textureProgram useProgram];
   [self.textureFrameBuffer bind];
@@ -173,6 +127,14 @@
   glUniform1i([self.workspaceProgram.handlesForUniforms handleForKey:@"Texture"], 0);
   glUniformMatrix4fv([self.workspaceProgram.handlesForUniforms handleForKey:@"Projection"], 1, 0, [self ratioFixMatrixForTextureInfo:self.textureFrameBuffer.texture displaySize:rect.size].m);
   glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 0);
+}
+
+- (void)initGLKView {
+  GLKView *glkView = [[GLKView alloc] initWithFrame:[self.view bounds]];
+  glkView.delegate = self;
+  glkView.context = self.context;
+  glkView.frame = self.view.frame;
+  self.view = glkView;
 }
 
 - (GLKMatrix4)ratioFixMatrixForTextureInfo:(TMTexture *)texture

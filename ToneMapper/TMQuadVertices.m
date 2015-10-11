@@ -35,16 +35,47 @@ static const GLubyte kQuadIndices[] = {
   return (GLubyte *)kQuadIndices;
 }
 
-- (NSUInteger)size {
+- (GLsizei)numOfVertices {
   return 4;
 }
 
-- (GLsizei)sizeOfVertice {
-  return sizeof(QuadVertex);
+- (GLsizei)numOfPositionCoordinates {
+  return 3;
 }
 
-- (GLsizei)sizeOfIndex {
+- (GLsizei)numOfTextureCoordinates {
+  return 2;
+}
+
+- (GLenum)positionType {
+  return GL_FLOAT;
+}
+
+- (GLenum)textureType {
+  return GL_FLOAT;
+}
+
+- (GLuint)indexSize {
   return sizeof(GLubyte);
 }
+
+- (GLuint)verticesArraySize {
+  return sizeof(kQuadVertices);
+}
+
+- (GLuint)indicesArraySize {
+  return sizeof(kQuadIndices);
+}
+
+- (GLvoid *)positionPointer {
+  return 0;
+}
+
+- (GLvoid *)texturePointer {
+  return (GLvoid *)(sizeof(float) * 3);
+}
+
+
+
 
 @end

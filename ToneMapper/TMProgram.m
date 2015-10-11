@@ -49,6 +49,7 @@
     self.handlesForAttributes = [[HandleDictionary alloc] init];
     for (NSString *attribute in attributes) {
       GLuint handle = glGetAttribLocation(self.program, [attribute UTF8String]);
+      glEnableVertexAttribArray(handle);
       [self.handlesForAttributes setHandle:handle forKey:attribute];
     }
     
