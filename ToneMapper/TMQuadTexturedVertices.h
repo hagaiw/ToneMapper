@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "TMVertices.h"
 
-@interface TMQuadVertices : NSObject <TMVertices>
+@interface TMQuadTexturedVertices : NSObject <TMTexturedVertices>
 
 @end

@@ -14,5 +14,7 @@
 
 - (void)switchImage;
 - (void)saveImage;
+- (void)moveImageByX:(GLfloat)x y:(GLfloat)y movementEnded:(BOOL)movementEnded;
+- (void)zoomImageToScale:(GLfloat)scale zoomEnded:(BOOL)zoomEnded;
 
 @end

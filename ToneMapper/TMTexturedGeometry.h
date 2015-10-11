@@ -13,10 +13,11 @@
 @import GLKit;
 
 
-@interface TMGeometry : NSObject
+@interface TMTexturedGeometry : NSObject
 
-- (instancetype)initGeometryWithVertices:(id<TMVertices>)vertices;
-- (void)bindGeometry;
+- (instancetype)initWithTexturedVertices:(id<TMTexturedVertices>)texturedVertices;
+- (void)bind;
 - (void)linkPositionArrayToAttribute:(GLuint)positionHandle ;
 - (void)linkTextureArrayToAttribute:(GLuint)textureHandle;
+- (void)drawElements;
 @end

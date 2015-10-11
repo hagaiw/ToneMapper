@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Lightricks Ltd. All rights reserved.
 //
 
-#import "TMQuadVertices.h"
+#import "TMQuadTexturedVertices.h"
 
-@implementation TMQuadVertices
+@implementation TMQuadTexturedVertices
 
 typedef struct {
   float Position[3];
@@ -47,6 +47,10 @@ static const GLubyte kQuadIndices[] = {
   return 2;
 }
 
+- (GLsizei)numOfIndices {
+  return 6;
+}
+
 - (GLenum)positionType {
   return GL_FLOAT;
 }
@@ -65,6 +69,10 @@ static const GLubyte kQuadIndices[] = {
 
 - (GLuint)indicesArraySize {
   return sizeof(kQuadIndices);
+}
+
+- (GLuint)vertexSize {
+  return sizeof(QuadVertex);
 }
 
 - (GLvoid *)positionPointer {

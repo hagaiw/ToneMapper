@@ -58,4 +58,12 @@
   glDeleteBuffers(1, &_handle);
 }
 
+- (GLuint)height {
+  return self.texture.height;
+}
+
+- (GLuint)width {
+  return self.texture.width;
+}
+
 @end

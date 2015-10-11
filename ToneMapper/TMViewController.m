@@ -13,12 +13,19 @@
 #import "TMImageProgram.h"
 
 #import "TMProgram.h"
-#import "TMGeometry.h"
+#import "TMTexturedGeometry.h"
 //
-#import "TMQuadVertices.h"
+#import "TMQuadTexturedVertices.h"
 //
 #import "TMTexture.h"
 #import "TMTextureFrameBuffer.h"
+
+#import "TMDrawer.h"
+
+#import "TMGLKViewFrameBuffer.h"
+
+#import "TMMatrixProjection.h"
+#import "TMAspectFixProjection.h"
 
 @interface TMViewController ()
 
@@ -29,11 +36,15 @@
 
 @property (strong, nonatomic) TMTexture *imageTexture;
 
-@property (strong, nonatomic) TMGeometry *quadGeometry;
+@property (strong, nonatomic) TMTexturedGeometry *quadGeometry;
 
-
+@property (strong, nonatomic) TMDrawer *textureDrawer;
+@property (strong, nonatomic) TMDrawer *screenDrawer;
 
 @property (strong, nonatomic) TMTextureFrameBuffer *textureFrameBuffer;
+
+@property (strong, nonatomic) id<TMProjection> workspaceProjection;
+@property (strong, nonatomic) id<TMProjection> baseWorkspaceProjection;
 
 @end
 
@@ -74,10 +85,9 @@
                                              vertexShaderName:textureVertexShaderName
                                            fragmentShaderName:textureFragmentShaderName];
   
-  
   // init geometry
-  self.quadGeometry = [[TMGeometry alloc] initGeometryWithVertices:[TMQuadVertices new]];
-  [self.quadGeometry bindGeometry];
+  self.quadGeometry = [[TMTexturedGeometry alloc] initWithTexturedVertices:[TMQuadTexturedVertices new]];
+  [self.quadGeometry bind];
   
   // init framebuffer
   NSString *imageName = @"xp";
@@ -99,34 +109,37 @@
   glClearColor(0.0, 0.8, 0.0, 1.0);
   glClear(GL_COLOR_BUFFER_BIT);
   
-  //glViewport(0, 0, self.view.frame.size.width*2, self.view.frame.size.height*2);
-//  glDrawElements(GL_TRIANGLES, 4, GL_UNSIGNED_BYTE, 0);
-  [(GLKView *)self.view display];
   
+  self.baseWorkspaceProjection = [[TMMatrixProjection alloc] initWithMatrix:GLKMatrix4Identity];
+  self.workspaceProjection = self.baseWorkspaceProjection;
+  
+  [(GLKView *)self.view setNeedsDisplay];
 }
 
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
   
-  // Set Geometry
-  [self.quadGeometry bindGeometry];
-  [self.quadGeometry linkPositionArrayToAttribute:[self.workspaceProgram.handlesForAttributes handleForKey:@"Position"]];
-  [self.quadGeometry linkTextureArrayToAttribute:[self.workspaceProgram.handlesForAttributes handleForKey:@"TexCoordIn"]];
+  glClearColor(0.0, 0.8, 0.0, 1.0);
+  glClear(GL_COLOR_BUFFER_BIT);
   
-  [self.textureProgram useProgram];
-  [self.textureFrameBuffer bind];
-  [self.imageTexture bind];
-  glUniform1i([self.workspaceProgram.handlesForUniforms handleForKey:@"Texture"], 0);
-  glUniformMatrix4fv([self.workspaceProgram.handlesForUniforms handleForKey:@"Projection"], 1, 0, GLKMatrix4Identity.m);
-  glViewport(0, 0, self.imageTexture.width, self.imageTexture.height);
-  glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 0);
+  id<TMProjection> yReverseProjection = [[TMMatrixProjection alloc] initWithMatrix:GLKMatrix4Scale(GLKMatrix4Identity, 1.0, -1.0, 1.0)];
+  self.textureDrawer = [[TMDrawer alloc] initWithProgram:self.textureProgram
+                                        texturedGeometry:self.quadGeometry
+                                             frameBuffer:self.textureFrameBuffer
+                                                 texture:self.imageTexture
+                                              projection:yReverseProjection];
   
-  [self.workspaceProgram useProgram];
-  [self.textureFrameBuffer.texture bind];
-  [view bindDrawable];
-  glUniform1i([self.workspaceProgram.handlesForUniforms handleForKey:@"Texture"], 0);
-  glUniformMatrix4fv([self.workspaceProgram.handlesForUniforms handleForKey:@"Projection"], 1, 0, [self ratioFixMatrixForTextureInfo:self.textureFrameBuffer.texture displaySize:rect.size].m);
-  glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 0);
+  id<TMProjection> aspectRatioProjection = [[TMAspectFixProjection alloc] initWithTexture:self.textureFrameBuffer.texture displaySize:rect.size];
+  
+  id<TMProjection> currentProjection = [[TMMatrixProjection alloc] initWithMatrix:GLKMatrix4Multiply([self.workspaceProjection matrix],[aspectRatioProjection matrix])];
+  
+  self.screenDrawer = [[TMDrawer alloc] initWithProgram:self.workspaceProgram
+                                       texturedGeometry:self.quadGeometry
+                                            frameBuffer:[[TMGLKViewFrameBuffer alloc] initWithGLKView:(GLKView *)self.view]
+                                                texture:self.textureFrameBuffer.texture
+                                             projection:currentProjection];
+  [self.textureDrawer draw];
+  [self.screenDrawer draw];
 }
 
 - (void)initGLKView {
@@ -137,28 +150,31 @@
   self.view = glkView;
 }
 
-- (GLKMatrix4)ratioFixMatrixForTextureInfo:(TMTexture *)texture
-                               displaySize:(CGSize)displaySize {
-  GLfloat displayRatio = displaySize.height / displaySize.width;
-  GLfloat imageRatio = texture.height / texture.width;
-  GLfloat fitRatio = 1.0;
-  if (displayRatio > imageRatio) {
-    fitRatio = displaySize.width / texture.width;
-  } else {
-    fitRatio = texture.height / texture.height;
-  }
-  GLfloat xRatio = fitRatio * texture.width / displaySize.width;
-  GLfloat yRatio = fitRatio * texture.height / displaySize.height;
-  return GLKMatrix4Scale(GLKMatrix4Identity, xRatio, yRatio, 1.0);
-}
-
 - (void)switchImage {
   NSString *imageName = @"lightricks";
   NSString *imageType = @".png";
   NSString *imagePath = [[NSBundle mainBundle] pathForResource:imageName ofType:imageType];
-  self.imageTexture = [[TMTexture alloc] initWithImagePath:imagePath];
-  self.textureFrameBuffer = [[TMTextureFrameBuffer alloc] initWithSourceTexture:self.imageTexture];
-  [(GLKView *)self.view display];
+//  self.imageTexture = [[TMTexture alloc] initWithImagePath:imagePath];
+//  self.textureFrameBuffer = [[TMTextureFrameBuffer alloc] initWithSourceTexture:self.imageTexture];
+  
+  [(GLKView *)self.view setNeedsDisplay];
+}
+
+- (void)moveImageByX:(GLfloat)x y:(GLfloat)y movementEnded:(BOOL)movementEnded {
+  self.workspaceProjection = [[TMMatrixProjection alloc] initWithMatrix:GLKMatrix4Translate([self.baseWorkspaceProjection matrix], x, y, 0.0)];
+  if (movementEnded) {
+    self.baseWorkspaceProjection = self.workspaceProjection;
+  }
+  [(GLKView *)self.view setNeedsDisplay];
+}
+
+- (void)zoomImageToScale:(GLfloat)scale zoomEnded:(BOOL)zoomEnded {
+  self.workspaceProjection = [[TMMatrixProjection alloc] initWithMatrix:GLKMatrix4Scale([self.baseWorkspaceProjection matrix], scale, scale, 1.0)];
+  
+  if (zoomEnded) {
+    self.baseWorkspaceProjection = self.workspaceProjection;
+  }
+  [(GLKView *)self.view setNeedsDisplay];
 }
 
 - (void)saveImage {

@@ -21,8 +21,21 @@
 - (IBAction)switchImage:(UIButton *)sender {
   [self.openGLVC switchImage];
 }
+
 - (IBAction)saveImage:(UIButton *)sender {
   [self.openGLVC saveImage];
+}
+
+- (IBAction)moveImage:(UIPanGestureRecognizer *)sender {
+  GLfloat dx = [sender translationInView:self.view].x / self.view.frame.size.width;
+  GLfloat dy = [sender translationInView:self.view].y / self.view.frame.size.height;
+  [self.openGLVC moveImageByX: dx*2 y: -dy*2
+                movementEnded:([sender state] == UIGestureRecognizerStateEnded)];
+}
+
+- (IBAction)zoomImage:(UIPinchGestureRecognizer *)sender {
+ [self.openGLVC zoomImageToScale:[sender scale]
+                       zoomEnded:([sender state] == UIGestureRecognizerStateEnded)];
 }
 
 - (void)viewDidLoad {
