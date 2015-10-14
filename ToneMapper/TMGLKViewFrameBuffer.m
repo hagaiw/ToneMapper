@@ -11,6 +11,7 @@
 @interface TMGLKViewFrameBuffer ()
 
 @property (strong, nonatomic) GLKView *glkView;
+@property (nonatomic) CGSize screenSize;
 
 @end
 
@@ -19,6 +20,8 @@
 - (instancetype)initWithGLKView:(GLKView *)glkView {
   if (self = [super init]) {
     self.glkView = glkView;
+    self.screenSize = CGSizeMake(self.glkView.frame.size.width*[UIScreen mainScreen].scale,
+                           self.glkView.frame.size.height*[UIScreen mainScreen].scale);
   }
   return self;
 }
@@ -27,12 +30,8 @@
   [self.glkView bindDrawable];
 }
 
-- (GLuint)height {
-  return self.glkView.frame.size.height*2;  // TODO: why multiply by 2?
-}
-
-- (GLuint)width {
-  return self.glkView.frame.size.width*2;
+- (CGSize)size {
+  return self.screenSize;
 }
 
 @end

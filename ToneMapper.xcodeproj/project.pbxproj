@@ -7,9 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA24015C1BCC2DE2008C5AAE /* TMTextureProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = FA24015B1BCC2DE2008C5AAE /* TMTextureProgram.m */; };
+		FA24015F1BCD04DD008C5AAE /* TMProgramFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FA24015E1BCD04DD008C5AAE /* TMProgramFactory.m */; };
+		FA2401651BCD4EB7008C5AAE /* TMManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2401641BCD4EB7008C5AAE /* TMManager.m */; };
+		FA24016C1BCD525E008C5AAE /* TMTextureDisplayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FA24016B1BCD525E008C5AAE /* TMTextureDisplayer.m */; };
+		FA2401721BCD5FAA008C5AAE /* TMTextureProcessorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2401711BCD5FAA008C5AAE /* TMTextureProcessorFactory.m */; };
+		FA2401751BCD6080008C5AAE /* TMTextureProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2401741BCD6080008C5AAE /* TMTextureProcessor.m */; };
+		FA2401781BCD6714008C5AAE /* TMProjectionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2401771BCD6714008C5AAE /* TMProjectionFactory.m */; };
+		FA24017B1BCD67B2008C5AAE /* TMProjection.m in Sources */ = {isa = PBXBuildFile; fileRef = FA24017A1BCD67B2008C5AAE /* TMProjection.m */; };
+		FA24017E1BCE4766008C5AAE /* TMScalarProgramParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA24017D1BCE4766008C5AAE /* TMScalarProgramParameter.m */; };
 		FA44E6311BCA81D400FBDD28 /* TMGLKViewFrameBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = FA44E6301BCA81D400FBDD28 /* TMGLKViewFrameBuffer.m */; };
-		FA44E63A1BCABFF900FBDD28 /* TMAspectFixProjection.m in Sources */ = {isa = PBXBuildFile; fileRef = FA44E6391BCABFF900FBDD28 /* TMAspectFixProjection.m */; };
-		FA44E6431BCAD68F00FBDD28 /* TMMatrixProjection.m in Sources */ = {isa = PBXBuildFile; fileRef = FA44E6421BCAD68F00FBDD28 /* TMMatrixProjection.m */; };
 		FA4DA5CC1BC40517005869C8 /* textureFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FA4DA5CA1BC40517005869C8 /* textureFragmentShader.glsl */; };
 		FA4DA5CD1BC40517005869C8 /* textureVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FA4DA5CB1BC40517005869C8 /* textureVertexShader.glsl */; };
 		FA4DA5D51BC67B18005869C8 /* HandleDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DA5D41BC67B18005869C8 /* HandleDictionary.m */; };
@@ -21,7 +28,7 @@
 		FAA2C2931BC7FEA0005689DC /* TMQuadTexturedVertices.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2C2921BC7FEA0005689DC /* TMQuadTexturedVertices.m */; };
 		FAA2C2961BC80318005689DC /* TMTextureFrameBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2C2951BC80318005689DC /* TMTextureFrameBuffer.m */; };
 		FAA2C2991BC80400005689DC /* TMTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2C2981BC80400005689DC /* TMTexture.m */; };
-		FAA2C29C1BC814E8005689DC /* TMDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2C29B1BC814E8005689DC /* TMDrawer.m */; };
+		FAA2C29C1BC814E8005689DC /* TMTextureDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2C29B1BC814E8005689DC /* TMTextureDrawer.m */; };
 		FAA8773F1BAF0BAD00934C21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8773E1BAF0BAD00934C21 /* main.m */; };
 		FAA877421BAF0BAD00934C21 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA877411BAF0BAD00934C21 /* AppDelegate.m */; };
 		FAA877481BAF0BAD00934C21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA877461BAF0BAD00934C21 /* Main.storyboard */; };
@@ -50,14 +57,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA24015A1BCC2DE2008C5AAE /* TMTextureProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTextureProgram.h; sourceTree = "<group>"; };
+		FA24015B1BCC2DE2008C5AAE /* TMTextureProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTextureProgram.m; sourceTree = "<group>"; };
+		FA24015D1BCD04DD008C5AAE /* TMProgramFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMProgramFactory.h; sourceTree = "<group>"; };
+		FA24015E1BCD04DD008C5AAE /* TMProgramFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMProgramFactory.m; sourceTree = "<group>"; };
+		FA2401631BCD4EB7008C5AAE /* TMManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMManager.h; sourceTree = "<group>"; };
+		FA2401641BCD4EB7008C5AAE /* TMManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMManager.m; sourceTree = "<group>"; };
+		FA24016A1BCD525E008C5AAE /* TMTextureDisplayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTextureDisplayer.h; sourceTree = "<group>"; };
+		FA24016B1BCD525E008C5AAE /* TMTextureDisplayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTextureDisplayer.m; sourceTree = "<group>"; };
+		FA2401701BCD5FAA008C5AAE /* TMTextureProcessorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTextureProcessorFactory.h; sourceTree = "<group>"; };
+		FA2401711BCD5FAA008C5AAE /* TMTextureProcessorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTextureProcessorFactory.m; sourceTree = "<group>"; };
+		FA2401731BCD6080008C5AAE /* TMTextureProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTextureProcessor.h; sourceTree = "<group>"; };
+		FA2401741BCD6080008C5AAE /* TMTextureProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTextureProcessor.m; sourceTree = "<group>"; };
+		FA2401761BCD6714008C5AAE /* TMProjectionFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMProjectionFactory.h; path = ../TMProjectionFactory.h; sourceTree = "<group>"; };
+		FA2401771BCD6714008C5AAE /* TMProjectionFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMProjectionFactory.m; path = ../TMProjectionFactory.m; sourceTree = "<group>"; };
+		FA2401791BCD67B2008C5AAE /* TMProjection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMProjection.h; sourceTree = "<group>"; };
+		FA24017A1BCD67B2008C5AAE /* TMProjection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMProjection.m; sourceTree = "<group>"; };
+		FA24017C1BCE4766008C5AAE /* TMScalarProgramParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMScalarProgramParameter.h; path = ../TMScalarProgramParameter.h; sourceTree = "<group>"; };
+		FA24017D1BCE4766008C5AAE /* TMScalarProgramParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMScalarProgramParameter.m; path = ../TMScalarProgramParameter.m; sourceTree = "<group>"; };
 		FA44E62E1BCA7F0A00FBDD28 /* TMFrameBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMFrameBuffer.h; sourceTree = "<group>"; };
 		FA44E62F1BCA81D400FBDD28 /* TMGLKViewFrameBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMGLKViewFrameBuffer.h; sourceTree = "<group>"; };
 		FA44E6301BCA81D400FBDD28 /* TMGLKViewFrameBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMGLKViewFrameBuffer.m; sourceTree = "<group>"; };
-		FA44E6321BCABEB600FBDD28 /* TMProjection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMProjection.h; sourceTree = "<group>"; };
-		FA44E6381BCABFF900FBDD28 /* TMAspectFixProjection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMAspectFixProjection.h; sourceTree = "<group>"; };
-		FA44E6391BCABFF900FBDD28 /* TMAspectFixProjection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMAspectFixProjection.m; sourceTree = "<group>"; };
-		FA44E6411BCAD68F00FBDD28 /* TMMatrixProjection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMMatrixProjection.h; sourceTree = "<group>"; };
-		FA44E6421BCAD68F00FBDD28 /* TMMatrixProjection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMMatrixProjection.m; sourceTree = "<group>"; };
 		FA4DA5CA1BC40517005869C8 /* textureFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = textureFragmentShader.glsl; sourceTree = "<group>"; };
 		FA4DA5CB1BC40517005869C8 /* textureVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = textureVertexShader.glsl; sourceTree = "<group>"; };
 		FA4DA5D31BC67B18005869C8 /* HandleDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandleDictionary.h; sourceTree = "<group>"; };
@@ -78,8 +98,8 @@
 		FAA2C2951BC80318005689DC /* TMTextureFrameBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTextureFrameBuffer.m; sourceTree = "<group>"; };
 		FAA2C2971BC80400005689DC /* TMTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTexture.h; sourceTree = "<group>"; };
 		FAA2C2981BC80400005689DC /* TMTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTexture.m; sourceTree = "<group>"; };
-		FAA2C29A1BC814E8005689DC /* TMDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMDrawer.h; sourceTree = "<group>"; };
-		FAA2C29B1BC814E8005689DC /* TMDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMDrawer.m; sourceTree = "<group>"; };
+		FAA2C29A1BC814E8005689DC /* TMTextureDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTextureDrawer.h; sourceTree = "<group>"; };
+		FAA2C29B1BC814E8005689DC /* TMTextureDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTextureDrawer.m; sourceTree = "<group>"; };
 		FAA877391BAF0BAD00934C21 /* ToneMapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToneMapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA8773D1BAF0BAD00934C21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAA8773E1BAF0BAD00934C21 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -125,6 +145,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA2401661BCD5121008C5AAE /* pipeline manager */ = {
+			isa = PBXGroup;
+			children = (
+				FA2401701BCD5FAA008C5AAE /* TMTextureProcessorFactory.h */,
+				FA2401711BCD5FAA008C5AAE /* TMTextureProcessorFactory.m */,
+				FA2401631BCD4EB7008C5AAE /* TMManager.h */,
+				FA2401641BCD4EB7008C5AAE /* TMManager.m */,
+			);
+			name = "pipeline manager";
+			sourceTree = "<group>";
+		};
+		FA24017F1BCE4A64008C5AAE /* Parameters */ = {
+			isa = PBXGroup;
+			children = (
+				FA24017C1BCE4766008C5AAE /* TMScalarProgramParameter.h */,
+				FA24017D1BCE4766008C5AAE /* TMScalarProgramParameter.m */,
+			);
+			name = Parameters;
+			sourceTree = "<group>";
+		};
 		FA4DA5D11BC5299A005869C8 /* shaders */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,25 +253,34 @@
 		FAF9453F1BBBCAA60093DE0F /* openGL */ = {
 			isa = PBXGroup;
 			children = (
+				FA2401731BCD6080008C5AAE /* TMTextureProcessor.h */,
+				FA2401741BCD6080008C5AAE /* TMTextureProcessor.m */,
+				FA24016A1BCD525E008C5AAE /* TMTextureDisplayer.h */,
+				FA24016B1BCD525E008C5AAE /* TMTextureDisplayer.m */,
 				FA44E62E1BCA7F0A00FBDD28 /* TMFrameBuffer.h */,
 				FA44E62F1BCA81D400FBDD28 /* TMGLKViewFrameBuffer.h */,
 				FA44E6301BCA81D400FBDD28 /* TMGLKViewFrameBuffer.m */,
-				FAA2C29A1BC814E8005689DC /* TMDrawer.h */,
-				FAA2C29B1BC814E8005689DC /* TMDrawer.m */,
+				FAA2C29A1BC814E8005689DC /* TMTextureDrawer.h */,
+				FAA2C29B1BC814E8005689DC /* TMTextureDrawer.m */,
+				FA24015D1BCD04DD008C5AAE /* TMProgramFactory.h */,
+				FA24015E1BCD04DD008C5AAE /* TMProgramFactory.m */,
 				FAA2C2971BC80400005689DC /* TMTexture.h */,
-				FA44E6321BCABEB600FBDD28 /* TMProjection.h */,
 				FAA2C2981BC80400005689DC /* TMTexture.m */,
 				FAA2C2941BC80318005689DC /* TMTextureFrameBuffer.h */,
 				FAA2C2951BC80318005689DC /* TMTextureFrameBuffer.m */,
 				FAA2C28D1BC7F7BB005689DC /* TMTexturedGeometry.h */,
 				FAA2C28E1BC7F7BB005689DC /* TMTexturedGeometry.m */,
 				FAA2C2901BC7FBB3005689DC /* TMVertices.h */,
-				FA44E6381BCABFF900FBDD28 /* TMAspectFixProjection.h */,
-				FA44E6391BCABFF900FBDD28 /* TMAspectFixProjection.m */,
 				FAA2C2911BC7FEA0005689DC /* TMQuadTexturedVertices.h */,
 				FAA2C2921BC7FEA0005689DC /* TMQuadTexturedVertices.m */,
 				FAA2C28A1BC6D00B005689DC /* TMProgram.h */,
 				FAA2C28B1BC6D00B005689DC /* TMProgram.m */,
+				FA24015A1BCC2DE2008C5AAE /* TMTextureProgram.h */,
+				FA24015B1BCC2DE2008C5AAE /* TMTextureProgram.m */,
+				FA2401761BCD6714008C5AAE /* TMProjectionFactory.h */,
+				FA2401771BCD6714008C5AAE /* TMProjectionFactory.m */,
+				FA24017F1BCE4A64008C5AAE /* Parameters */,
+				FA2401661BCD5121008C5AAE /* pipeline manager */,
 				FA4DA5D11BC5299A005869C8 /* shaders */,
 				FA4DA5D21BC529AD005869C8 /* bundles */,
 				FAF9454C1BBC0E420093DE0F /* TMGLHandler.h */,
@@ -244,8 +293,8 @@
 				FA4DA5D71BC6879B005869C8 /* TMProgramData.m */,
 				FAA2C2841BC6CA89005689DC /* TMShaderFactory.h */,
 				FAA2C2851BC6CA89005689DC /* TMShaderFactory.m */,
-				FA44E6411BCAD68F00FBDD28 /* TMMatrixProjection.h */,
-				FA44E6421BCAD68F00FBDD28 /* TMMatrixProjection.m */,
+				FA2401791BCD67B2008C5AAE /* TMProjection.h */,
+				FA24017A1BCD67B2008C5AAE /* TMProjection.m */,
 			);
 			name = openGL;
 			sourceTree = "<group>";
@@ -359,23 +408,30 @@
 			files = (
 				FA4DA5D81BC6879B005869C8 /* TMProgramData.m in Sources */,
 				FAF9453D1BBBC9320093DE0F /* TMImageProgram.m in Sources */,
+				FA2401721BCD5FAA008C5AAE /* TMTextureProcessorFactory.m in Sources */,
 				FAA2C2861BC6CA89005689DC /* TMShaderFactory.m in Sources */,
 				FAF945481BBBE0050093DE0F /* TMShaderBundle.m in Sources */,
 				FA44E6311BCA81D400FBDD28 /* TMGLKViewFrameBuffer.m in Sources */,
 				FAA2C2991BC80400005689DC /* TMTexture.m in Sources */,
 				FAA2C2961BC80318005689DC /* TMTextureFrameBuffer.m in Sources */,
-				FA44E6431BCAD68F00FBDD28 /* TMMatrixProjection.m in Sources */,
+				FA24017E1BCE4766008C5AAE /* TMScalarProgramParameter.m in Sources */,
 				FAF945571BBC33AD0093DE0F /* ViewController.m in Sources */,
 				FAF9453E1BBBC9320093DE0F /* TMViewController.m in Sources */,
 				FAA2C28C1BC6D00B005689DC /* TMProgram.m in Sources */,
 				FAA877421BAF0BAD00934C21 /* AppDelegate.m in Sources */,
 				FAA2C2931BC7FEA0005689DC /* TMQuadTexturedVertices.m in Sources */,
-				FAA2C29C1BC814E8005689DC /* TMDrawer.m in Sources */,
+				FAA2C29C1BC814E8005689DC /* TMTextureDrawer.m in Sources */,
+				FA2401651BCD4EB7008C5AAE /* TMManager.m in Sources */,
+				FA24015F1BCD04DD008C5AAE /* TMProgramFactory.m in Sources */,
 				FAA2C28F1BC7F7BB005689DC /* TMTexturedGeometry.m in Sources */,
+				FA24015C1BCC2DE2008C5AAE /* TMTextureProgram.m in Sources */,
+				FA2401751BCD6080008C5AAE /* TMTextureProcessor.m in Sources */,
 				FAA8773F1BAF0BAD00934C21 /* main.m in Sources */,
-				FA44E63A1BCABFF900FBDD28 /* TMAspectFixProjection.m in Sources */,
+				FA24017B1BCD67B2008C5AAE /* TMProjection.m in Sources */,
+				FA24016C1BCD525E008C5AAE /* TMTextureDisplayer.m in Sources */,
 				FAF9454E1BBC0E420093DE0F /* TMGLHandler.m in Sources */,
 				FA4DA5D51BC67B18005869C8 /* HandleDictionary.m in Sources */,
+				FA2401781BCD6714008C5AAE /* TMProjectionFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

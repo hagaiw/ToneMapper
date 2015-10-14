@@ -27,12 +27,12 @@
     
     self.texture = [[TMTexture alloc] initWithHandle:bufferTextureHandle
                                                          target:GL_TEXTURE_2D
-                                                         height:sourceTexture.height
-                                                          width:sourceTexture.width];
+                                                         height:sourceTexture.size.height
+                                                          width:sourceTexture.size.width];
     
     glBindTexture(GL_TEXTURE_2D, self.texture.handle);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,  self.texture.width, self.texture.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,  self.texture.size.width, self.texture.size.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, self.texture.handle, 0);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
@@ -54,16 +54,13 @@
   glBindFramebuffer(GL_FRAMEBUFFER, self.handle);
 }
 
-- (void)destroy {
-  glDeleteBuffers(1, &_handle);
+- (void)dealloc {
+  GLuint handle = self.handle;
+  glDeleteBuffers(1, &handle);
 }
 
-- (GLuint)height {
-  return self.texture.height;
-}
-
-- (GLuint)width {
-  return self.texture.width;
+- (CGSize)size {
+  return self.texture.size;
 }
 
 @end

@@ -66,4 +66,9 @@
   glUseProgram(self.program);
 }
 
+- (void)bindScalarParameter:(TMScalarProgramParameter *)scalarParameter {
+  glUniform1f([self.handlesForUniforms handleForKey:scalarParameter.name], scalarParameter.value);
+}
+
+
 @end

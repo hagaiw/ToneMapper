@@ -12,7 +12,7 @@
 @protocol TMFrameBuffer <NSObject>
 
 - (void)bind;
-@property (readonly, nonatomic) GLuint height;
-@property (readonly, nonatomic) GLuint width;
+
+@property (readonly, nonatomic) CGSize size;
 
 @end

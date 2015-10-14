@@ -1,17 +1,17 @@
 //
-//  TMProjectionMatrix.h
+//  TMProjection.h
 //  ToneMapper
 //
-//  Created by Hagai Weinfeld on 10/11/15.
+//  Created by Hagai Weinfeld on 10/13/15.
 //  Copyright (c) 2015 Lightricks Ltd. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-
 @import GLKit;
 
-@protocol TMProjection <NSObject>
+@interface TMProjection : NSObject
 
-- (GLKMatrix4)matrix;
+- (instancetype)initWithMatrix:(GLKMatrix4)matrix;
+@property (readonly, nonatomic) GLKMatrix4 matrix;
 
 @end

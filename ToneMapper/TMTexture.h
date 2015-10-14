@@ -14,13 +14,11 @@
 
 @property (readonly, nonatomic) GLuint handle;
 @property (readonly, nonatomic) GLenum target;
-@property (readonly, nonatomic) GLuint height;
-@property (readonly, nonatomic) GLuint width;
+@property (readonly, nonatomic) CGSize size;
 
-- (instancetype)initWithImagePath:(NSString *)imagePath;
+- (instancetype)initWithImage:(UIImage *)image;
 - (instancetype)initWithHandle:(GLuint)handle target:(GLenum)target height:(GLuint)height
                          width:(GLuint)width;
 - (void)bind;
-- (void)destroy;
 
 @end

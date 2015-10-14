@@ -12,16 +12,15 @@
 
 @synthesize handle = _handle;
 @synthesize target = _target;
-@synthesize height = _height;
-@synthesize width = _width;
+@synthesize size = _size;
 
-- (instancetype)initWithImagePath:(NSString *)imagePath {
+- (instancetype)initWithImage:(UIImage *)image {
   if (self = [super init]) {
     glActiveTexture(GL_TEXTURE0);
     NSError *textureLoaderError;
 
-    NSLog(@"GL Error = %u", glGetError()); // Fixes an issue where GLKTextureLoader returns nil
-    GLKTextureInfo *info = [GLKTextureLoader textureWithContentsOfFile:imagePath options:nil error:&textureLoaderError];
+    NSLog(@"Error pre-loading = %u", glGetError()); // Fixes an issue where GLKTextureLoader returns nil
+    GLKTextureInfo *info = [GLKTextureLoader textureWithCGImage:[image CGImage] options:nil error:&textureLoaderError];
     self = [self initWithHandle:info.name target:info.target height:info.height width:info.width];
   }
   return self;
@@ -32,8 +31,7 @@
   if (self = [super init]) {
     _handle = handle;
     _target = target;
-    _height = height;
-    _width = width;
+    _size = CGSizeMake(width, height);
   }
   return self;
 }
@@ -43,7 +41,7 @@
 }
 
 
-- (void)destroy {
+- (void)dealloc {
   GLuint textureHandle = self.handle;
   glDeleteTextures(1, &textureHandle);
 }

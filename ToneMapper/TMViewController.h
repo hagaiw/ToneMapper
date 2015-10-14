@@ -12,9 +12,11 @@
 
 @interface TMViewController : UIViewController <GLKViewDelegate>
 
-- (void)switchImage;
+
+- (void)switchImage:(UIImage *)imagePath;
 - (void)saveImage;
 - (void)moveImageByX:(GLfloat)x y:(GLfloat)y movementEnded:(BOOL)movementEnded;
-- (void)zoomImageToScale:(GLfloat)scale zoomEnded:(BOOL)zoomEnded;
+- (void)zoomImageByScale:(GLfloat)scale positionX:(GLfloat)positionX positionY:(GLfloat)positionY
+               zoomEnded:(BOOL)zoomEnded;
 
 @end

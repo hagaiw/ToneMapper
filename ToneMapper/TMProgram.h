@@ -12,6 +12,8 @@
 
 #import "TMShaderFactory.h"
 #import "HandleDictionary.h"
+#import "TMScalarProgramParameter.h"
+
 
 @interface TMProgram : NSObject
 
@@ -21,6 +23,8 @@
 - (instancetype)initWithAttributes:(NSArray *)attributes uniforms:(NSArray *)uniforms
                   vertexShaderName:(NSString *)vertexShaderName
                 fragmentShaderName:(NSString *)fragmentShaderName;
+
+- (void)bindScalarParameter:(TMScalarProgramParameter *)scalarParameter;
 
 - (void)useProgram;
 
