@@ -12,7 +12,6 @@
 
 @interface TMViewController : UIViewController <GLKViewDelegate>
 
-
 - (void)switchImage:(UIImage *)imagePath;
 - (void)saveImage;
 - (void)moveImageByX:(GLfloat)x y:(GLfloat)y movementEnded:(BOOL)movementEnded;

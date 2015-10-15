@@ -7,28 +7,16 @@
 //
 
 #import "TMViewController.h"
-#import "TMGLHandler.h"
-
-#import "TMProgramData.h"
-#import "TMImageProgram.h"
-
 #import "TMProgram.h"
 #import "TMTexturedGeometry.h"
-//
 #import "TMQuadTexturedVertices.h"
-//
 #import "TMTexture.h"
 #import "TMTextureFrameBuffer.h"
-
 #import "TMTextureDrawer.h"
 #import "TMTextureProgram.h"
-
 #import "TMGLKViewFrameBuffer.h"
-
 #import "TMProjectionFactory.h"
-
 #import "TMProgramFactory.h"
-
 #import "TMManager.h"
 #import "TMTextureProcessorFactory.h"
 #import "TMTextureDisplayer.h"
@@ -48,6 +36,9 @@
 
 @implementation TMViewController
 
+static NSString * const kTextureVertexShader = @"textureVertexShader";
+static NSString * const kTextureFragmentShader = @"textureFragmentShader";
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
@@ -56,26 +47,29 @@
   }
   [EAGLContext setCurrentContext:self.context];
   
-  
+  self.manager = [TMManager new];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [self initGLKView];
-
   self.mainDisplayer = [[TMTextureDisplayer alloc] initWithFrameBuffer:[[TMGLKViewFrameBuffer alloc] initWithGLKView:(GLKView *)self.view]];
   self.tempDisplayer = self.mainDisplayer;
-
+  self.manager.displayer = self.mainDisplayer;
   
-  NSString *imageName = @"xp";
-  NSString *imageType = @".jpg";
-  NSString *imagePath = [[NSBundle mainBundle] pathForResource:imageName ofType:imageType];
-  UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
-  self.imageTexture = [[TMTexture alloc] initWithImage:image];
-  self.processor = [[TMTextureProcessorFactory new] processorWithTexture:self.imageTexture];
-  self.manager = [TMManager new];
+  
+  TMTextureProgram *program = [[TMProgramFactory new] textureProgramWithVertexShaderName:kTextureVertexShader fragmentShaderName:kTextureFragmentShader textureUniformName:kTextureUniform projectionUniformName:kProjectionUniform positionAttributeName:kPositionAttribute textureCoordName:kTextureCoordinateAttribute];
+  
+  self.manager.processor = [[TMTextureProcessorFactory new] processorWithProgram:program];
+  
+//  NSString *imageName = @"xp";
+//  NSString *imageType = @".jpg";
+//  NSString *imagePath = [[NSBundle mainBundle] pathForResource:imageName ofType:imageType];
+//  UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+//  self.imageTexture = [[TMTexture alloc] initWithImage:image];
+//  self.processor = [[TMTextureProcessorFactory new] processorWithTexture:self.imageTexture];
 
-  [(GLKView *)self.view setNeedsDisplay];
+//  [(GLKView *)self.view setNeedsDisplay];
 }
 
 - (void)initGLKView {
@@ -91,17 +85,12 @@
   
   glClearColor(0.0, 0.8, 0.0, 1.0);
   glClear(GL_COLOR_BUFFER_BIT);
-  
-  self.manager.processor = self.processor;
-  self.manager.displayer = self.mainDisplayer;
+  [self.manager setDisplayer:self.mainDisplayer];
   [self.manager processTexture];
 }
 
 - (void)switchImage:(UIImage *)image {
-  TMTexture *imageTexture = [[TMTexture alloc] initWithImage:image];
-  self.processor = [self.processor processorWithTexture:imageTexture];
-  self.mainDisplayer = [[TMTextureDisplayer alloc] initWithFrameBuffer:[[TMGLKViewFrameBuffer alloc] initWithGLKView:(GLKView *)self.view]];
-  self.tempDisplayer = self.mainDisplayer;
+  self.manager.inputTexture = [[TMTexture alloc] initWithImage:image];
   [(GLKView *)self.view setNeedsDisplay];
 }
 
@@ -115,8 +104,9 @@
 
 - (void)zoomImageByScale:(GLfloat)scale positionX:(GLfloat)positionX positionY:(GLfloat)positionY
                zoomEnded:(BOOL)zoomEnded {
-  self.mainDisplayer = [self.tempDisplayer displayerWithTranslationDeltaScale:scale scalePositionX:positionX y:positionY];
-  
+  self.mainDisplayer = [self.tempDisplayer displayerWithTranslationDeltaScale:scale
+                                                                   scalePositionX:positionX
+                                                                                y:positionY];
   if (zoomEnded) {
     self.tempDisplayer = self.mainDisplayer;
   }

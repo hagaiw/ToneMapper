@@ -19,17 +19,16 @@
 @property (strong, nonatomic) TMTextureProgram *program;
 @property (strong, nonatomic) TMTexturedGeometry *quadGeometry;
 @property (strong, nonatomic) TMTextureFrameBuffer *textureFrameBuffer;
-@property (strong, nonatomic) TMTexture *texture;
+@property (weak, nonatomic) TMTexture *texture;
 
 @end
 
 @implementation TMTextureProcessor
 
-- (instancetype)initWithTexture:(TMTexture *)texture frameBuffer:(TMTextureFrameBuffer *)frameBuffer
-                        program:(TMTextureProgram *)program
-                   quadGeometry:(TMTexturedGeometry *)quadGeometry {
+- (instancetype)initWithFrameBuffer:(TMTextureFrameBuffer *)frameBuffer
+                            program:(TMTextureProgram *)program
+                       quadGeometry:(TMTexturedGeometry *)quadGeometry {
   if (self = [super init]) {
-    self.texture = texture;
     self.textureFrameBuffer = frameBuffer;
     self.program = program;
     self.quadGeometry = quadGeometry;
@@ -37,41 +36,41 @@
   return self;
 }
 
-- (instancetype)initWithVertexShader:(NSString *)vertexShader
-                           fragmentShader:(NSString *)fragmentShader
-                                  texture:(TMTexture *)texture {
+- (instancetype)initWithProgram:(TMTextureProgram *)program {
   if (self = [super init]) {
-    TMProgramFactory *programFactory = [TMProgramFactory new];
-    self.program = [programFactory textureProgramWithVertexShaderName:vertexShader fragmentShaderName:fragmentShader textureUniformName:kTextureUniform projectionUniformName:kProjectionUniform positionAttributeName:kPositionAttribute textureCoordName:kTextureCoordinateAttribute];
+    self.program = program;
     self.quadGeometry = [[TMTexturedGeometry alloc]
                          initWithTexturedVertices:[TMQuadTexturedVertices new]];
-    self.textureFrameBuffer = [self frameBufferWithTexture:texture];
-    self.texture = texture;
+    
   }
   return self;
 }
 
-- (TMTexture *)process {
+- (TMTexture *)processTexture:(TMTexture *)texture {
+  return [self processTexture:texture
+               withProjection:[[TMProjectionFactory new] identityProjection]];
+}
+
+- (TMTexture *)processAndFlipTexture:(TMTexture *)texture {
+  return [self processTexture:texture
+               withProjection:[[TMProjectionFactory new] verticalFlipProjection]];
+}
+
+- (TMTexture *)processTexture:(TMTexture *)texture withProjection:(TMProjection *)projection{
+  if (texture != self.texture) {
+    self.textureFrameBuffer = [self frameBufferWithSize:texture.size];
+    self.texture = texture;
+  }
   [[TMTextureDrawer new] drawWithTextureProgram:self.program
                                texturedGeometry:self.quadGeometry
                                     frameBuffer:self.textureFrameBuffer
-                                        texture:self.texture
-                                     projection:[[TMProjectionFactory new] verticalFlipProjection]];
+                                        texture:texture
+                                     projection:projection];
   return self.textureFrameBuffer.texture;
 }
 
-- (TMTextureFrameBuffer *)frameBufferWithTexture:(TMTexture *)texture {
-  if (texture != self.texture) {
-    return [[TMTextureFrameBuffer alloc] initWithSourceTexture:texture];
-  }
-  return self.textureFrameBuffer;
-}
-
-- (TMTextureProcessor *)processorWithTexture:(TMTexture *)texture {
-  TMTextureFrameBuffer *frameBuffer = [self frameBufferWithTexture:(TMTexture *)texture];
-  return [self initWithTexture:texture frameBuffer:frameBuffer program:self.program
-                  quadGeometry:self.quadGeometry];
-
+- (TMTextureFrameBuffer *)frameBufferWithSize:(CGSize)size {
+  return [[TMTextureFrameBuffer alloc] initWithSize:size];
 }
 
 @end

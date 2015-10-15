@@ -106,6 +106,8 @@
     imageScale = (GLfloat)maxResolution / maxDimension;
   }
   
+  
+  
   UIGraphicsBeginImageContextWithOptions(image.size, NO, imageScale);
   [image drawInRect:(CGRect){0, 0, image.size}];
   UIImage *normalizedImage = UIGraphicsGetImageFromCurrentImageContext();

@@ -15,6 +15,6 @@
 @interface TMTextureFrameBuffer : NSObject <TMFrameBuffer>
 
 @property (readonly, strong, nonatomic) TMTexture *texture;
-- (instancetype)initWithSourceTexture:(TMTexture *)sourceTexture;
+- (instancetype)initWithSize:(CGSize)size;
 - (void)bind;
 @end

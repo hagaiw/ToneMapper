@@ -8,52 +8,72 @@
 
 #import "TMManager.h"
 
+@interface TMManager ()
+
+@property (nonatomic) BOOL needsProcessing;
+@property (strong, nonatomic) TMTexture *processedTexture;
+
+@end
+
 @implementation TMManager
 
-- (void)processTexture {
-  TMTexture *texture = [self.processor process];
-  [self.displayer displayTexture:texture];
+- (instancetype)init {
+  if (self = [super init]) {
+    self.needsProcessing = true;
+  }
+  return self;
 }
 
-- (void)saveImage {
+- (void)processTexture {
+  if (self.inputTexture) {
+    if (self.needsProcessing) {
+      self.processedTexture = [self.processor processAndFlipTexture:self.inputTexture];
+      self.needsProcessing = false;
+    }
+    [self.displayer displayTexture:self.processedTexture];
+  }
+}
 
-  TMTexture *texture = [self.processor process];
+- (void)setProcessor:(TMTextureProcessor *)processor {
+  if (_processor != processor) {
+    _processor = processor;
+    self.needsProcessing = true;
+  }
+}
+
+-(UIImage *) glToUIImage {
   
-  const int w = texture.size.width;
-  const int h = texture.size.height;
-  const NSInteger myDataLength = w * h * 4;
+  self.processedTexture = [self.processor processTexture:self.inputTexture];
+
+  
+  NSInteger myDataLength = self.processedTexture.size.width * self.processedTexture.size.height * 4;
   
   // allocate array and read pixels into it.
   GLubyte *buffer = (GLubyte *) malloc(myDataLength);
-  glReadPixels(0, 0, w, h, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
-  // gl renders "upside down" so swap top to bottom into new array.
-  // there's gotta be a better way, but this works.
-  GLubyte *buffer2 = (GLubyte *) malloc(myDataLength);
-  for(int y = 0; y < h; y++)
-  {
-    memcpy( buffer2 + (h - 1 - y) * w * 4, buffer + (y * 4 * w), w * 4 );
-  }
-  free(buffer); // work with the flipped buffer, so get rid of the original one.
+  glReadPixels(0, 0, self.processedTexture.size.width, self.processedTexture.size.height, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
   
   // make data provider with data.
-  CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, buffer2, myDataLength, NULL);
+  CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, buffer, myDataLength, NULL);
+  
   // prep the ingredients
   int bitsPerComponent = 8;
   int bitsPerPixel = 32;
-  int bytesPerRow = 4 * w;
+  int bytesPerRow = 4 * self.processedTexture.size.width;
   CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
   CGBitmapInfo bitmapInfo = kCGBitmapByteOrderDefault;
   CGColorRenderingIntent renderingIntent = kCGRenderingIntentDefault;
+  
   // make the cgimage
-  CGImageRef imageRef = CGImageCreate(w, h, bitsPerComponent, bitsPerPixel, bytesPerRow, colorSpaceRef, bitmapInfo, provider, NULL, NO, renderingIntent);
+  CGImageRef imageRef = CGImageCreate(self.processedTexture.size.width, self.processedTexture.size.height, bitsPerComponent, bitsPerPixel, bytesPerRow, colorSpaceRef, bitmapInfo, provider, NULL, NO, renderingIntent);
+  
   // then make the uiimage from that
-  UIImage *myImage = [ UIImage imageWithCGImage:imageRef scale:1.0 orientation:UIImageOrientationUp ];
-  UIImageWriteToSavedPhotosAlbum( myImage, nil, nil, nil );
-  CGImageRelease( imageRef );
-  CGDataProviderRelease(provider);
-  CGColorSpaceRelease(colorSpaceRef);
-  free(buffer2);
+  UIImage *myImage = [UIImage imageWithCGImage:imageRef];
+  return myImage;
+}
 
+-(void)saveImage {
+  UIImage *image = [self glToUIImage];
+  UIImageWriteToSavedPhotosAlbum(image, self, nil, nil);
 }
 
 @end

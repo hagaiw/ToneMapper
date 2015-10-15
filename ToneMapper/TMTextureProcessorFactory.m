@@ -10,13 +10,10 @@
 
 @implementation TMTextureProcessorFactory
 
-static NSString * const kTextureVertexShader = @"textureVertexShader";
-static NSString * const kTextureFragmentShader = @"textureFragmentShader";
 
-- (TMTextureProcessor *)processorWithTexture:(TMTexture *)texture {
-  return [[TMTextureProcessor alloc] initWithVertexShader:kTextureVertexShader
-                                           fragmentShader:kTextureFragmentShader
-                                                  texture:texture];
+
+- (TMTextureProcessor *)processorWithProgram:(TMTextureProgram *)program {
+  return [[TMTextureProcessor alloc] initWithProgram:program];
 }
 
 @end

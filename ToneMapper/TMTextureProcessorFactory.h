@@ -11,6 +11,6 @@
 
 @interface TMTextureProcessorFactory : NSObject
 
-- (TMTextureProcessor *)processorWithTexture:(TMTexture *)texture;
+- (TMTextureProcessor *)processorWithProgram:(TMTextureProgram *)program;
 
 @end

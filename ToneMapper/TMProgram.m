@@ -8,12 +8,15 @@
 
 #import "TMProgram.h"
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface TMProgram ()
 
 @property (nonatomic) GLuint program;
 @property (readwrite, strong, nonatomic) HandleDictionary *handlesForAttributes;
 @property (readwrite, strong, nonatomic) HandleDictionary *handlesForUniforms;
+@property (nonatomic) GLuint vertexShaderHandle;
+@property (nonatomic) GLuint fragmentShaderHandle;
 
 @end
 
@@ -26,14 +29,14 @@
     
     TMShaderFactory *shaderFactory = [[TMShaderFactory alloc] init];
     
-    GLuint vertexShaderHandle = [shaderFactory shaderForShaderName:vertexShaderName
+    self.vertexShaderHandle = [shaderFactory shaderForShaderName:vertexShaderName
                                                         shaderType:GL_VERTEX_SHADER];
-    GLuint fragmentShaderHandle = [shaderFactory shaderForShaderName:fragmentShaderName
+    self.fragmentShaderHandle = [shaderFactory shaderForShaderName:fragmentShaderName
                                                           shaderType:GL_FRAGMENT_SHADER];
   
     self.program = glCreateProgram();
-    glAttachShader(self.program, vertexShaderHandle);
-    glAttachShader(self.program, fragmentShaderHandle);
+    glAttachShader(self.program, self.vertexShaderHandle);
+    glAttachShader(self.program, self.fragmentShaderHandle);
     glLinkProgram(self.program);
     // Check linkage success.
     GLint linkSuccess;
@@ -70,5 +73,13 @@
   glUniform1f([self.handlesForUniforms handleForKey:scalarParameter.name], scalarParameter.value);
 }
 
+- (void)dealloc {
+  glDeleteProgram(self.program);
+  glDeleteShader(self.vertexShaderHandle);
+  glDeleteShader(self.fragmentShaderHandle);
+}
+
 
 @end
+
+NS_ASSUME_NONNULL_END

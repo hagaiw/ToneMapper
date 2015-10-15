@@ -8,13 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "TMTexture.h"
+#import "TMTextureProgram.h"
 
 @interface TMTextureProcessor : NSObject
 
-- (TMTexture *)process;
-- (instancetype)initWithVertexShader:(NSString *)vertexShader
-                      fragmentShader:(NSString *)fragmentShader
-                             texture:(TMTexture *)texture;
-- (TMTextureProcessor *)processorWithTexture:(TMTexture *)texture;
+- (TMTexture *)processTexture:(TMTexture *)texture;
+- (TMTexture *)processAndFlipTexture:(TMTexture *)texture;
+- (instancetype)initWithProgram:(TMTextureProgram *)program;
 
 @end
