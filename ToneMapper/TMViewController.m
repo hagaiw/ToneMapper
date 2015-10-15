@@ -17,13 +17,13 @@
 #import "TMGLKViewFrameBuffer.h"
 #import "TMProjectionFactory.h"
 #import "TMProgramFactory.h"
-#import "TMManager.h"
+#import "TMPipelineManager.h"
 #import "TMTextureProcessorFactory.h"
 #import "TMTextureDisplayer.h"
 
 @interface TMViewController ()
 
-@property (strong, nonatomic) TMManager *manager;
+@property (strong, nonatomic) TMPipelineManager *manager;
 @property (strong, nonatomic) TMTextureProcessor *processor;
 @property (strong, nonatomic) TMTextureDisplayer *mainDisplayer;
 @property (strong, nonatomic) TMTextureDisplayer *tempDisplayer;
@@ -47,7 +47,7 @@ static NSString * const kTextureFragmentShader = @"textureFragmentShader";
   }
   [EAGLContext setCurrentContext:self.context];
   
-  self.manager = [TMManager new];
+  self.manager = [TMPipelineManager new];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -86,7 +86,7 @@ static NSString * const kTextureFragmentShader = @"textureFragmentShader";
   glClearColor(0.0, 0.8, 0.0, 1.0);
   glClear(GL_COLOR_BUFFER_BIT);
   [self.manager setDisplayer:self.mainDisplayer];
-  [self.manager processTexture];
+  [self.manager processAndDisplay];
 }
 
 - (void)switchImage:(UIImage *)image {

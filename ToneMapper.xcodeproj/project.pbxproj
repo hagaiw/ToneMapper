@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		FA24015C1BCC2DE2008C5AAE /* TMTextureProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = FA24015B1BCC2DE2008C5AAE /* TMTextureProgram.m */; };
 		FA24015F1BCD04DD008C5AAE /* TMProgramFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FA24015E1BCD04DD008C5AAE /* TMProgramFactory.m */; };
-		FA2401651BCD4EB7008C5AAE /* TMManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2401641BCD4EB7008C5AAE /* TMManager.m */; };
+		FA2401651BCD4EB7008C5AAE /* TMPipelineManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2401641BCD4EB7008C5AAE /* TMPipelineManager.m */; };
 		FA24016C1BCD525E008C5AAE /* TMTextureDisplayer.m in Sources */ = {isa = PBXBuildFile; fileRef = FA24016B1BCD525E008C5AAE /* TMTextureDisplayer.m */; };
 		FA2401721BCD5FAA008C5AAE /* TMTextureProcessorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2401711BCD5FAA008C5AAE /* TMTextureProcessorFactory.m */; };
 		FA2401751BCD6080008C5AAE /* TMTextureProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2401741BCD6080008C5AAE /* TMTextureProcessor.m */; };
@@ -54,8 +54,8 @@
 		FA24015B1BCC2DE2008C5AAE /* TMTextureProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTextureProgram.m; sourceTree = "<group>"; };
 		FA24015D1BCD04DD008C5AAE /* TMProgramFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMProgramFactory.h; sourceTree = "<group>"; };
 		FA24015E1BCD04DD008C5AAE /* TMProgramFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMProgramFactory.m; sourceTree = "<group>"; };
-		FA2401631BCD4EB7008C5AAE /* TMManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMManager.h; sourceTree = "<group>"; };
-		FA2401641BCD4EB7008C5AAE /* TMManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMManager.m; sourceTree = "<group>"; };
+		FA2401631BCD4EB7008C5AAE /* TMPipelineManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMPipelineManager.h; sourceTree = "<group>"; };
+		FA2401641BCD4EB7008C5AAE /* TMPipelineManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMPipelineManager.m; sourceTree = "<group>"; };
 		FA24016A1BCD525E008C5AAE /* TMTextureDisplayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTextureDisplayer.h; sourceTree = "<group>"; };
 		FA24016B1BCD525E008C5AAE /* TMTextureDisplayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTextureDisplayer.m; sourceTree = "<group>"; };
 		FA2401701BCD5FAA008C5AAE /* TMTextureProcessorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTextureProcessorFactory.h; sourceTree = "<group>"; };
@@ -287,8 +287,8 @@
 		FAF9453F1BBBCAA60093DE0F /* openGL */ = {
 			isa = PBXGroup;
 			children = (
-				FA2401631BCD4EB7008C5AAE /* TMManager.h */,
-				FA2401641BCD4EB7008C5AAE /* TMManager.m */,
+				FA2401631BCD4EB7008C5AAE /* TMPipelineManager.h */,
+				FA2401641BCD4EB7008C5AAE /* TMPipelineManager.m */,
 				FA4DA5D31BC67B18005869C8 /* HandleDictionary.h */,
 				FA4DA5D41BC67B18005869C8 /* HandleDictionary.m */,
 				FA2401871BD0040D008C5AAE /* Projections */,
@@ -418,7 +418,7 @@
 				FAA877421BAF0BAD00934C21 /* AppDelegate.m in Sources */,
 				FAA2C2931BC7FEA0005689DC /* TMQuadTexturedVertices.m in Sources */,
 				FAA2C29C1BC814E8005689DC /* TMTextureDrawer.m in Sources */,
-				FA2401651BCD4EB7008C5AAE /* TMManager.m in Sources */,
+				FA2401651BCD4EB7008C5AAE /* TMPipelineManager.m in Sources */,
 				FA24015F1BCD04DD008C5AAE /* TMProgramFactory.m in Sources */,
 				FAA2C28F1BC7F7BB005689DC /* TMTexturedGeometry.m in Sources */,
 				FA24015C1BCC2DE2008C5AAE /* TMTextureProgram.m in Sources */,
