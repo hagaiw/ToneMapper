@@ -6,15 +6,18 @@
 //  Copyright (c) 2015 Lightricks Ltd. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 @import GLKit;
 
-#import <Foundation/Foundation.h>
+NS_ASSUME_NONNULL_BEGIN
 
+/// A factory class that produces shaders.
 @interface TMShaderFactory : NSObject
 
-
+/// Compiles and creates a shader with \c shaderName and \c shadertype.
+/// Returns the \c GLuint handle of the shader.
 - (GLuint)shaderForShaderName:(NSString *)shaderName shaderType:(GLenum)shaderType;
 
-
-
 @end
+
+NS_ASSUME_NONNULL_END

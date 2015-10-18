@@ -9,10 +9,17 @@
 #import <Foundation/Foundation.h>
 @import GLKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
+/// Defines a bindable frame buffer object.
 @protocol TMFrameBuffer <NSObject>
 
+/// Bind the frame buffer.
 - (void)bind;
 
+/// The size of the frame-buffer.
 @property (readonly, nonatomic) CGSize size;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -8,39 +8,42 @@
 
 #import "TMShaderFactory.h"
 
-
+NS_ASSUME_NONNULL_BEGIN
 
 @implementation TMShaderFactory
+
+static NSString * const kShaderFileExtension = @"glsl";
+static NSString * const kShaderCompileErrorMessage = @"Error loading shader: %@";
+
+#pragma mark -
+#pragma mark Initialization
+#pragma mark -
 
 - (GLuint)shaderForShaderName:(NSString *)shaderName shaderType:(GLenum)shaderType {
   return [self compileShader:shaderName withType:shaderType];
 }
 
+/// Taken from: http://www.raywenderlich.com/3664/opengl-tutorial-for-ios-opengl-es-2-0
 - (GLuint)compileShader:(NSString*)shaderName withType:(GLenum)shaderType {
   
-  // 1
   NSString* shaderPath = [[NSBundle mainBundle] pathForResource:shaderName
-                                                         ofType:@"glsl"];
+                                                         ofType:kShaderFileExtension];
   NSError* error;
   NSString* shaderString = [NSString stringWithContentsOfFile:shaderPath
                                                      encoding:NSUTF8StringEncoding error:&error];
   if (!shaderString) {
-    NSLog(@"Error loading shader: %@", error.localizedDescription);
+    NSLog(kShaderCompileErrorMessage, error.localizedDescription);
     exit(1);
   }
   
-  // 2
   GLuint shaderHandle = glCreateShader(shaderType);
   
-  // 3
   const char * shaderStringUTF8 = [shaderString UTF8String];
   int shaderStringLength = (int)[shaderString length];
   glShaderSource(shaderHandle, 1, &shaderStringUTF8, &shaderStringLength);
   
-  // 4
   glCompileShader(shaderHandle);
   
-  // 5
   GLint compileSuccess;
   glGetShaderiv(shaderHandle, GL_COMPILE_STATUS, &compileSuccess);
   if (compileSuccess == GL_FALSE) {
@@ -50,8 +53,9 @@
     NSLog(@"%@", messageString);
     exit(1);
   }
-  
   return shaderHandle;
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

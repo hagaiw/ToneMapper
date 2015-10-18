@@ -10,7 +10,7 @@
 @import GLKit;
 
 #import "TMHandleDictionary.h"
-#import "TMScalarProgramParameter.h"
+#import "TMScalarAttribute.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, strong, nonatomic) TMHandleDictionary *handlesForUniforms;
 
 /// Binds the given \c TMScalarProgramPArameter with the program.
-- (void)bindScalarParameter:(TMScalarProgramParameter *)scalarParameter;
+- (void)bindScalarParameter:(TMScalarAttribute *)scalarParameter;
 
 /// Calls glUseProgram for the program.
 - (void)useProgram;

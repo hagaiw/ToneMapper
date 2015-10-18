@@ -85,12 +85,7 @@ static NSString * const kWorkspaceFragmentShader = @"workspaceFragmentShader";
   aspectFixProjection = [projectionFactory projectionByMultiplyingLeft:translationProjection
                                                                  right:aspectFixProjection];
   
-  TMTextureDrawer *screenDrawer = [[TMTextureDrawer alloc] initWithTextureProgram:self.program
-                                                texturedGeometry:self.quadGeometry
-                                                     frameBuffer:self.frameBuffer
-                                                         texture:texture
-                                                      projection:aspectFixProjection];
-  [screenDrawer draw];
+  [[TMTextureDrawer new] drawWithTextureProgram:self.program texturedGeometry:self.quadGeometry frameBuffer:self.frameBuffer texture:texture projection:aspectFixProjection];
 }
 
 - (TMTextureDisplayer *)displayerWithTranslationDeltaX:(GLfloat)x y:(GLfloat)y {

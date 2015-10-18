@@ -6,9 +6,15 @@
 //  Copyright (c) 2015 Lightricks Ltd. All rights reserved.
 //
 
-#import "TMScalarProgramParameter.h"
+#import "TMScalarAttribute.h"
 
-@implementation TMScalarProgramParameter
+NS_ASSUME_NONNULL_BEGIN
+
+@implementation TMScalarAttribute
+
+#pragma mark -
+#pragma mark Initialization
+#pragma mark -
 
 - (instancetype)initWithName:(NSString *)name value:(GLfloat)value {
   if (self = [super init]) {
@@ -19,3 +25,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

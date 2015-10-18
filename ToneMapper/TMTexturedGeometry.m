@@ -35,8 +35,10 @@ NS_ASSUME_NONNULL_BEGIN
     glGenBuffers(1, &_vertexBuffer);
     glGenBuffers(1, &_indexBuffer);
     [self bind];
-    glBufferData(GL_ARRAY_BUFFER, [self.vertices verticesArraySize], [self.vertices vertices], GL_STATIC_DRAW);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, [self.vertices indicesArraySize], [self.vertices indices], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, [self.vertices verticesArraySize],
+                 [self.vertices vertices], GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, [self.vertices indicesArraySize],
+                 [self.vertices indices], GL_STATIC_DRAW);
   }
   return self;
 }
@@ -51,11 +53,15 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)linkPositionArrayToAttribute:(GLuint)positionHandle {
-  glVertexAttribPointer(positionHandle, [self.vertices numOfPositionCoordinates], [self.vertices positionType], GL_FALSE, [self.vertices vertexSize], [self.vertices positionPointer]);
+  glVertexAttribPointer(positionHandle, [self.vertices numOfPositionCoordinates],
+                        [self.vertices positionType], GL_FALSE, [self.vertices vertexSize],
+                        [self.vertices positionPointer]);
 }
 
 - (void)linkTextureArrayToAttribute:(GLuint)textureHandle {
-  glVertexAttribPointer(textureHandle, [self.vertices numOfTextureCoordinates], [self.vertices textureType], GL_FALSE, [self.vertices vertexSize], [self.vertices texturePointer]);
+  glVertexAttribPointer(textureHandle, [self.vertices numOfTextureCoordinates],
+                        [self.vertices textureType], GL_FALSE, [self.vertices vertexSize],
+                        [self.vertices texturePointer]);
 }
 
 - (void)drawElements {

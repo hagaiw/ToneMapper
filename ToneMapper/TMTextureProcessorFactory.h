@@ -9,8 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "TMTextureProcessor.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+/// A factory class that produces \c TMTextureProcessor objects.
 @interface TMTextureProcessorFactory : NSObject
 
+/// Returns a \c TMTextureProcessor with the given \c TMTexturePRogram.
 - (TMTextureProcessor *)processorWithProgram:(TMTextureProgram *)program;
 
 @end
+
+NS_ASSUME_NONNULL_END

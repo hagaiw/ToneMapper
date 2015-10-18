@@ -108,7 +108,7 @@ NS_ASSUME_NONNULL_BEGIN
   glUseProgram(self.program);
 }
 
-- (void)bindScalarParameter:(TMScalarProgramParameter *)scalarParameter {
+- (void)bindScalarParameter:(TMScalarAttribute *)scalarParameter {
   glUniform1f([self.handlesForUniforms handleForKey:scalarParameter.name], scalarParameter.value);
 }
 

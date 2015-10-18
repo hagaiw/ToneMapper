@@ -76,6 +76,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(UIImage *) glToUIImage {
   
   TMTexture *texture = [self.processor processTexture:self.inputTexture];
+  self.needsProcessing = true;
+  
   NSInteger myDataLength = texture.size.width * texture.size.height * 4;
   
   // allocate array and read pixels into it.

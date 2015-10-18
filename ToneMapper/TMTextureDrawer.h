@@ -8,24 +8,25 @@
 
 #import <Foundation/Foundation.h>
 @import GLKit;
+
+#import "TMFrameBuffer.h"
+#import "TMProjection.h"
+#import "TMTexture.h"
 #import "TMTextureProgram.h"
 #import "TMTexturedGeometry.h"
-#import "TMFrameBuffer.h"
-#import "TMTexture.h"
-#import "TMProjection.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+/// A helper class which provides tool for drawing a scene.
 @interface TMTextureDrawer : NSObject
 
-- (instancetype)initWithTextureProgram:(TMTextureProgram *)program
-                      texturedGeometry:(TMTexturedGeometry *)texturedGeometry
-                           frameBuffer:(id<TMFrameBuffer>)frameBuffer texture:(TMTexture *)texture
-                            projection:(TMProjection *)projection;
-
-- (void)draw;
-
+/// Draws the scene defined by the given \c program, \c textureGeometry, \c texture and \c
+/// projection to the given \c frameBuffer.
 - (void)drawWithTextureProgram:(TMTextureProgram *)program
               texturedGeometry:(TMTexturedGeometry *)texturedGeometry
                    frameBuffer:(id<TMFrameBuffer>)frameBuffer texture:(TMTexture *)texture
                     projection:(TMProjection *)projection;
 
 @end
+
+NS_ASSUME_NONNULL_END

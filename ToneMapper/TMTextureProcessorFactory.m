@@ -10,8 +10,6 @@
 
 @implementation TMTextureProcessorFactory
 
-
-
 - (TMTextureProcessor *)processorWithProgram:(TMTextureProgram *)program {
   return [[TMTextureProcessor alloc] initWithProgram:program];
 }

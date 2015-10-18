@@ -8,7 +8,13 @@
 
 #import "TMProgramFactory.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation TMProgramFactory
+
+#pragma mark -
+#pragma mark Factory Methods
+#pragma mark -
 
 - (TMTextureProgram *)textureProgramWithVertexShaderName:(NSString *)vertexShader
                                       fragmentShaderName:(NSString *)fragmentShader
@@ -30,3 +36,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
