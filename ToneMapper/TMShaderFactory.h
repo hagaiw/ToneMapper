@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 @import GLKit;
 
+#import "TMShader.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 /// A factory class that produces shaders.
@@ -16,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Compiles and creates a shader with \c shaderName and \c shadertype.
 /// Returns the \c GLuint handle of the shader.
-- (GLuint)shaderForShaderName:(NSString *)shaderName shaderType:(GLenum)shaderType;
+- (TMShader *)shaderForShaderName:(NSString *)shaderName shaderType:(GLenum)shaderType;
 
 @end
 

@@ -10,6 +10,7 @@
 
 #import "TMMutableHandleDictionary.h"
 #import "TMShaderFactory.h"
+#import "TMShader.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,11 +25,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// A \c TMHandleDictionary that maps uniform names to \GLuint handles.
 @property (readwrite, strong, nonatomic) TMHandleDictionary *handlesForUniforms;
 
-/// The handle for the compiled vertex shader.
-@property (nonatomic) GLuint vertexShaderHandle;
+/// The program's vertex shader.
+@property (strong, nonatomic) TMShader *vertexShader;
 
-/// The handle for the compiled fragment shader.
-@property (nonatomic) GLuint fragmentShaderHandle;
+/// The program's fragment shader.
+@property (strong, nonatomic) TMShader *fragmentShader;
 
 @end
 
@@ -45,12 +46,12 @@ NS_ASSUME_NONNULL_BEGIN
     
     TMShaderFactory *shaderFactory = [[TMShaderFactory alloc] init];
     
-    self.vertexShaderHandle = [shaderFactory shaderForShaderName:vertexShaderName
+    self.vertexShader = [shaderFactory shaderForShaderName:vertexShaderName
                                                         shaderType:GL_VERTEX_SHADER];
-    self.fragmentShaderHandle = [shaderFactory shaderForShaderName:fragmentShaderName
+    self.fragmentShader = [shaderFactory shaderForShaderName:fragmentShaderName
                                                           shaderType:GL_FRAGMENT_SHADER];
-    self.program = [self createProgramWithVertexShader:self.vertexShaderHandle
-                                        fragmentShader:self.fragmentShaderHandle];
+    self.program = [self createProgramWithVertexShader:self.vertexShader.handle
+                                        fragmentShader:self.fragmentShader.handle];
     self.handlesForAttributes = [self handleDictionaryFromAttributes:attributes
                                                        programHandle:self.program];
     self.handlesForUniforms = [self handleDictionaryFromUniforms:uniforms
@@ -118,8 +119,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)dealloc {
   glDeleteProgram(self.program);
-  glDeleteShader(self.vertexShaderHandle);
-  glDeleteShader(self.fragmentShaderHandle);
 }
 
 

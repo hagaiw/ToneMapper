@@ -17,6 +17,7 @@
 		FA24017E1BCE4766008C5AAE /* TMScalarAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = FA24017D1BCE4766008C5AAE /* TMScalarAttribute.m */; };
 		FA2401911BD39D74008C5AAE /* TMMutableHandleDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2401901BD39D74008C5AAE /* TMMutableHandleDictionary.m */; };
 		FA2401971BD3FA0F008C5AAE /* TMPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2401961BD3FA0F008C5AAE /* TMPosition.m */; };
+		FA24019A1BD407E6008C5AAE /* TMShader.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2401991BD407E6008C5AAE /* TMShader.m */; };
 		FA44E6311BCA81D400FBDD28 /* TMGLKViewFrameBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = FA44E6301BCA81D400FBDD28 /* TMGLKViewFrameBuffer.m */; };
 		FA4DA5CC1BC40517005869C8 /* textureFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FA4DA5CA1BC40517005869C8 /* textureFragmentShader.glsl */; };
 		FA4DA5CD1BC40517005869C8 /* textureVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FA4DA5CB1BC40517005869C8 /* textureVertexShader.glsl */; };
@@ -71,6 +72,8 @@
 		FA2401901BD39D74008C5AAE /* TMMutableHandleDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMMutableHandleDictionary.m; sourceTree = "<group>"; };
 		FA2401951BD3FA0F008C5AAE /* TMPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMPosition.h; sourceTree = "<group>"; };
 		FA2401961BD3FA0F008C5AAE /* TMPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMPosition.m; sourceTree = "<group>"; };
+		FA2401981BD407E6008C5AAE /* TMShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMShader.h; sourceTree = "<group>"; };
+		FA2401991BD407E6008C5AAE /* TMShader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMShader.m; sourceTree = "<group>"; };
 		FA44E62E1BCA7F0A00FBDD28 /* TMFrameBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMFrameBuffer.h; sourceTree = "<group>"; };
 		FA44E62F1BCA81D400FBDD28 /* TMGLKViewFrameBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMGLKViewFrameBuffer.h; sourceTree = "<group>"; };
 		FA44E6301BCA81D400FBDD28 /* TMGLKViewFrameBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMGLKViewFrameBuffer.m; sourceTree = "<group>"; };
@@ -180,8 +183,10 @@
 		FA2401851BD003DB008C5AAE /* Programs */ = {
 			isa = PBXGroup;
 			children = (
-				FAA2C2841BC6CA89005689DC /* TMShaderFactory.h */,
-				FAA2C2851BC6CA89005689DC /* TMShaderFactory.m */,
+				FAA2C28A1BC6D00B005689DC /* TMProgram.h */,
+				FAA2C28B1BC6D00B005689DC /* TMProgram.m */,
+				FA24015A1BCC2DE2008C5AAE /* TMTextureProgram.h */,
+				FA24015B1BCC2DE2008C5AAE /* TMTextureProgram.m */,
 				FA24017C1BCE4766008C5AAE /* TMScalarAttribute.h */,
 				FA24017D1BCE4766008C5AAE /* TMScalarAttribute.m */,
 				FA24015D1BCD04DD008C5AAE /* TMProgramFactory.h */,
@@ -193,10 +198,6 @@
 		FA2401861BD003F0008C5AAE /* Geometry */ = {
 			isa = PBXGroup;
 			children = (
-				FAA2C28A1BC6D00B005689DC /* TMProgram.h */,
-				FAA2C28B1BC6D00B005689DC /* TMProgram.m */,
-				FA24015A1BCC2DE2008C5AAE /* TMTextureProgram.h */,
-				FA24015B1BCC2DE2008C5AAE /* TMTextureProgram.m */,
 				FAA2C2901BC7FBB3005689DC /* TMVertices.h */,
 				FAA2C2911BC7FEA0005689DC /* TMQuadTexturedVertices.h */,
 				FAA2C2921BC7FEA0005689DC /* TMQuadTexturedVertices.m */,
@@ -217,15 +218,19 @@
 			name = Projections;
 			sourceTree = "<group>";
 		};
-		FA4DA5D11BC5299A005869C8 /* shaders */ = {
+		FA4DA5D11BC5299A005869C8 /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				FA2401981BD407E6008C5AAE /* TMShader.h */,
+				FA2401991BD407E6008C5AAE /* TMShader.m */,
+				FAA2C2841BC6CA89005689DC /* TMShaderFactory.h */,
+				FAA2C2851BC6CA89005689DC /* TMShaderFactory.m */,
 				FAF945421BBBCE350093DE0F /* workspaceFragmentShader.glsl */,
 				FAF945401BBBCE1A0093DE0F /* workspaceVertexShader.glsl */,
 				FA4DA5CA1BC40517005869C8 /* textureFragmentShader.glsl */,
 				FA4DA5CB1BC40517005869C8 /* textureVertexShader.glsl */,
 			);
-			name = shaders;
+			name = Shaders;
 			sourceTree = "<group>";
 		};
 		FAA877301BAF0BAD00934C21 = {
@@ -294,15 +299,15 @@
 				FA4DA5D41BC67B18005869C8 /* TMHandleDictionary.m */,
 				FA24018F1BD39D74008C5AAE /* TMMutableHandleDictionary.h */,
 				FA2401901BD39D74008C5AAE /* TMMutableHandleDictionary.m */,
+				FA2401951BD3FA0F008C5AAE /* TMPosition.h */,
+				FA2401961BD3FA0F008C5AAE /* TMPosition.m */,
 				FA2401871BD0040D008C5AAE /* Projections */,
 				FA2401861BD003F0008C5AAE /* Geometry */,
 				FA2401851BD003DB008C5AAE /* Programs */,
 				FA2401841BD00324008C5AAE /* Frame Buffers */,
 				FA2401831BD002DA008C5AAE /* Processors */,
 				FA2401821BD002AD008C5AAE /* Textures */,
-				FA4DA5D11BC5299A005869C8 /* shaders */,
-				FA2401951BD3FA0F008C5AAE /* TMPosition.h */,
-				FA2401961BD3FA0F008C5AAE /* TMPosition.m */,
+				FA4DA5D11BC5299A005869C8 /* Shaders */,
 			);
 			name = openGL;
 			sourceTree = "<group>";
@@ -416,6 +421,7 @@
 				FA44E6311BCA81D400FBDD28 /* TMGLKViewFrameBuffer.m in Sources */,
 				FAA2C2991BC80400005689DC /* TMTexture.m in Sources */,
 				FAA2C2961BC80318005689DC /* TMTextureFrameBuffer.m in Sources */,
+				FA24019A1BD407E6008C5AAE /* TMShader.m in Sources */,
 				FA24017E1BCE4766008C5AAE /* TMScalarAttribute.m in Sources */,
 				FAF945571BBC33AD0093DE0F /* ViewController.m in Sources */,
 				FAF9453E1BBBC9320093DE0F /* TMViewController.m in Sources */,

@@ -113,15 +113,12 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 -(void)saveImage {
-  UIImage *image = [self glToUIImage];
+  UIImage *image = [self imageFromTexture:[self.processor processTexture:self.inputTexture]];
   UIImageWriteToSavedPhotosAlbum(image, self, nil, nil);
 }
 
 // Taken from: http://www.bit-101.com/blog/?p=1861
--(UIImage *) glToUIImage {
-  
-  TMTexture *texture = [self.processor processTexture:self.inputTexture];
-//  self.needsProcessing = true;
+-(UIImage *) imageFromTexture:(TMTexture *)texture {
   
   NSInteger myDataLength = texture.size.width * texture.size.height * 4;
   
