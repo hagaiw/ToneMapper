@@ -56,7 +56,7 @@
                withProjection:[[TMProjectionFactory new] verticalMirrorProjection]];
 }
 
-- (TMTexture *)processTexture:(TMTexture *)texture withProjection:(TMProjection *)projection{
+- (TMTexture *)processTexture:(TMTexture *)texture withProjection:(GLKMatrix4)projection{
   if (texture != self.texture) {
     self.textureFrameBuffer = [self frameBufferWithSize:texture.size];
     self.texture = texture;

@@ -43,13 +43,13 @@ static NSString * const kWorkspaceFragmentShader = @"workspaceFragmentShader";
   
   TMProjectionFactory *projectionFactory = [TMProjectionFactory new];
   
-  TMProjection *aspectFixProjection = [projectionFactory projectionFitSize:texture.size
+  GLKMatrix4 aspectFixProjection = [projectionFactory projectionFitSize:texture.size
                                                                             inSize:self.frameBuffer.size];
   
-  TMProjection *translationProjection = [projectionFactory
+  GLKMatrix4 translationProjection = [projectionFactory
                                          translationProjectionWithX:displayData.tranlsation.x
                                                                   y:displayData.tranlsation.y];
-  TMProjection *scaleProjection = [projectionFactory scaleProjectionWithScale:displayData.scale];
+  GLKMatrix4 scaleProjection = [projectionFactory scaleProjectionWithScale:displayData.scale];
   
   aspectFixProjection = [projectionFactory projectionByMultiplyingLeft:aspectFixProjection
                                                                right:scaleProjection];

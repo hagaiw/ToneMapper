@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "TMTexture.h"
 #import "TMGLKViewFrameBuffer.h"
-#import "TMProjection.h"
 #import "TMTextureProgram.h"
 #import "TMTexturedGeometry.h"
 #import "TMPosition.h"

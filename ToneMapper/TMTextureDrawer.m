@@ -13,7 +13,7 @@
 - (void)drawWithTextureProgram:(TMTextureProgram *)program
               texturedGeometry:(TMTexturedGeometry *)texturedGeometry
                    frameBuffer:(id<TMFrameBuffer>)frameBuffer texture:(TMTexture *)texture
-                    projection:(TMProjection *)projection {
+                    projection:(GLKMatrix4)projection {
   
   [program use];
   [frameBuffer bind];
@@ -24,7 +24,7 @@
   [texturedGeometry linkTextureArrayToAttribute:program.textureCoordAttribute];
   
   glUniform1i(program.textureUniform, 0);
-  glUniformMatrix4fv(program.projectionUniform, 1, 0, projection.matrix.m);
+  glUniformMatrix4fv(program.projectionUniform, 1, 0, projection.m);
   glViewport(0, 0, frameBuffer.size.width, frameBuffer.size.height);
   [texturedGeometry drawElements];
 }

@@ -13,7 +13,6 @@
 		FA2401721BCD5FAA008C5AAE /* TMTextureProcessorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2401711BCD5FAA008C5AAE /* TMTextureProcessorFactory.m */; };
 		FA2401751BCD6080008C5AAE /* TMTextureProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2401741BCD6080008C5AAE /* TMTextureProcessor.m */; };
 		FA2401781BCD6714008C5AAE /* TMProjectionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2401771BCD6714008C5AAE /* TMProjectionFactory.m */; };
-		FA24017B1BCD67B2008C5AAE /* TMProjection.m in Sources */ = {isa = PBXBuildFile; fileRef = FA24017A1BCD67B2008C5AAE /* TMProjection.m */; };
 		FA24017E1BCE4766008C5AAE /* TMScalarAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = FA24017D1BCE4766008C5AAE /* TMScalarAttribute.m */; };
 		FA2401911BD39D74008C5AAE /* TMMutableHandleDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2401901BD39D74008C5AAE /* TMMutableHandleDictionary.m */; };
 		FA2401971BD3FA0F008C5AAE /* TMPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2401961BD3FA0F008C5AAE /* TMPosition.m */; };
@@ -64,8 +63,6 @@
 		FA2401741BCD6080008C5AAE /* TMTextureProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTextureProcessor.m; sourceTree = "<group>"; };
 		FA2401761BCD6714008C5AAE /* TMProjectionFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMProjectionFactory.h; path = ../TMProjectionFactory.h; sourceTree = "<group>"; };
 		FA2401771BCD6714008C5AAE /* TMProjectionFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMProjectionFactory.m; path = ../TMProjectionFactory.m; sourceTree = "<group>"; };
-		FA2401791BCD67B2008C5AAE /* TMProjection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMProjection.h; sourceTree = "<group>"; };
-		FA24017A1BCD67B2008C5AAE /* TMProjection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMProjection.m; sourceTree = "<group>"; };
 		FA24017C1BCE4766008C5AAE /* TMScalarAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMScalarAttribute.h; path = ../TMScalarAttribute.h; sourceTree = "<group>"; };
 		FA24017D1BCE4766008C5AAE /* TMScalarAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMScalarAttribute.m; path = ../TMScalarAttribute.m; sourceTree = "<group>"; };
 		FA24018F1BD39D74008C5AAE /* TMMutableHandleDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMMutableHandleDictionary.h; sourceTree = "<group>"; };
@@ -210,8 +207,6 @@
 		FA2401871BD0040D008C5AAE /* Projections */ = {
 			isa = PBXGroup;
 			children = (
-				FA2401791BCD67B2008C5AAE /* TMProjection.h */,
-				FA24017A1BCD67B2008C5AAE /* TMProjection.m */,
 				FA2401761BCD6714008C5AAE /* TMProjectionFactory.h */,
 				FA2401771BCD6714008C5AAE /* TMProjectionFactory.m */,
 			);
@@ -436,7 +431,6 @@
 				FA24015C1BCC2DE2008C5AAE /* TMTextureProgram.m in Sources */,
 				FA2401751BCD6080008C5AAE /* TMTextureProcessor.m in Sources */,
 				FAA8773F1BAF0BAD00934C21 /* main.m in Sources */,
-				FA24017B1BCD67B2008C5AAE /* TMProjection.m in Sources */,
 				FA24016C1BCD525E008C5AAE /* TMTextureDisplay.m in Sources */,
 				FA4DA5D51BC67B18005869C8 /* TMHandleDictionary.m in Sources */,
 				FA2401781BCD6714008C5AAE /* TMProjectionFactory.m in Sources */,

@@ -10,7 +10,6 @@
 @import GLKit;
 
 #import "TMFrameBuffer.h"
-#import "TMProjection.h"
 #import "TMTexture.h"
 #import "TMTextureProgram.h"
 #import "TMTexturedGeometry.h"
@@ -25,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)drawWithTextureProgram:(TMTextureProgram *)program
               texturedGeometry:(TMTexturedGeometry *)texturedGeometry
                    frameBuffer:(id<TMFrameBuffer>)frameBuffer texture:(TMTexture *)texture
-                    projection:(TMProjection *)projection;
+                    projection:(GLKMatrix4)projection;
 
 @end
 

@@ -6,36 +6,32 @@
 //  Copyright (c) 2015 Lightricks Ltd. All rights reserved.
 //
 
-#import "TMProjection.h"
-
 #import <Foundation/Foundation.h>
+@import GLKit;
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// A factory calss the produces \TMProjection objects.
 @interface TMProjectionFactory : NSObject
 
-/// Returns a \TMProjection with the given \GLKMatrix4 matrix.
-- (TMProjection *)projectionWithMatrix:(GLKMatrix4)matrix;
-
 /// Returns a \TMProjection that fits an object of size \c origin inside an object of size \c target.
-- (TMProjection *)projectionFitSize:(CGSize)origin inSize:(CGSize)target;
+- (GLKMatrix4)projectionFitSize:(CGSize)origin inSize:(CGSize)target;
 
 /// Returns a \TMProjection resulting from multiplying \c left by \c right.
-- (TMProjection *)projectionByMultiplyingLeft:(TMProjection *)left
-                                        right:(TMProjection *)right;
+- (GLKMatrix4)projectionByMultiplyingLeft:(GLKMatrix4)left
+                                        right:(GLKMatrix4)right;
 
 /// Returns the identity projection.
-- (TMProjection *)identityProjection;
+- (GLKMatrix4)identityProjection;
 
 /// Returns a \TMProjection that that mirros along the vertical (y) axis.
-- (TMProjection *)verticalMirrorProjection;
+- (GLKMatrix4)verticalMirrorProjection;
 
 /// Returns a \TMProjection which translates by \c x and \c y.
-- (TMProjection *)translationProjectionWithX:(GLfloat)x y:(GLfloat)y;
+- (GLKMatrix4)translationProjectionWithX:(GLfloat)x y:(GLfloat)y;
 
 /// Returns a \TMProjection which scales the x and y axis by \c scale.
-- (TMProjection *)scaleProjectionWithScale:(GLfloat)scale;
+- (GLKMatrix4)scaleProjectionWithScale:(GLfloat)scale;
 
 @end
 
