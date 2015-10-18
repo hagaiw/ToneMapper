@@ -12,12 +12,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TMPipelineManager ()
 
+/// If true, \c processedTexture does not yet hold the processed \c inputTexture.
+/// Calling \c processTexture will set this to false.
 @property (nonatomic) BOOL needsProcessing;
+
+/// Holds the resulting processed texture after calling \c processTexture.
 @property (strong, nonatomic) TMTexture *processedTexture;
 
 @end
 
 @implementation TMPipelineManager
+
+#pragma mark -
+#pragma mark Initializer
+#pragma mark -
 
 - (instancetype)init {
   if (self = [super init]) {
@@ -25,6 +33,10 @@ NS_ASSUME_NONNULL_BEGIN
   }
   return self;
 }
+
+#pragma mark -
+#pragma mark Pipeline
+#pragma mark -
 
 - (void)processTexture {
   if (!self.inputTexture) {
@@ -34,8 +46,15 @@ NS_ASSUME_NONNULL_BEGIN
     self.processedTexture = [self.processor processAndFlipTexture:self.inputTexture];
     self.needsProcessing = false;
   }
+}
+
+- (void)displayProcessedTexture {
   [self.displayer displayTexture:self.processedTexture];
 }
+
+#pragma mark -
+#pragma mark Properties
+#pragma mark -
 
 - (void)setProcessor:(TMTextureProcessor *)processor {
   if (_processor != processor) {
@@ -43,6 +62,10 @@ NS_ASSUME_NONNULL_BEGIN
     self.needsProcessing = true;
   }
 }
+
+#pragma mark -
+#pragma mark IO
+#pragma mark -
 
 -(void)saveImage {
   UIImage *image = [self glToUIImage];
@@ -53,7 +76,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(UIImage *) glToUIImage {
   
   TMTexture *texture = [self.processor processTexture:self.inputTexture];
-  
   NSInteger myDataLength = texture.size.width * texture.size.height * 4;
   
   // allocate array and read pixels into it.
@@ -78,8 +100,6 @@ NS_ASSUME_NONNULL_BEGIN
   UIImage *myImage = [UIImage imageWithCGImage:imageRef];
   return myImage;
 }
-
-
 
 @end
 

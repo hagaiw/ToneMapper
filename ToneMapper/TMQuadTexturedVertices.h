@@ -6,9 +6,14 @@
 //  Copyright (c) 2015 Lightricks Ltd. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "TMVertices.h"
 
-@interface TMQuadTexturedVertices : NSObject <TMTexturedVertices>
+#import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+/// \c TMTexturedVertices data arranged in a Quad formation.
+@interface TMQuadTexturedVertices : NSObject <TMTexturedVertices>
 @end
+
+NS_ASSUME_NONNULL_END

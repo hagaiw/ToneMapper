@@ -62,14 +62,6 @@ static NSString * const kTextureFragmentShader = @"textureFragmentShader";
   
   self.manager.processor = [[TMTextureProcessorFactory new] processorWithProgram:program];
   
-//  NSString *imageName = @"xp";
-//  NSString *imageType = @".jpg";
-//  NSString *imagePath = [[NSBundle mainBundle] pathForResource:imageName ofType:imageType];
-//  UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
-//  self.imageTexture = [[TMTexture alloc] initWithImage:image];
-//  self.processor = [[TMTextureProcessorFactory new] processorWithTexture:self.imageTexture];
-
-//  [(GLKView *)self.view setNeedsDisplay];
 }
 
 - (void)initGLKView {
@@ -86,7 +78,8 @@ static NSString * const kTextureFragmentShader = @"textureFragmentShader";
   glClearColor(0.0, 0.8, 0.0, 1.0);
   glClear(GL_COLOR_BUFFER_BIT);
   [self.manager setDisplayer:self.mainDisplayer];
-  [self.manager processAndDisplay];
+  [self.manager processTexture];
+  [self.manager displayProcessedTexture];
 }
 
 - (void)switchImage:(UIImage *)image {

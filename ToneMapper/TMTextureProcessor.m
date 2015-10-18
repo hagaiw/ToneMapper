@@ -53,7 +53,7 @@
 
 - (TMTexture *)processAndFlipTexture:(TMTexture *)texture {
   return [self processTexture:texture
-               withProjection:[[TMProjectionFactory new] verticalFlipProjection]];
+               withProjection:[[TMProjectionFactory new] verticalMirrorProjection]];
 }
 
 - (TMTexture *)processTexture:(TMTexture *)texture withProjection:(TMProjection *)projection{

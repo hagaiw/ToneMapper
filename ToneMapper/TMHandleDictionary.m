@@ -6,15 +6,22 @@
 //  Copyright (c) 2015 Lightricks Ltd. All rights reserved.
 //
 
-#import "HandleDictionary.h"
+#import "TMHandleDictionary.h"
 
-@interface HandleDictionary ()
+NS_ASSUME_NONNULL_BEGIN
 
-@property (strong, nonatomic) NSMutableDictionary *dictionary;
+@interface TMHandleDictionary ()
+
+/// The wrapped dictionary used to store the \c TMHandleDictionary's data.
+@property (strong, nonatomic) NSDictionary *dictionary;
 
 @end
 
-@implementation HandleDictionary
+@implementation TMHandleDictionary
+
+#pragma mark -
+#pragma mark Initialization
+#pragma mark -
 
 - (instancetype)init {
   if (self = [super init]) {
@@ -23,9 +30,9 @@
   return self;
 }
 
-- (void)setHandle:(GLuint)handle forKey:(NSString *)key {
-  [self.dictionary setObject:[NSNumber numberWithUnsignedInteger:handle] forKey:key];
-}
+#pragma mark -
+#pragma mark Dictionary Methods
+#pragma mark -
 
 - (GLuint)handleForKey:(NSString *)key {
   NSNumber *value = [self.dictionary objectForKey:key];
@@ -33,3 +40,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

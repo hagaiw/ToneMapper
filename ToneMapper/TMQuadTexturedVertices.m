@@ -8,13 +8,20 @@
 
 #import "TMQuadTexturedVertices.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation TMQuadTexturedVertices
 
+static const GLsizei kQuadNumOfPositionCoordinates = 3;
+static const GLsizei kQuadNumOfTextureCoordinates = 4;
+
+/// A Quad-Vertex memory representation.
 typedef struct {
   float Position[3];
   float TexCoord[2];
 } QuadVertex;
 
+/// The quad vertices coordinates.
 static const QuadVertex kQuadVertices[] = {
   {{1, -1, 0}, {1, 0}},
   {{1, 1, 0}, {1, 1}},
@@ -22,6 +29,7 @@ static const QuadVertex kQuadVertices[] = {
   {{-1, -1, 0}, {0, 0}}
 };
 
+/// The quad vertices indices.
 static const GLubyte kQuadIndices[] = {
   0, 1, 2,
   2, 3, 0
@@ -36,19 +44,19 @@ static const GLubyte kQuadIndices[] = {
 }
 
 - (GLsizei)numOfVertices {
-  return 4;
+  return sizeof(kQuadVertices)/sizeof(QuadVertex);
 }
 
 - (GLsizei)numOfPositionCoordinates {
-  return 3;
+  return kQuadNumOfPositionCoordinates;
 }
 
 - (GLsizei)numOfTextureCoordinates {
-  return 2;
+  return kQuadNumOfTextureCoordinates;
 }
 
 - (GLsizei)numOfIndices {
-  return 6;
+  return sizeof(kQuadIndices)/sizeof(GLubyte);
 }
 
 - (GLenum)positionType {
@@ -80,10 +88,9 @@ static const GLubyte kQuadIndices[] = {
 }
 
 - (GLvoid *)texturePointer {
-  return (GLvoid *)(sizeof(float) * 3);
+  return (GLvoid *)(sizeof(float) * kQuadNumOfPositionCoordinates);
 }
 
-
-
-
 @end
+
+NS_ASSUME_NONNULL_END

@@ -16,10 +16,11 @@
 		FA2401781BCD6714008C5AAE /* TMProjectionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2401771BCD6714008C5AAE /* TMProjectionFactory.m */; };
 		FA24017B1BCD67B2008C5AAE /* TMProjection.m in Sources */ = {isa = PBXBuildFile; fileRef = FA24017A1BCD67B2008C5AAE /* TMProjection.m */; };
 		FA24017E1BCE4766008C5AAE /* TMScalarProgramParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA24017D1BCE4766008C5AAE /* TMScalarProgramParameter.m */; };
+		FA2401911BD39D74008C5AAE /* TMMutableHandleDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2401901BD39D74008C5AAE /* TMMutableHandleDictionary.m */; };
 		FA44E6311BCA81D400FBDD28 /* TMGLKViewFrameBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = FA44E6301BCA81D400FBDD28 /* TMGLKViewFrameBuffer.m */; };
 		FA4DA5CC1BC40517005869C8 /* textureFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FA4DA5CA1BC40517005869C8 /* textureFragmentShader.glsl */; };
 		FA4DA5CD1BC40517005869C8 /* textureVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FA4DA5CB1BC40517005869C8 /* textureVertexShader.glsl */; };
-		FA4DA5D51BC67B18005869C8 /* HandleDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DA5D41BC67B18005869C8 /* HandleDictionary.m */; };
+		FA4DA5D51BC67B18005869C8 /* TMHandleDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DA5D41BC67B18005869C8 /* TMHandleDictionary.m */; };
 		FAA2C2861BC6CA89005689DC /* TMShaderFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2C2851BC6CA89005689DC /* TMShaderFactory.m */; };
 		FAA2C28C1BC6D00B005689DC /* TMProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2C28B1BC6D00B005689DC /* TMProgram.m */; };
 		FAA2C28F1BC7F7BB005689DC /* TMTexturedGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2C28E1BC7F7BB005689DC /* TMTexturedGeometry.m */; };
@@ -68,13 +69,15 @@
 		FA24017A1BCD67B2008C5AAE /* TMProjection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMProjection.m; sourceTree = "<group>"; };
 		FA24017C1BCE4766008C5AAE /* TMScalarProgramParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMScalarProgramParameter.h; path = ../TMScalarProgramParameter.h; sourceTree = "<group>"; };
 		FA24017D1BCE4766008C5AAE /* TMScalarProgramParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMScalarProgramParameter.m; path = ../TMScalarProgramParameter.m; sourceTree = "<group>"; };
+		FA24018F1BD39D74008C5AAE /* TMMutableHandleDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMMutableHandleDictionary.h; sourceTree = "<group>"; };
+		FA2401901BD39D74008C5AAE /* TMMutableHandleDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMMutableHandleDictionary.m; sourceTree = "<group>"; };
 		FA44E62E1BCA7F0A00FBDD28 /* TMFrameBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMFrameBuffer.h; sourceTree = "<group>"; };
 		FA44E62F1BCA81D400FBDD28 /* TMGLKViewFrameBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMGLKViewFrameBuffer.h; sourceTree = "<group>"; };
 		FA44E6301BCA81D400FBDD28 /* TMGLKViewFrameBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMGLKViewFrameBuffer.m; sourceTree = "<group>"; };
 		FA4DA5CA1BC40517005869C8 /* textureFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = textureFragmentShader.glsl; sourceTree = "<group>"; };
 		FA4DA5CB1BC40517005869C8 /* textureVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = textureVertexShader.glsl; sourceTree = "<group>"; };
-		FA4DA5D31BC67B18005869C8 /* HandleDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandleDictionary.h; sourceTree = "<group>"; };
-		FA4DA5D41BC67B18005869C8 /* HandleDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandleDictionary.m; sourceTree = "<group>"; };
+		FA4DA5D31BC67B18005869C8 /* TMHandleDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMHandleDictionary.h; sourceTree = "<group>"; };
+		FA4DA5D41BC67B18005869C8 /* TMHandleDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMHandleDictionary.m; sourceTree = "<group>"; };
 		FAA2C2841BC6CA89005689DC /* TMShaderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMShaderFactory.h; sourceTree = "<group>"; };
 		FAA2C2851BC6CA89005689DC /* TMShaderFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMShaderFactory.m; sourceTree = "<group>"; };
 		FAA2C28A1BC6D00B005689DC /* TMProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMProgram.h; sourceTree = "<group>"; };
@@ -194,9 +197,9 @@
 				FAA2C28B1BC6D00B005689DC /* TMProgram.m */,
 				FA24015A1BCC2DE2008C5AAE /* TMTextureProgram.h */,
 				FA24015B1BCC2DE2008C5AAE /* TMTextureProgram.m */,
+				FAA2C2901BC7FBB3005689DC /* TMVertices.h */,
 				FAA2C2911BC7FEA0005689DC /* TMQuadTexturedVertices.h */,
 				FAA2C2921BC7FEA0005689DC /* TMQuadTexturedVertices.m */,
-				FAA2C2901BC7FBB3005689DC /* TMVertices.h */,
 				FAA2C28D1BC7F7BB005689DC /* TMTexturedGeometry.h */,
 				FAA2C28E1BC7F7BB005689DC /* TMTexturedGeometry.m */,
 			);
@@ -289,8 +292,10 @@
 			children = (
 				FA2401631BCD4EB7008C5AAE /* TMPipelineManager.h */,
 				FA2401641BCD4EB7008C5AAE /* TMPipelineManager.m */,
-				FA4DA5D31BC67B18005869C8 /* HandleDictionary.h */,
-				FA4DA5D41BC67B18005869C8 /* HandleDictionary.m */,
+				FA4DA5D31BC67B18005869C8 /* TMHandleDictionary.h */,
+				FA4DA5D41BC67B18005869C8 /* TMHandleDictionary.m */,
+				FA24018F1BD39D74008C5AAE /* TMMutableHandleDictionary.h */,
+				FA2401901BD39D74008C5AAE /* TMMutableHandleDictionary.m */,
 				FA2401871BD0040D008C5AAE /* Projections */,
 				FA2401861BD003F0008C5AAE /* Geometry */,
 				FA2401851BD003DB008C5AAE /* Programs */,
@@ -416,6 +421,7 @@
 				FAF9453E1BBBC9320093DE0F /* TMViewController.m in Sources */,
 				FAA2C28C1BC6D00B005689DC /* TMProgram.m in Sources */,
 				FAA877421BAF0BAD00934C21 /* AppDelegate.m in Sources */,
+				FA2401911BD39D74008C5AAE /* TMMutableHandleDictionary.m in Sources */,
 				FAA2C2931BC7FEA0005689DC /* TMQuadTexturedVertices.m in Sources */,
 				FAA2C29C1BC814E8005689DC /* TMTextureDrawer.m in Sources */,
 				FA2401651BCD4EB7008C5AAE /* TMPipelineManager.m in Sources */,
@@ -426,7 +432,7 @@
 				FAA8773F1BAF0BAD00934C21 /* main.m in Sources */,
 				FA24017B1BCD67B2008C5AAE /* TMProjection.m in Sources */,
 				FA24016C1BCD525E008C5AAE /* TMTextureDisplayer.m in Sources */,
-				FA4DA5D51BC67B18005869C8 /* HandleDictionary.m in Sources */,
+				FA4DA5D51BC67B18005869C8 /* TMHandleDictionary.m in Sources */,
 				FA2401781BCD6714008C5AAE /* TMProjectionFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

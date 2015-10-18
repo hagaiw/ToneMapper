@@ -8,19 +8,35 @@
 
 #import "TMProgram.h"
 
+#import "TMMutableHandleDictionary.h"
+#import "TMShaderFactory.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TMProgram ()
 
+/// The handle for the program.
 @property (nonatomic) GLuint program;
-@property (readwrite, strong, nonatomic) HandleDictionary *handlesForAttributes;
-@property (readwrite, strong, nonatomic) HandleDictionary *handlesForUniforms;
+
+/// A \c TMHandleDictionary that maps attribute names to \GLuint handles.
+@property (readwrite, strong, nonatomic) TMHandleDictionary *handlesForAttributes;
+
+/// A \c TMHandleDictionary that maps uniform names to \GLuint handles.
+@property (readwrite, strong, nonatomic) TMHandleDictionary *handlesForUniforms;
+
+/// The handle for the compiled vertex shader.
 @property (nonatomic) GLuint vertexShaderHandle;
+
+/// The handle for the compiled fragment shader.
 @property (nonatomic) GLuint fragmentShaderHandle;
 
 @end
 
 @implementation TMProgram
+
+#pragma mark -
+#pragma mark Initialization
+#pragma mark -
 
 - (instancetype)initWithAttributes:(NSArray *)attributes uniforms:(NSArray *)uniforms
                   vertexShaderName:(NSString *)vertexShaderName
@@ -33,37 +49,60 @@ NS_ASSUME_NONNULL_BEGIN
                                                         shaderType:GL_VERTEX_SHADER];
     self.fragmentShaderHandle = [shaderFactory shaderForShaderName:fragmentShaderName
                                                           shaderType:GL_FRAGMENT_SHADER];
-  
-    self.program = glCreateProgram();
-    glAttachShader(self.program, self.vertexShaderHandle);
-    glAttachShader(self.program, self.fragmentShaderHandle);
-    glLinkProgram(self.program);
-    // Check linkage success.
-    GLint linkSuccess;
-    glGetProgramiv(self.program, GL_LINK_STATUS, &linkSuccess);
-    if (linkSuccess == GL_FALSE) {
-      GLchar messages[256];
-      glGetProgramInfoLog(self.program, sizeof(messages), 0, &messages[0]);
-      NSString *messageString = [NSString stringWithUTF8String:messages];
-      NSLog(@"%@", messageString);
-      exit(1);
-    }
-    
-    self.handlesForAttributes = [[HandleDictionary alloc] init];
-    for (NSString *attribute in attributes) {
-      GLuint handle = glGetAttribLocation(self.program, [attribute UTF8String]);
-      glEnableVertexAttribArray(handle);
-      [self.handlesForAttributes setHandle:handle forKey:attribute];
-    }
-    
-    self.handlesForUniforms = [[HandleDictionary alloc] init];
-    for (NSString *uniform in uniforms) {
-      GLuint handle = glGetUniformLocation(self.program, [uniform UTF8String]);
-      [self.handlesForUniforms setHandle:handle forKey:uniform];
-    }
+    self.program = [self createProgramWithVertexShader:self.vertexShaderHandle
+                                        fragmentShader:self.fragmentShaderHandle];
+    self.handlesForAttributes = [self handleDictionaryFromAttributes:attributes
+                                                       programHandle:self.program];
+    self.handlesForUniforms = [self handleDictionaryFromUniforms:uniforms
+                                                   programHandle:self.program];
   }
   return self;
 }
+
+- (GLuint)createProgramWithVertexShader:(GLuint)vertexShader
+                         fragmentShader:(GLuint)fragmentShader {
+  GLuint program = glCreateProgram();
+  glAttachShader(program, vertexShader);
+  glAttachShader(program, fragmentShader);
+  glLinkProgram(program);
+  
+  // Check linkage success.
+  GLint linkSuccess;
+  glGetProgramiv(self.program, GL_LINK_STATUS, &linkSuccess);
+  if (linkSuccess == GL_FALSE) {
+    GLchar messages[256];
+    glGetProgramInfoLog(program, sizeof(messages), 0, &messages[0]);
+    NSString *messageString = [NSString stringWithUTF8String:messages];
+    NSLog(@"%@", messageString);
+    exit(1);
+  }
+  return program;
+}
+
+- (TMHandleDictionary *)handleDictionaryFromAttributes:(NSArray *)attributes
+                                         programHandle:(GLuint)program {
+  TMMutableHandleDictionary *mutableHandlesForAttributes = [[TMMutableHandleDictionary alloc] init];
+  for (NSString *attribute in attributes) {
+    GLuint handle = glGetAttribLocation(program, [attribute UTF8String]);
+    glEnableVertexAttribArray(handle);
+    [mutableHandlesForAttributes setHandle:handle forKey:attribute];
+  }
+  return mutableHandlesForAttributes;
+}
+
+- (TMHandleDictionary *)handleDictionaryFromUniforms:(NSArray *)uniforms
+                                       programHandle:(GLuint)program {
+  TMMutableHandleDictionary *mutableHandlesForUniforms = [[TMMutableHandleDictionary alloc] init];
+  for (NSString *uniform in uniforms) {
+    GLuint handle = glGetUniformLocation(program, [uniform UTF8String]);
+    [mutableHandlesForUniforms setHandle:handle forKey:uniform];
+  }
+  return mutableHandlesForUniforms;
+}
+
+#pragma mark -
+#pragma mark OpenGL Binding
+#pragma mark -
 
 - (void)useProgram {
   glUseProgram(self.program);
@@ -72,6 +111,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)bindScalarParameter:(TMScalarProgramParameter *)scalarParameter {
   glUniform1f([self.handlesForUniforms handleForKey:scalarParameter.name], scalarParameter.value);
 }
+
+#pragma mark -
+#pragma mark Destruction
+#pragma mark -
 
 - (void)dealloc {
   glDeleteProgram(self.program);

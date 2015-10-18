@@ -10,11 +10,16 @@
 
 @interface TMTextureProgram ()
 
+/// The \TMProgram wrapped by this class.
 @property (strong, nonatomic) TMProgram *program;
 
 @end
 
 @implementation TMTextureProgram
+
+#pragma mark -
+#pragma mark Initialization
+#pragma mark -
 
 - (instancetype)initWithProgram:(TMProgram *)program
            textureUniformString:(NSString *)textureUniform
@@ -30,6 +35,10 @@
   }
   return self;
 }
+
+#pragma mark -
+#pragma mark OpenGL Binding
+#pragma mark -
 
 - (void)use {
   [self.program useProgram];

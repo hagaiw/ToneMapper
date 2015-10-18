@@ -9,9 +9,14 @@
 #import <Foundation/Foundation.h>
 @import GLKit;
 
-@interface HandleDictionary : NSObject
+NS_ASSUME_NONNULL_BEGIN
 
-- (void)setHandle:(GLuint)handle forKey:(NSString *)key;
+/// An \c NSDictionary wrapper to be used with \c GLuint openGL handlers.
+@interface TMHandleDictionary : NSObject
+
+/// Returns the handle associated with the given key.
 - (GLuint)handleForKey:(NSString *)key;
 
 @end
+
+NS_ASSUME_NONNULL_END

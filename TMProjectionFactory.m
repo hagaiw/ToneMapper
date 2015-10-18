@@ -8,7 +8,13 @@
 
 #import "TMProjectionFactory.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation TMProjectionFactory
+
+#pragma mark -
+#pragma mark Factory Methods
+#pragma mark -
 
 - (TMProjection *)projectionWithMatrix:(GLKMatrix4)matrix {
   return [[TMProjection alloc] initWithMatrix:matrix];
@@ -45,10 +51,10 @@
   return [self projectionWithMatrix:GLKMatrix4Scale(GLKMatrix4Identity, scale, scale, 1.0)];
 }
 
-- (TMProjection *)verticalFlipProjection {
+- (TMProjection *)verticalMirrorProjection {
   return [self projectionWithMatrix:GLKMatrix4Scale(GLKMatrix4Identity, 1.0, -1.0, 1.0)];
 }
 
-
-
 @end
+
+NS_ASSUME_NONNULL_END
