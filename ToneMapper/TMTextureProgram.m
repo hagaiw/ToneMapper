@@ -21,17 +21,13 @@
 #pragma mark Initialization
 #pragma mark -
 
-- (instancetype)initWithProgram:(TMProgram *)program
-           textureUniformString:(NSString *)textureUniform
-        projectionUniformString:(NSString *)projectionUniform
-    textureCoordAttributeString:(NSString *)textureCoordAttribute
-        positionAttributeString:(NSString *)positionAttribute {
+- (instancetype)initWithProgram:(TMProgram *)program {
   if (self = [super init]) {
     self.program = program;
-    _textureUniform = [program.handlesForUniforms handleForKey:textureUniform];
-    _projectionUniform = [program.handlesForUniforms handleForKey:projectionUniform];
-    _textureCoordAttribute = [program.handlesForAttributes handleForKey:textureCoordAttribute];
-    _positionAttribute = [program.handlesForAttributes handleForKey:positionAttribute];
+    _textureUniform = [program.handlesForUniforms handleForKey:kTextureUniform];
+    _projectionUniform = [program.handlesForUniforms handleForKey:kProjectionUniform];
+    _textureCoordAttribute = [program.handlesForAttributes handleForKey:kTextureCoordinateAttribute];
+    _positionAttribute = [program.handlesForAttributes handleForKey:kPositionAttribute];
   }
   return self;
 }

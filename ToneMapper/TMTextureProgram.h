@@ -32,11 +32,7 @@ static NSString * const kProjectionUniform = @"Projection";
 
 /// Initialize with \c TMProgram, \c textureUniform, \c projectionUniform, \c textureCoordAttribute
 /// and \c positionAttribute.
-- (instancetype)initWithProgram:(TMProgram *)program
-           textureUniformString:(NSString *)textureUniform
-        projectionUniformString:(NSString *)projectionUniform
-    textureCoordAttributeString:(NSString *)textureCoordAttribute
-        positionAttributeString:(NSString *)positionAttribute;
+- (instancetype)initWithProgram:(TMProgram *)program;
 
 /// Binds the program using \c glUseProgram.
 - (void)use;

@@ -12,27 +12,37 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation TMProgramFactory
 
+static NSString * const kWorkspaceVertexShader = @"workspaceVertexShader";
+static NSString * const kWorkspaceFragmentShader = @"workspaceFragmentShader";
+static NSString * const kTextureVertexShader = @"textureVertexShader";
+static NSString * const kTextureFragmentShader = @"textureFragmentShader";
+
 #pragma mark -
 #pragma mark Factory Methods
 #pragma mark -
 
-- (TMTextureProgram *)textureProgramWithVertexShaderName:(NSString *)vertexShader
-                                      fragmentShaderName:(NSString *)fragmentShader
-                                      textureUniformName:(NSString *)textureUniform
-                                   projectionUniformName:(NSString *)projectionUniform
-                                   positionAttributeName:(NSString *)positionAttribute
-                                        textureCoordName:(NSString *)textureCoordAttribute {
-  NSArray *attributes = @[positionAttribute, textureCoordAttribute];
-  NSArray *uniforms = @[textureUniform, projectionUniform];
-  TMProgram *program = [[TMProgram alloc] initWithAttributes:attributes
-                                                       uniforms:uniforms
-                                               vertexShaderName:vertexShader
-                                             fragmentShaderName:fragmentShader];
-  return [[TMTextureProgram alloc] initWithProgram:program
-                              textureUniformString:textureUniform
-                           projectionUniformString:projectionUniform 
-                       textureCoordAttributeString:textureCoordAttribute 
-                           positionAttributeString:positionAttribute];
+- (TMTextureProgram *)textureDisplayProgram {
+  TMProgram *program = [[TMProgram alloc] initWithAttributes:[self defaultAttributes]
+                                                    uniforms:[self defaultUniforms]
+                                            vertexShaderName:kWorkspaceVertexShader
+                                          fragmentShaderName:kWorkspaceFragmentShader];
+  return [[TMTextureProgram alloc] initWithProgram:program];
+}
+
+- (TMTextureProgram *)textureProcessingProgram {
+  TMProgram *program = [[TMProgram alloc] initWithAttributes:[self defaultAttributes]
+                                                    uniforms:[self defaultUniforms]
+                                            vertexShaderName:kTextureVertexShader
+                                          fragmentShaderName:kTextureFragmentShader];
+  return [[TMTextureProgram alloc] initWithProgram:program];
+}
+
+- (NSArray *)defaultAttributes {
+  return @[kPositionAttribute, kTextureCoordinateAttribute];
+}
+
+- (NSArray *)defaultUniforms {
+  return @[kTextureUniform, kProjectionUniform];
 }
 
 @end
