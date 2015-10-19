@@ -20,10 +20,18 @@
 @property (strong, nonatomic) TMTexturedGeometry *quadGeometry;
 @property (strong, nonatomic) TMTextureFrameBuffer *textureFrameBuffer;
 @property (weak, nonatomic) TMTexture *texture;
+@property (strong, nonatomic) TMProjectionFactory *projectionFactory;
 
 @end
 
 @implementation TMTextureProcessor
+
+- (instancetype)init {
+  if (self = [super init]) {
+    self.projectionFactory = [TMProjectionFactory new];
+  }
+  return self;
+}
 
 - (instancetype)initWithFrameBuffer:(TMTextureFrameBuffer *)frameBuffer
                             program:(TMTextureProgram *)program
@@ -53,7 +61,7 @@
 
 - (TMTexture *)processAndFlipTexture:(TMTexture *)texture {
   return [self processTexture:texture
-               withProjection:[[TMProjectionFactory new] verticalMirrorProjection]];
+               withProjection:[self.projectionFactory verticalMirrorProjection]];
 }
 
 - (TMTexture *)processTexture:(TMTexture *)texture withProjection:(GLKMatrix4)projection{

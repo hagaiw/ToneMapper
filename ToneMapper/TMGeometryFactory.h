@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TMTexturedGeometry.h"
 
 @interface TMGeometryFactory : NSObject
+
+- (TMTexturedGeometry *)quadGeometry;
 
 @end

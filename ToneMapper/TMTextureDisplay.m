@@ -19,13 +19,12 @@
 @property (strong, nonatomic) TMGLKViewFrameBuffer *frameBuffer;
 @property (strong, nonatomic) TMTextureProgram *program;
 @property (strong, nonatomic) TMTexturedGeometry *quadGeometry;
+@property (strong, nonatomic) TMProjectionFactory *projectionFactory;
+@property (strong, nonatomic) TMTextureDrawer *textureDrawer;
 
 @end
 
 @implementation TMTextureDisplay
-
-static NSString * const kWorkspaceVertexShader = @"workspaceVertexShader";
-static NSString * const kWorkspaceFragmentShader = @"workspaceFragmentShader";
 
 - (instancetype)initWithFrameBuffer:(id<TMFrameBuffer>)frameBuffer
                             program:(TMTextureProgram *)program
@@ -34,6 +33,8 @@ static NSString * const kWorkspaceFragmentShader = @"workspaceFragmentShader";
     self.frameBuffer = frameBuffer;
     self.program = program;
     self.quadGeometry = geometry;
+    self.projectionFactory = [TMProjectionFactory new];
+    self.textureDrawer = [TMTextureDrawer new];
   }
   return self;
 }
@@ -41,22 +42,22 @@ static NSString * const kWorkspaceFragmentShader = @"workspaceFragmentShader";
 - (void)displayTexture:(TMTexture *)texture
            displayData:(TMPosition *)displayData {
   
-  TMProjectionFactory *projectionFactory = [TMProjectionFactory new];
+  GLKMatrix4 aspectFixProjection = [self.projectionFactory projectionFitSize:texture.size
+                                                                      inSize:self.frameBuffer.size];
   
-  GLKMatrix4 aspectFixProjection = [projectionFactory projectionFitSize:texture.size
-                                                                            inSize:self.frameBuffer.size];
+  GLKMatrix4 translationProjection = [self.projectionFactory
+                                      translationProjectionWithX:displayData.tranlsation.x
+                                      y:displayData.tranlsation.y];
+  GLKMatrix4 scaleProjection = [self.projectionFactory scaleProjectionWithScale:displayData.scale];
   
-  GLKMatrix4 translationProjection = [projectionFactory
-                                         translationProjectionWithX:displayData.tranlsation.x
-                                                                  y:displayData.tranlsation.y];
-  GLKMatrix4 scaleProjection = [projectionFactory scaleProjectionWithScale:displayData.scale];
-  
-  aspectFixProjection = [projectionFactory projectionByMultiplyingLeft:aspectFixProjection
+  aspectFixProjection = [self.projectionFactory projectionByMultiplyingLeft:aspectFixProjection
                                                                right:scaleProjection];
-  aspectFixProjection = [projectionFactory projectionByMultiplyingLeft:translationProjection
+  aspectFixProjection = [self.projectionFactory projectionByMultiplyingLeft:translationProjection
                                                                  right:aspectFixProjection];
   
-  [[TMTextureDrawer new] drawWithTextureProgram:self.program texturedGeometry:self.quadGeometry frameBuffer:self.frameBuffer texture:texture projection:aspectFixProjection];
+  [self.textureDrawer drawWithTextureProgram:self.program texturedGeometry:self.quadGeometry
+                                    frameBuffer:self.frameBuffer texture:texture
+                                     projection:aspectFixProjection];
 }
 
 @end

@@ -7,7 +7,12 @@
 //
 
 #import "TMGeometryFactory.h"
+#import "TMQuadTexturedVertices.h"
 
 @implementation TMGeometryFactory
+
+- (TMTexturedGeometry *)quadGeometry {
+  return [[TMTexturedGeometry alloc] initWithTexturedVertices:[TMQuadTexturedVertices new]];
+}
 
 @end
