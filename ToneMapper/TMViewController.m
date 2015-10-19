@@ -27,14 +27,16 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TMViewController ()
 
 @property (strong, nonatomic) TMTextureProcessor *processor;
-@property (strong, nonatomic) TMTextureDisplay *mainDisplayer;
+@property (strong, nonatomic) TMTextureDisplay *display;
 @property (strong, nonatomic) TMTexture *inputTexture;
 @property (strong, nonatomic) TMTexture *processedTexture;
-@property (strong, nonatomic) GLKView *glkView;
-@property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) TMPosition *texturePosition;
 @property (strong, nonatomic) TMPosition *tempTexturePosition;
 @property (strong, nonatomic) TMProgramFactory *programFactory;
+@property (strong, nonatomic) GLKView *glkView;
+@property (strong, nonatomic) EAGLContext *context;
+
+@property (nonatomic) BOOL textureNeedsProcessing;
 
 @end
 
@@ -42,11 +44,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  
   self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
   if (!self.context) {
     NSLog(@"Failed to create ES context");
   }
   [EAGLContext setCurrentContext:self.context];
+  
+  self.textureNeedsProcessing = false;
   
   self.texturePosition = [[TMPosition alloc] initWithTranslation:CGPointMake(0.0, 0.0) scale:1.0];
   self.tempTexturePosition = self.texturePosition;
@@ -65,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [self initGLKView:self.glkView];
-  self.mainDisplayer = [[TMTextureDisplay alloc]
+  self.display = [[TMTextureDisplay alloc]
                         initWithFrameBuffer:[[TMGLKViewFrameBuffer alloc]
                                              initWithGLKView:self.glkView]
                                     program:[self.programFactory textureDisplayProgram]
@@ -82,12 +87,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
   glClearColor(0.0, 0.8, 0.0, 1.0);
   glClear(GL_COLOR_BUFFER_BIT);
-  self.processedTexture = [self.processor processAndFlipTexture:self.inputTexture];
-  [self.mainDisplayer displayTexture:self.processedTexture displayData:self.texturePosition];
+  if(self.textureNeedsProcessing) {
+    self.processedTexture = [self.processor processAndFlipTexture:self.inputTexture];
+    self.textureNeedsProcessing = false;
+  }
+  [self.display displayTexture:self.processedTexture displayData:self.texturePosition];
 }
 
 - (void)switchImage:(UIImage *)image {
   self.inputTexture = [[TMTexture alloc] initWithImage:image];
+  self.textureNeedsProcessing = true;
   [(GLKView *)self.view setNeedsDisplay];
 }
 

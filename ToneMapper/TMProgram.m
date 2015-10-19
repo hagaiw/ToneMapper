@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
                                                         shaderType:GL_VERTEX_SHADER];
     self.fragmentShader = [shaderFactory shaderForShaderName:fragmentShaderName
                                                           shaderType:GL_FRAGMENT_SHADER];
-    self.program = [self createProgramWithVertexShader:self.vertexShader.handle
+    self.program = [self programWithVertexShader:self.vertexShader.handle
                                         fragmentShader:self.fragmentShader.handle];
     self.handlesForAttributes = [self handleDictionaryFromAttributes:attributes
                                                        programHandle:self.program];
@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
   return self;
 }
 
-- (GLuint)createProgramWithVertexShader:(GLuint)vertexShader
+- (GLuint)programWithVertexShader:(GLuint)vertexShader
                          fragmentShader:(GLuint)fragmentShader {
   GLuint program = glCreateProgram();
   glAttachShader(program, vertexShader);
@@ -69,12 +69,12 @@ NS_ASSUME_NONNULL_BEGIN
   
   // Check linkage success.
   GLint linkSuccess;
-  glGetProgramiv(self.program, GL_LINK_STATUS, &linkSuccess);
+  glGetProgramiv(program, GL_LINK_STATUS, &linkSuccess);
   if (linkSuccess == GL_FALSE) {
     GLchar messages[256];
     glGetProgramInfoLog(program, sizeof(messages), 0, &messages[0]);
     NSString *messageString = [NSString stringWithUTF8String:messages];
-    NSLog(@"%@", messageString);
+    NSLog(@"Existing, Program link error: %@", messageString);
     exit(1);
   }
   return program;

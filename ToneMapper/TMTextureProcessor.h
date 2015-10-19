@@ -12,8 +12,10 @@
 
 @interface TMTextureProcessor : NSObject
 
+- (instancetype)init NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithProgram:(TMTextureProgram *)program;
+
 - (TMTexture *)processTexture:(TMTexture *)texture;
 - (TMTexture *)processAndFlipTexture:(TMTexture *)texture;
-- (instancetype)initWithProgram:(TMTextureProgram *)program;
 
 @end

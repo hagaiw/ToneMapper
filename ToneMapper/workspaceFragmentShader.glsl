@@ -1,9 +1,9 @@
 
-varying lowp vec2 TexCoordOut; // New
-uniform sampler2D Texture; // New
+varying lowp vec2 TexCoordOut;
+uniform sampler2D Texture;
 
 void main(void) {
-  gl_FragColor = texture2D(Texture, TexCoordOut); // New
+  gl_FragColor = texture2D(Texture, TexCoordOut);
   
   
   if (TexCoordOut.y < 0.01) {

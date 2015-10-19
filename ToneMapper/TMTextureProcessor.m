@@ -10,17 +10,15 @@
 #import "TMProgramFactory.h"
 #import "TMTextureFrameBuffer.h"
 #import "TMTextureDrawer.h"
-#import "TMTexturedGeometry.h"
-#import "TMQuadTexturedVertices.h"
 #import "TMProjectionFactory.h"
+#import "TMGeometryFactory.h"
 
 @interface TMTextureProcessor ()
 
 @property (strong, nonatomic) TMTextureProgram *program;
 @property (strong, nonatomic) TMTexturedGeometry *quadGeometry;
-@property (strong, nonatomic) TMTextureFrameBuffer *textureFrameBuffer;
-@property (weak, nonatomic) TMTexture *texture;
 @property (strong, nonatomic) TMProjectionFactory *projectionFactory;
+@property (strong, nonatomic) TMGeometryFactory *geometryFactory;
 
 @end
 
@@ -29,34 +27,21 @@
 - (instancetype)init {
   if (self = [super init]) {
     self.projectionFactory = [TMProjectionFactory new];
-  }
-  return self;
-}
-
-- (instancetype)initWithFrameBuffer:(TMTextureFrameBuffer *)frameBuffer
-                            program:(TMTextureProgram *)program
-                       quadGeometry:(TMTexturedGeometry *)quadGeometry {
-  if (self = [super init]) {
-    self.textureFrameBuffer = frameBuffer;
-    self.program = program;
-    self.quadGeometry = quadGeometry;
+    self.geometryFactory = [TMGeometryFactory new];
   }
   return self;
 }
 
 - (instancetype)initWithProgram:(TMTextureProgram *)program {
-  if (self = [super init]) {
-    self.program = program;
-    self.quadGeometry = [[TMTexturedGeometry alloc]
-                         initWithTexturedVertices:[TMQuadTexturedVertices new]];
-    
-  }
+  self = [self init];
+  self.program = program;
+  self.quadGeometry = [self.geometryFactory quadGeometry];
   return self;
 }
 
 - (TMTexture *)processTexture:(TMTexture *)texture {
   return [self processTexture:texture
-               withProjection:[[TMProjectionFactory new] identityProjection]];
+               withProjection:[self.projectionFactory verticalMirrorProjection]];
 }
 
 - (TMTexture *)processAndFlipTexture:(TMTexture *)texture {
@@ -65,16 +50,13 @@
 }
 
 - (TMTexture *)processTexture:(TMTexture *)texture withProjection:(GLKMatrix4)projection{
-  if (texture != self.texture) {
-    self.textureFrameBuffer = [self frameBufferWithSize:texture.size];
-    self.texture = texture;
-  }
+  TMTextureFrameBuffer *textureFrameBuffer = [self frameBufferWithSize:texture.size];
   [[TMTextureDrawer new] drawWithTextureProgram:self.program
                                texturedGeometry:self.quadGeometry
-                                    frameBuffer:self.textureFrameBuffer
+                                    frameBuffer:textureFrameBuffer
                                         texture:texture
                                      projection:projection];
-  return self.textureFrameBuffer.texture;
+  return textureFrameBuffer.texture;
 }
 
 - (TMTextureFrameBuffer *)frameBufferWithSize:(CGSize)size {

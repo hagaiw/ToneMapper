@@ -1,11 +1,11 @@
-attribute vec4 Position; // 1
+attribute vec4 Position;
 
 uniform mat4 Projection;
 
-attribute vec2 TexCoordIn; // New
-varying vec2 TexCoordOut; // New
+attribute vec2 TexCoordIn;
+varying vec2 TexCoordOut;
 
-void main(void) { // 4
-  gl_Position = Projection * Position; // 6
-  TexCoordOut = TexCoordIn; // New
+void main(void) {
+  gl_Position = Projection * Position;
+  TexCoordOut = TexCoordIn;
 }
