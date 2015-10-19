@@ -26,24 +26,49 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TMViewController ()
 
+/// The current processor used by the processing pipeline.
 @property (strong, nonatomic) TMTextureProcessor *processor;
+
+/// The current display used to output the result of the processor.
 @property (strong, nonatomic) TMTextureDisplay *display;
+
+/// The \c TMTexture inputed by the processor.
 @property (strong, nonatomic) TMTexture *inputTexture;
+
+/// The \c TMTexture resulting from applying the processor to \c inputTexture.
 @property (strong, nonatomic) TMTexture *processedTexture;
+
+/// The position of the currently displayed \c TMTexture on screen.
 @property (strong, nonatomic) TMPosition *texturePosition;
+
+/// A \c TMPosition used to calculate correct scale and translation transformations during ongoing
+/// transformations.
 @property (strong, nonatomic) TMPosition *tempTexturePosition;
+
+/// A factory object used to produce \c TMProgram.
 @property (strong, nonatomic) TMProgramFactory *programFactory;
+
+/// The \c GLKView used by this \c UIViewController.
 @property (strong, nonatomic) GLKView *glkView;
+
+/// The current openGL context;
 @property (strong, nonatomic) EAGLContext *context;
 
+/// Indicates whether the \c processor needs to be applied to \c inputTexture.
 @property (nonatomic) BOOL textureNeedsProcessing;
 
 @end
 
 @implementation TMViewController
 
+#pragma mark -
+#pragma mark UIViewController
+#pragma mark -
+
 - (void)viewDidLoad {
   [super viewDidLoad];
+  
+  self.programFactory = [TMProgramFactory new];
   
   self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
   if (!self.context) {
@@ -52,24 +77,22 @@ NS_ASSUME_NONNULL_BEGIN
   [EAGLContext setCurrentContext:self.context];
   
   self.textureNeedsProcessing = false;
-  
   self.texturePosition = [[TMPosition alloc] initWithTranslation:CGPointMake(0.0, 0.0) scale:1.0];
   self.tempTexturePosition = self.texturePosition;
-  
-  self.programFactory = [TMProgramFactory new];
-  
   self.processor = [[TMTextureProcessorFactory new]
                     processorWithProgram:[self.programFactory textureProcessingProgram]];
-  
-  self.glkView = [GLKView new];
-  self.glkView.delegate = self;
-  self.glkView.context = self.context;
-  self.glkView.opaque = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  [self initGLKView:self.glkView];
+  if (!self.glkView) {
+    self.glkView = [GLKView new];
+    self.glkView.delegate = self;
+    self.glkView.context = self.context;
+    self.glkView.opaque = NO;
+    self.glkView.frame = self.view.frame;
+    [self.view addSubview:self.glkView];
+  }
   self.display = [[TMTextureDisplay alloc]
                         initWithFrameBuffer:[[TMGLKViewFrameBuffer alloc]
                                              initWithGLKView:self.glkView]
@@ -79,13 +102,12 @@ NS_ASSUME_NONNULL_BEGIN
                                                [TMQuadTexturedVertices new]]];
 }
 
-- (void)initGLKView:(GLKView *)glkView {
-  glkView.frame = self.view.frame;
-  self.view = glkView;
-}
+#pragma mark -
+#pragma mark GLKView Delegate
+#pragma mark -
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
-  glClearColor(0.0, 0.8, 0.0, 1.0);
+  glClearColor(0.2, 0.0, 0.2, 1.0);
   glClear(GL_COLOR_BUFFER_BIT);
   if(self.textureNeedsProcessing) {
     self.processedTexture = [self.processor processAndFlipTexture:self.inputTexture];
@@ -94,18 +116,22 @@ NS_ASSUME_NONNULL_BEGIN
   [self.display displayTexture:self.processedTexture displayData:self.texturePosition];
 }
 
-- (void)switchImage:(UIImage *)image {
+#pragma mark -
+#pragma mark User Interaction
+#pragma mark -
+
+- (void)loadTextureFromImage:(UIImage *)image {
   self.inputTexture = [[TMTexture alloc] initWithImage:image];
   self.textureNeedsProcessing = true;
-  [(GLKView *)self.view setNeedsDisplay];
+  [self.glkView setNeedsDisplay];
 }
 
-- (void)moveImageByX:(GLfloat)x y:(GLfloat)y movementEnded:(BOOL)movementEnded {
-  TMPosition *positionDelta = [[TMPosition alloc] initWithTranslation:CGPointMake(x, y) scale:1.0];
+- (void)moveTextureWithTranslation:(CGPoint)translation movementEnded:(BOOL)movementEnded {
+  TMPosition *positionDelta = [[TMPosition alloc] initWithTranslation:translation scale:1.0];
   [self updateTexturePositionWithPosition:positionDelta gestureEnded:movementEnded];
 }
 
-- (void)zoomImageByScale:(GLfloat)scale positionX:(GLfloat)positionX positionY:(GLfloat)positionY
+- (void)zoomImageByScale:(GLfloat)scale zoomLocation:(CGPoint)zoomLocation
                zoomEnded:(BOOL)zoomEnded {
   TMPosition *positionDelta = [[TMPosition alloc]
                                initWithTranslation:CGPointMake(0.0, 0.0)
@@ -118,10 +144,10 @@ NS_ASSUME_NONNULL_BEGIN
   if (gestureEnded) {
     self.tempTexturePosition = self.texturePosition;
   }
-  [(GLKView *)self.view setNeedsDisplay];
+  [self.glkView setNeedsDisplay];
 }
 
--(void)saveImage {
+-(void)saveProcessedTexture {
   UIImage *image = [self imageFromTexture:[self.processor processTexture:self.inputTexture]];
   UIImageWriteToSavedPhotosAlbum(image, self, nil, nil);
 }
@@ -154,6 +180,11 @@ NS_ASSUME_NONNULL_BEGIN
   return myImage;
 }
 
+- (NSUInteger)maxTextureSize {
+  int maxTextureSize;
+  glGetIntegerv(GL_MAX_TEXTURE_SIZE, &maxTextureSize);
+  return (NSUInteger)maxTextureSize;
+}
 
 @end
 

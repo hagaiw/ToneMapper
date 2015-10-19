@@ -9,105 +9,92 @@
 #import "ViewController.h"
 #import "TMViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface ViewController ()
 
+/// A view controller in charge of openGL handling.
 @property (strong, nonatomic) TMViewController *openGLVC;
+
+/// The view to be used by \c openGLVC.
 @property (weak, nonatomic) IBOutlet UIView *glview;
 
 @end
 
 @implementation ViewController
 
-- (IBAction)switchImage:(UIButton *)sender {
-//  [self.openGLVC switchImage];
-  [self startMediaBrowser];
-}
+/// The default scale of a loaded image.
+static const float kDefaultImageScale = 1.0;
 
-- (IBAction)saveImage:(UIButton *)sender {
-  [self.openGLVC saveImage];
-}
-
-- (IBAction)moveImage:(UIPanGestureRecognizer *)sender {
-  GLfloat dx = [sender translationInView:self.openGLVC.view].x / self.openGLVC.view.frame.size.width;
-  GLfloat dy = [sender translationInView:self.openGLVC.view].y / self.openGLVC.view.frame.size.height;
-  [self.openGLVC moveImageByX: dx*[UIScreen mainScreen].scale y: -dy*[UIScreen mainScreen].scale
-                movementEnded:([sender state] == UIGestureRecognizerStateEnded)];
-}
-
-- (IBAction)zoomImage:(UIPinchGestureRecognizer *)sender {
-  CGPoint point = [sender locationInView:self.openGLVC.view];
-  CGFloat pinchX = 2*(point.x - (self.openGLVC.view.frame.size.width / 2) ) / self.openGLVC.view.frame.size.width;
-  CGFloat pinchY = 2*(point.y - (self.openGLVC.view.frame.size.height / 2) ) / self.openGLVC.view.frame.size.height;
-  [self.openGLVC zoomImageByScale:[sender scale] positionX:pinchX positionY:pinchY
-                        zoomEnded:([sender state] == UIGestureRecognizerStateEnded)];
-}
+#pragma mark -
+#pragma mark UIViewController
+#pragma mark -
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  
   self.openGLVC = [[TMViewController alloc] init];
   [self addChildViewController:self.openGLVC];
   self.openGLVC.view.frame = self.glview.frame;
   [self.glview addSubview:self.openGLVC.view];
   [self.openGLVC didMoveToParentViewController:self];
-  
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-- (void) makeUIImagePickerController {
-  
-  UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-  picker.delegate = self;
-  picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-  
-  [UIImagePickerController availableMediaTypesForSourceType:
-   UIImagePickerControllerSourceTypeSavedPhotosAlbum];
-  
-  [picker setMediaTypes:[UIImagePickerController availableMediaTypesForSourceType:
-                         UIImagePickerControllerSourceTypeSavedPhotosAlbum]];
+#pragma mark -
+#pragma mark UIButton
+#pragma mark -
+
+- (IBAction)saveImage:(UIButton *)sender {
+  [self.openGLVC saveProcessedTexture];
 }
 
-- (BOOL) startMediaBrowser {
+- (IBAction)moveImage:(UIPanGestureRecognizer *)sender {
+  GLfloat dx = [sender translationInView:self.openGLVC.view].x /
+  self.openGLVC.view.frame.size.width;
+  GLfloat dy = [sender translationInView:self.openGLVC.view].y /
+  self.openGLVC.view.frame.size.height;
+  [self.openGLVC moveTextureWithTranslation:CGPointMake(dx*[UIScreen mainScreen].scale,
+                                                        -dy*[UIScreen mainScreen].scale)
+                              movementEnded:([sender state] == UIGestureRecognizerStateEnded)];
+}
 
-  UIImagePickerController *mediaUI = [[UIImagePickerController alloc] init];
+- (IBAction)zoomImage:(UIPinchGestureRecognizer *)sender {
+  CGPoint point = [sender locationInView:self.openGLVC.view];
+  CGFloat pinchX = 2*(point.x - (self.openGLVC.view.frame.size.width / 2) ) /
+  self.openGLVC.view.frame.size.width;
+  CGFloat pinchY = 2*(point.y - (self.openGLVC.view.frame.size.height / 2) ) /
+  self.openGLVC.view.frame.size.height;
+  [self.openGLVC zoomImageByScale:[sender scale] zoomLocation:CGPointMake(pinchX, pinchY)
+                        zoomEnded:([sender state] == UIGestureRecognizerStateEnded)];
+}
+
+- (IBAction)pickImage:(UIButton *)sender {
+  UIImagePickerController *mediaUI = [UIImagePickerController new];
   mediaUI.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
   mediaUI.allowsEditing = NO;
   mediaUI.delegate = self;
   [self presentViewController:mediaUI animated:YES completion:nil];
-  return YES;
 }
 
-- (void) imagePickerController: (UIImagePickerController *) picker
- didFinishPickingMediaWithInfo: (NSDictionary *) info {
-  [self dismissViewControllerAnimated:YES completion:nil];
-  UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-  
-  
-  
-  
-  [self.openGLVC switchImage:[self prepareImage:image]];
-}
+#pragma mark -
+#pragma mark Image Preprocessing
+#pragma mark -
 
 - (UIImage *)prepareImage:(UIImage *)image {
-  
-  int max;
-  glGetIntegerv(GL_MAX_TEXTURE_SIZE, &max);
-  NSUInteger maxResolution = max;
-  GLfloat imageScale = 1.0;
-  
-  
-  
-  NSUInteger maxDimension = image.size.height > image.size.width ? image.size.height : image.size.width;
-  
-  if (maxDimension > maxResolution) {
-    imageScale = (GLfloat)maxResolution / maxDimension;
+  // Calculate maximum possible image dimensions and set scaling accordingly.
+  NSUInteger maxTextureSize = [self.openGLVC maxTextureSize];
+  NSUInteger maxDimension = image.size.height > image.size.width ? image.size.height
+                                : image.size.width;
+  GLfloat imageScale = kDefaultImageScale;
+  if (maxDimension > maxTextureSize) {
+    imageScale = (GLfloat)maxTextureSize / maxDimension;
   }
   
-  
-  
+  // Fix image orientation scale, if needed.
   UIGraphicsBeginImageContextWithOptions(image.size, NO, imageScale);
   [image drawInRect:(CGRect){0, 0, image.size}];
   UIImage *normalizedImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -115,4 +102,18 @@
   return normalizedImage;
 }
 
+#pragma mark -
+#pragma mark UIImagePickerController Delegate
+#pragma mark -
+
+- (void) imagePickerController: (UIImagePickerController *) picker
+ didFinishPickingMediaWithInfo: (NSDictionary *) info {
+  [self dismissViewControllerAnimated:YES completion:nil];
+  UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+  [self.openGLVC loadTextureFromImage:[self prepareImage:image]];
+}
+
 @end
+
+NS_ASSUME_NONNULL_END
+

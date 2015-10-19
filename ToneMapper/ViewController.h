@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+NS_ASSUME_NONNULL_BEGIN
 
+/// Main view-controller, handles user-interaction and app interface.
+@interface ViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @end
+
+NS_ASSUME_NONNULL_END
