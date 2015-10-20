@@ -20,8 +20,8 @@
 		FA24019E1BD4DC2C008C5AAE /* TMGeometryFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FA24019D1BD4DC2C008C5AAE /* TMGeometryFactory.m */; };
 		FA2401A21BD6360A008C5AAE /* TMPositionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2401A11BD6360A008C5AAE /* TMPositionFactory.m */; };
 		FA44E6311BCA81D400FBDD28 /* TMGLKViewFrameBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = FA44E6301BCA81D400FBDD28 /* TMGLKViewFrameBuffer.m */; };
-		FA4DA5CC1BC40517005869C8 /* textureFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FA4DA5CA1BC40517005869C8 /* textureFragmentShader.glsl */; };
-		FA4DA5CD1BC40517005869C8 /* textureVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FA4DA5CB1BC40517005869C8 /* textureVertexShader.glsl */; };
+		FA4DA5CC1BC40517005869C8 /* passThroughFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FA4DA5CA1BC40517005869C8 /* passThroughFragmentShader.glsl */; };
+		FA4DA5CD1BC40517005869C8 /* passThroughWithProjectionVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FA4DA5CB1BC40517005869C8 /* passThroughWithProjectionVertexShader.glsl */; };
 		FA4DA5D51BC67B18005869C8 /* TMHandleDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DA5D41BC67B18005869C8 /* TMHandleDictionary.m */; };
 		FAA2C2861BC6CA89005689DC /* TMShaderFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2C2851BC6CA89005689DC /* TMShaderFactory.m */; };
 		FAA2C28C1BC6D00B005689DC /* TMProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2C28B1BC6D00B005689DC /* TMProgram.m */; };
@@ -37,8 +37,6 @@
 		FAA8774D1BAF0BAD00934C21 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA8774B1BAF0BAD00934C21 /* LaunchScreen.xib */; };
 		FAA877591BAF0BAD00934C21 /* ToneMapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA877581BAF0BAD00934C21 /* ToneMapperTests.m */; };
 		FAF9453E1BBBC9320093DE0F /* TMGLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF9453C1BBBC9320093DE0F /* TMGLViewController.m */; };
-		FAF945411BBBCE1A0093DE0F /* workspaceVertexShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FAF945401BBBCE1A0093DE0F /* workspaceVertexShader.glsl */; };
-		FAF945431BBBCE350093DE0F /* workspaceFragmentShader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = FAF945421BBBCE350093DE0F /* workspaceFragmentShader.glsl */; };
 		FAF945571BBC33AD0093DE0F /* TMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF945561BBC33AD0093DE0F /* TMViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -80,8 +78,8 @@
 		FA44E62E1BCA7F0A00FBDD28 /* TMFrameBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMFrameBuffer.h; sourceTree = "<group>"; };
 		FA44E62F1BCA81D400FBDD28 /* TMGLKViewFrameBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMGLKViewFrameBuffer.h; sourceTree = "<group>"; };
 		FA44E6301BCA81D400FBDD28 /* TMGLKViewFrameBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMGLKViewFrameBuffer.m; sourceTree = "<group>"; };
-		FA4DA5CA1BC40517005869C8 /* textureFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = textureFragmentShader.glsl; sourceTree = "<group>"; };
-		FA4DA5CB1BC40517005869C8 /* textureVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = textureVertexShader.glsl; sourceTree = "<group>"; };
+		FA4DA5CA1BC40517005869C8 /* passThroughFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = passThroughFragmentShader.glsl; sourceTree = "<group>"; };
+		FA4DA5CB1BC40517005869C8 /* passThroughWithProjectionVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = passThroughWithProjectionVertexShader.glsl; sourceTree = "<group>"; };
 		FA4DA5D31BC67B18005869C8 /* TMHandleDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMHandleDictionary.h; sourceTree = "<group>"; };
 		FA4DA5D41BC67B18005869C8 /* TMHandleDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMHandleDictionary.m; sourceTree = "<group>"; };
 		FAA2C2841BC6CA89005689DC /* TMShaderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMShaderFactory.h; sourceTree = "<group>"; };
@@ -112,8 +110,6 @@
 		FAA877581BAF0BAD00934C21 /* ToneMapperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToneMapperTests.m; sourceTree = "<group>"; };
 		FAF9453B1BBBC9320093DE0F /* TMGLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMGLViewController.h; sourceTree = "<group>"; };
 		FAF9453C1BBBC9320093DE0F /* TMGLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMGLViewController.m; sourceTree = "<group>"; };
-		FAF945401BBBCE1A0093DE0F /* workspaceVertexShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = workspaceVertexShader.glsl; sourceTree = "<group>"; };
-		FAF945421BBBCE350093DE0F /* workspaceFragmentShader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = workspaceFragmentShader.glsl; sourceTree = "<group>"; };
 		FAF945551BBC33AD0093DE0F /* TMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMViewController.h; sourceTree = "<group>"; };
 		FAF945561BBC33AD0093DE0F /* TMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -239,10 +235,8 @@
 				FA2401991BD407E6008C5AAE /* TMShader.m */,
 				FAA2C2841BC6CA89005689DC /* TMShaderFactory.h */,
 				FAA2C2851BC6CA89005689DC /* TMShaderFactory.m */,
-				FAF945421BBBCE350093DE0F /* workspaceFragmentShader.glsl */,
-				FAF945401BBBCE1A0093DE0F /* workspaceVertexShader.glsl */,
-				FA4DA5CA1BC40517005869C8 /* textureFragmentShader.glsl */,
-				FA4DA5CB1BC40517005869C8 /* textureVertexShader.glsl */,
+				FA4DA5CA1BC40517005869C8 /* passThroughFragmentShader.glsl */,
+				FA4DA5CB1BC40517005869C8 /* passThroughWithProjectionVertexShader.glsl */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
@@ -405,13 +399,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAF945431BBBCE350093DE0F /* workspaceFragmentShader.glsl in Resources */,
 				FAA877481BAF0BAD00934C21 /* Main.storyboard in Resources */,
-				FA4DA5CD1BC40517005869C8 /* textureVertexShader.glsl in Resources */,
-				FAF945411BBBCE1A0093DE0F /* workspaceVertexShader.glsl in Resources */,
+				FA4DA5CD1BC40517005869C8 /* passThroughWithProjectionVertexShader.glsl in Resources */,
 				FAA8774D1BAF0BAD00934C21 /* LaunchScreen.xib in Resources */,
 				FAA8774A1BAF0BAD00934C21 /* Images.xcassets in Resources */,
-				FA4DA5CC1BC40517005869C8 /* textureFragmentShader.glsl in Resources */,
+				FA4DA5CC1BC40517005869C8 /* passThroughFragmentShader.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

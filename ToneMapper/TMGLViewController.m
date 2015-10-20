@@ -65,6 +65,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation TMGLViewController
 
+/// The value of bitsPerComponent to use in \c saveProcessedTexture when calling CGImageCreate.
+static const int kBitsPerComponent = 8;
+
+/// The value of bitsPerPixel to use in \c saveProcessedTexture when calling CGImageCreate.
+static const int kBitsPerPixel = 32;
+
 #pragma mark -
 #pragma mark UIViewController
 #pragma mark -
@@ -87,7 +93,7 @@ NS_ASSUME_NONNULL_BEGIN
   self.texturePosition = [self.positionFactory defaultPosition];
   self.tempTexturePosition = self.texturePosition;
   self.processor = [self.processorFactory
-                    processorWithProgram:[self.programFactory textureProcessingProgram]];
+                    processorWithProgram:[self.programFactory passThroughWithProjection]];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -103,7 +109,7 @@ NS_ASSUME_NONNULL_BEGIN
   self.display = [[TMTextureDisplay alloc]
                         initWithFrameBuffer:[[TMGLKViewFrameBuffer alloc]
                                              initWithGLKView:self.glkView]
-                                    program:[self.programFactory textureDisplayProgram]
+                                    program:[self.programFactory passThroughWithProjection]
                                    geometry:[self.geometryFactory quadGeometry]];
 }
 
@@ -170,15 +176,15 @@ NS_ASSUME_NONNULL_BEGIN
   CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, buffer, myDataLength, NULL);
   
   // prep the ingredients
-  int bitsPerComponent = 8;
-  int bitsPerPixel = 32;
   int bytesPerRow = 4 * texture.size.width;
   CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
   CGBitmapInfo bitmapInfo = kCGBitmapByteOrderDefault;
   CGColorRenderingIntent renderingIntent = kCGRenderingIntentDefault;
   
   // make the cgimage
-  CGImageRef imageRef = CGImageCreate(texture.size.width, texture.size.height, bitsPerComponent, bitsPerPixel, bytesPerRow, colorSpaceRef, bitmapInfo, provider, NULL, NO, renderingIntent);
+  CGImageRef imageRef = CGImageCreate(texture.size.width, texture.size.height, kBitsPerComponent,
+                                          kBitsPerPixel, bytesPerRow, colorSpaceRef, bitmapInfo,
+                                          provider, NULL, NO, renderingIntent);
   
   // then make the uiimage from that
   UIImage *myImage = [UIImage imageWithCGImage:imageRef];

@@ -8,6 +8,8 @@
 
 #import "TMPositionFactory.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation TMPositionFactory
 
 /// The default scale factor used when no scale is specified.
@@ -31,3 +33,5 @@ static const GLfloat kDefaultScale = 1.0;
 
 
 @end
+
+NS_ASSUME_NONNULL_END

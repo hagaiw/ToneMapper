@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "TMPosition.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface TMPositionFactory : NSObject
 
 /// Returns the default \c TMPosition.
@@ -24,3 +26,5 @@
 - (TMPosition *)positionWithTranslation:(CGPoint)trasnlation scale:(GLfloat)scale;
 
 @end
+
+NS_ASSUME_NONNULL_END

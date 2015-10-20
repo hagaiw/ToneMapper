@@ -1,7 +1,8 @@
 attribute vec4 Position;
+attribute vec2 TexCoordIn;
+
 uniform mat4 Projection;
 
-attribute vec2 TexCoordIn;
 varying vec2 TexCoordOut;
 
 void main(void) {

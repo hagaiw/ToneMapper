@@ -15,10 +15,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// A pipeline object incharge of displaying the output of texture processing pipeline.
+/// A \c TMTexture displayer, to be used at the end of a \c TMTexture processing pipeline.
 @interface TMTextureDisplay : NSObject
 
-/// Initialize with the given \c frameBuffer, \c program, \c geometry, \c scale, \c x and \c y.
+/// Initialize with the given \c TMFrameBuffer, \c TMTextureProgram, \c TMTexturedGeometry.
 - (instancetype)initWithFrameBuffer:(id<TMFrameBuffer>)frameBuffer
                             program:(TMTextureProgram *)program
                            geometry:(TMTexturedGeometry *)geometry;

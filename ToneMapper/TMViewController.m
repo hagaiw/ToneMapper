@@ -118,4 +118,3 @@ static const float kDefaultImageScale = 1.0;
 @end
 
 NS_ASSUME_NONNULL_END
-

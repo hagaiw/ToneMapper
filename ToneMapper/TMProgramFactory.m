@@ -12,28 +12,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation TMProgramFactory
 
-static NSString * const kWorkspaceVertexShader = @"workspaceVertexShader";
-static NSString * const kWorkspaceFragmentShader = @"workspaceFragmentShader";
-static NSString * const kTextureVertexShader = @"textureVertexShader";
-static NSString * const kTextureFragmentShader = @"textureFragmentShader";
+static NSString * const kPassThroughWithProjectionVertexShader =
+                            @"passThroughWithProjectionVertexShader";
+static NSString * const kPassThroughFragmentShader = @"passThroughFragmentShader";
 
 #pragma mark -
 #pragma mark Factory Methods
 #pragma mark -
 
-- (TMTextureProgram *)textureDisplayProgram {
+- (TMTextureProgram *)passThroughWithProjection {
   TMProgram *program = [[TMProgram alloc] initWithAttributes:[self defaultAttributes]
                                                     uniforms:[self defaultUniforms]
-                                            vertexShaderName:kWorkspaceVertexShader
-                                          fragmentShaderName:kWorkspaceFragmentShader];
-  return [[TMTextureProgram alloc] initWithProgram:program];
-}
-
-- (TMTextureProgram *)textureProcessingProgram {
-  TMProgram *program = [[TMProgram alloc] initWithAttributes:[self defaultAttributes]
-                                                    uniforms:[self defaultUniforms]
-                                            vertexShaderName:kTextureVertexShader
-                                          fragmentShaderName:kTextureFragmentShader];
+                                            vertexShaderName:kPassThroughWithProjectionVertexShader
+                                          fragmentShaderName:kPassThroughFragmentShader];
   return [[TMTextureProgram alloc] initWithProgram:program];
 }
 

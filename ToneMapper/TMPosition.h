@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 @import GLKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /// Value class holding translation and scale parameters.
 @interface TMPosition : NSObject
 
@@ -24,3 +26,5 @@
 @property (readonly, nonatomic) CGFloat scale;
 
 @end
+
+NS_ASSUME_NONNULL_END

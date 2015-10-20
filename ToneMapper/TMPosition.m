@@ -8,6 +8,8 @@
 
 #import "TMPosition.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation TMPosition
 
 - (instancetype)initWithTranslation:(CGPoint)translation scale:(CGFloat)scale {
@@ -26,3 +28,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

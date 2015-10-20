@@ -8,6 +8,8 @@
 
 #import "TMTextureProcessorFactory.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation TMTextureProcessorFactory
 
 - (TMTextureProcessor *)processorWithProgram:(TMTextureProgram *)program {
@@ -15,3 +17,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

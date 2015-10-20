@@ -8,10 +8,19 @@
 
 #import "TMShader.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation TMShader
 
+/// The expected file extension for the given shader name.
 static NSString * const kShaderFileExtension = @"glsl";
+
+/// Error message to present in the case of a compilation error.
 static NSString * const kShaderCompileErrorMessage = @"Error loading shader: %@";
+
+#pragma mark -
+#pragma mark Initialize
+#pragma mark -
 
 - (instancetype)initWithShaderName:(NSString *)shaderName shaderType:(GLenum)shaderType {
   if (self = [super init]) {
@@ -19,6 +28,10 @@ static NSString * const kShaderCompileErrorMessage = @"Error loading shader: %@"
   }
   return self;
 }
+
+#pragma mark -
+#pragma mark Compilation
+#pragma mark -
 
 /// Taken from: http://www.raywenderlich.com/3664/opengl-tutorial-for-ios-opengl-es-2-0
 - (GLuint)compileShader:(NSString*)shaderName withType:(GLenum)shaderType {
@@ -58,3 +71,5 @@ static NSString * const kShaderCompileErrorMessage = @"Error loading shader: %@"
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

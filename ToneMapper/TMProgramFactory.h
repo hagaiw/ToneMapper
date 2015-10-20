@@ -17,8 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// A factory class used to create new \c TMPrograms.
 @interface TMProgramFactory : NSObject
 
-- (TMTextureProgram *)textureDisplayProgram;
-- (TMTextureProgram *)textureProcessingProgram;
+/// A pass-through texture display program.
+- (TMTextureProgram *)passThroughWithProjection;
 
 @end
 

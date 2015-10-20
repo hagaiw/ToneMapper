@@ -31,8 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// glVertexAttribPointer.
 - (void)linkTextureArrayToAttribute:(GLuint)textureHandle;
 
-/// Draws the geometry by calling glDrawElements.
-- (void)drawElements;
+/// The number of indices, to be used when calling glDrawElements.
+- (GLuint)numberOfIndices;
 
 @end
 

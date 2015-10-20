@@ -64,8 +64,8 @@ NS_ASSUME_NONNULL_BEGIN
                         [self.vertices texturePointer]);
 }
 
-- (void)drawElements {
-  glDrawElements(GL_TRIANGLES, [self.vertices numOfIndices], GL_UNSIGNED_BYTE, 0);
+- (GLuint)numberOfIndices {
+  return [self.vertices numOfIndices];
 }
 
 @end

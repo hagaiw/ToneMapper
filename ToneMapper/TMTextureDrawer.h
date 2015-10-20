@@ -16,7 +16,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// A helper class which provides tool for drawing a scene.
+/// A helper class for performing openGL drawing.
 @interface TMTextureDrawer : NSObject
 
 /// Draws the scene defined by the given \c program, \c textureGeometry, \c texture and \c
