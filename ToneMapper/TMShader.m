@@ -54,7 +54,7 @@ static NSString * const kShaderCompileErrorMessage = @"Error loading shader: %@"
 }
 
 - (void)dealloc {
-//  glDeleteShader(self.handle);
+  glDeleteShader(self.handle);
 }
 
 @end

@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Display the given \c TMTexture with translation and scale specified by the given
 /// \c TMDisplayData.
-- (void)displayTexture:(TMTexture *)texture displayData:(TMPosition *)displayData;
+- (void)displayTexture:(TMTexture *)texture position:(TMPosition *)displayData;
 
 @end
 

@@ -19,6 +19,7 @@
 @property (strong, nonatomic) TMTexturedGeometry *quadGeometry;
 @property (strong, nonatomic) TMProjectionFactory *projectionFactory;
 @property (strong, nonatomic) TMGeometryFactory *geometryFactory;
+@property (strong, nonatomic) TMTextureFrameBuffer *frameBuffer;
 
 @end
 
@@ -41,7 +42,7 @@
 
 - (TMTexture *)processTexture:(TMTexture *)texture {
   return [self processTexture:texture
-               withProjection:[self.projectionFactory verticalMirrorProjection]];
+               withProjection:[self.projectionFactory identityProjection]];
 }
 
 - (TMTexture *)processAndFlipTexture:(TMTexture *)texture {
@@ -50,13 +51,13 @@
 }
 
 - (TMTexture *)processTexture:(TMTexture *)texture withProjection:(GLKMatrix4)projection{
-  TMTextureFrameBuffer *textureFrameBuffer = [self frameBufferWithSize:texture.size];
+  self.frameBuffer = [self frameBufferWithSize:texture.size];
   [[TMTextureDrawer new] drawWithTextureProgram:self.program
                                texturedGeometry:self.quadGeometry
-                                    frameBuffer:textureFrameBuffer
+                                    frameBuffer:self.frameBuffer
                                         texture:texture
                                      projection:projection];
-  return textureFrameBuffer.texture;
+  return self.frameBuffer.texture;
 }
 
 - (TMTextureFrameBuffer *)frameBufferWithSize:(CGSize)size {

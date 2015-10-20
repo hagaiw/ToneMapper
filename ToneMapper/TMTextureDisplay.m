@@ -40,7 +40,7 @@
 }
 
 - (void)displayTexture:(TMTexture *)texture
-           displayData:(TMPosition *)displayData {
+           position:(TMPosition *)displayData {
   
   GLKMatrix4 aspectFixProjection = [self.projectionFactory projectionFitSize:texture.size
                                                                       inSize:self.frameBuffer.size];

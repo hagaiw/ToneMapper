@@ -5,7 +5,7 @@ uniform sampler2D Texture;
 void main(void) {
   gl_FragColor = texture2D(Texture, TexCoordOut);
   
-  if (TexCoordOut.x < 0.01) {
+  if (TexCoordOut.x < 0.11) {
     gl_FragColor = vec4(0.5);
   }
 }
